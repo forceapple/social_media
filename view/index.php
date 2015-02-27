@@ -57,6 +57,7 @@
               I am convenient because I require little markup to use effectively.</p>
             </div>
             <div class="card-action">
+            	 <a href="#"><i class="mdi-hardware-keyboard-arrow-up"></i></a><div class="vote">2 votes</div><a href="#"><i class="mdi-hardware-keyboard-arrow-down"></i></a>
               <a href="#"># of comments</a>
             </div>
           </div>
@@ -71,7 +72,8 @@
               I am convenient because I require little markup to use effectively.</p>
             </div>
             <div class="card-action">
-             <a href="#"># of comments</a>
+            	 <a href="#"><i class="mdi-hardware-keyboard-arrow-up"></i></a><div class="vote">2 votes</div><a href="#"><i class="mdi-hardware-keyboard-arrow-down"></i></a>
+              <a href="#"># of comments</a>
             </div>
           </div>
           

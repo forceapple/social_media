@@ -40,3 +40,8 @@ a {
 	background-color: #00838f !important;
 	color: #fff !important;
 }
+
+.vote {
+	padding-right: 12px;
+	display: inline-block;
+}
