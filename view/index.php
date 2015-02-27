@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
     	<div class="row">
-        	<div class="col s12" id="header">Reddit?</div>
+        	<div class="col s12" id="header">NONI</div>
         </div>
         
         <!-- insert 
@@ -45,59 +45,49 @@
         </form>
         
 
-        <form id="insertImageForm">
-         <div class="row block-content-2">
-        	<div class="col s3">
-        		<div class="form-group center med-content">
-                     <label>User</label>
-                      <p class="form-control-static" id="uid-mirror"></p>
-               </div>
-           </div>
-           <div class="col s3">
-        		<div class="form-group center med-content">
-                	<label>Image URL</label>
-                    <input type="text" class="form-control" id="imagePath" placeholder="http://">
-               </div>
-           </div>
-           <div class="col s3 center med-content">
-        		<div class="form-group center">
-                	<label>Insert an image for user.</label>
-                    <button type="submit" id="insertImageButton" class="btn waves-effect waves-light btn-large">SUBMIT <i class="mdi-image-add-to-photos right"></i></button>
-               </div>
-           </div>
-           <div id="insertImageMsgBox" class="col s3 center med-content">	
-           </div>
-        </div>
-     </form>-->
      
      <!-- start container -->
        <div class="row">
        <!-- content -->
         <div class="col m8">
-          <div class="card blue-grey darken-1">
-            <div class="card-content white-text">
-              <span class="card-title">Card Title</span>
+          <div class="card">
+            <div class="card-content">
+              <span class="card-title"><a href="#">Link Card</a></span>
               <p>I am a very simple card. I am good at containing small bits of information.
               I am convenient because I require little markup to use effectively.</p>
             </div>
             <div class="card-action">
-              <a href="#">This is a link</a>
-              <a href='#'>This is a link</a>
+              <a href="#"># of comments</a>
             </div>
           </div>
+          
+            <div class="card">
+            <div class="card-image">
+              <img src="http://www.evolutionsupply.com/_images/image9.gif" class="post-image">
+              <span class="card-title">Card Title</span>
+            </div>
+            <div class="card-content">
+              <p>I am a very simple card. I am good at containing small bits of information.
+              I am convenient because I require little markup to use effectively.</p>
+            </div>
+            <div class="card-action">
+             <a href="#"># of comments</a>
+            </div>
+          </div>
+          
          </div><!-- /content-->
          
-         <!-- sidebar: insert? -->
+         <!-- sidebar: username? -->
           <div class="col m4">
            <form id="insertUserForm">
         <div class="row block-content">
         	<div class="col">
         		<div class="form-group center med-content">
-                    	<label>User</label>
+                    	<label>Username</label>
                            <input type="text" class="form-control" id="uid" value="1" placeholder="user ID" required>
                </div>
            </div>
-    
+    		<button id="insertProfilePicButton" class="btn waves-effect waves-light btn-large" type="submit" name="action">LOGIN<i class="mdi-action-perm-contact-cal right"></i></button>
            <div id="insertUserMsgBox" class="col s3 center med-content">	
            </div>
         </div>
@@ -105,7 +95,7 @@
         </div><!-- end sidebar -->
       </div>
      
-     <!-- end card roll -->
+     <!-- end CONTAINER -->
      
   
     </div><!-- end of container-->

@@ -2,7 +2,11 @@
 /* CSS Document */
 
 body {
-	font-weight: 100;
+	font-weight: 300;
+}
+
+a {
+	
 }
 
 #header {
@@ -13,5 +17,26 @@ body {
 	padding-right: 1em;
 	font-weight: 300;
 	font-size:4em;
-	color: #01579b;
+	color: #00838f;
+}
+
+.card {
+	background-color: #fafafa;
+}
+
+.card a {
+	font-weight: 300 !important;
+}
+
+.card .card-title a {
+	color: #0091ea !important;
+}
+
+.post-image {
+	
+}
+
+.card-image .card-title {
+	background-color: #00838f !important;
+	color: #fff !important;
 }
