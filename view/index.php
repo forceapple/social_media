@@ -89,7 +89,7 @@
                            <input type="text" class="form-control" id="uid" value="1" placeholder="user ID" required>
                </div>
            </div>
-    		<button id="insertProfilePicButton" class="btn waves-effect waves-light btn-large" type="submit" name="action">LOGIN<i class="mdi-action-perm-contact-cal right"></i></button>
+    		<button id="loginButton" class="btn waves-effect waves-light btn-large" type="submit" name="action">LOGIN<i class="mdi-hardware-keyboard-alt right"></i></button>
            <div id="insertUserMsgBox" class="col s3 center med-content">	
            </div>
         </div>
