@@ -20,7 +20,7 @@ if(isset($_GET['phase'])){
 		break;
 		case 1:
 			$lo = new noniController();
-			echo json_encode($lo->get_post($_GET['uid']));
+			echo json_encode($lo->get_post($_GET['pid']));
 		break;
 		case 2:
 			$lo = new noniController();
