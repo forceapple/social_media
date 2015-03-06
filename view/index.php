@@ -106,7 +106,19 @@
       <script>
   $(document).ready(
     function() {
-		
+		  $.ajax({
+        url:'../controller/listener.php',
+        data: {phase: 0},
+        type: 'GET',
+        dataType: 'json',
+        success: function(resp){
+          console.log(resp);
+        },
+        error: function(err){
+          console.log(err);
+          console.log('fail');
+        }
+      })
 
 		  
     });

@@ -1,5 +1,5 @@
 <?php
-require_once('main.php');
+require('main.php');
 
 // *******************
 // GET PHASES
@@ -11,19 +11,20 @@ require_once('main.php');
 // TO DO
 // class constructor
 
+
 if(isset($_GET['phase'])){
 	switch($_GET['phase']){
 		case 0:
 			$lo = new noniController();
-			return json_encode($lo->get_all_post());
+			echo json_encode($lo->get_all_post());
 		break;
 		case 1:
 			$lo = new noniController();
-			return json_encode($lo->get_post($_GET['uid']));
+			echo json_encode($lo->get_post($_GET['uid']));
 		break;
 		case 2:
 			$lo = new noniController();
-			return json_encode($lo->get_comments($_GET['cid']));
+			echo json_encode($lo->get_comments($_GET['cid']));
 		break;
 	}
 }
