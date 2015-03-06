@@ -81,8 +81,7 @@
 			}
 			else if (postType == 1)
 			{
-				//post type 1 = image with external a link<br>alert("test");
-				alert("test");
+				//post type 1 = image with external a link<br>
 				$("#content").append("<div class='card'><div class='card-image'><img src='"+post[i].post_image+"' class='post-image'><span class='card-title'>"+post[i].post_title+" by <span class='username'>"+post[i].username+"</span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>");				
 			}
 					
