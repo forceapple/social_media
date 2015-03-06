@@ -32,8 +32,8 @@ class Noni{
 
 	function get_post($pid){
 		global $con;
-		$query = "SELECT * FROM post LEFT JOIN user_post ON user_post.pid = post.pid
-										LEFT JOIN user ON user.uid = user_post.uid WHERE user.uid=".$pid;
+		$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.post_image, post.type, post.text  FROM post LEFT JOIN user_post ON user_post.pid = post.pid
+									LEFT JOIN user ON user.uid = user_post.uid WHERE post.pid=".$pid;
 		$result = mysqli_query($con, $query);
 		if($result){
 			$arr = array();
@@ -45,6 +45,7 @@ class Noni{
 				$arr['text']= $row['text'];
 				$arr['post_type']= $row['type'];
 				$arr['username']= $row['username'];
+				$arr['uid'] = $row['uid'];
 				$arr['profile_img']= $row['profile_img'];
 				$arr2[]=$arr;
 			}
@@ -79,9 +80,9 @@ class Noni{
 	}
 
 }
-/*
+
 $db = new Noni();
 $asd="1";
 print_r($db->get_post($asd));
-*/
+
 ?>
