@@ -55,44 +55,48 @@
       <script>
   $(document).ready(
     function() {
-		//post type 2 = 
-		  $.ajax({
-        url:'../controller/listener.php',
-        data: {phase: 0},
-        type: 'GET',
-        dataType: 'json',
-        success: function(post){
-          console.log(post);
-		  
-		  var contentHTML = "";
-		  var cardHTML="";
-		  for (var i in post)
-		  {
-		  	var pid = parseInt(post[i].pid);
-			var postType = post[i].post_type;
+
+		$.ajax({
+			url:'../controller/listener.php',
+			data: {phase: 0},
+			type: 'GET',
+			dataType: 'json',
+			success: function(post){
+			  console.log(post);
+			  
+			  var contentHTML = "";
+			  var cardHTML="";
+			  for (var i in post)
+			  {
+				var pid = parseInt(post[i].pid);
+				var postType = post[i].post_type;
+				
+				//determine post type
+				if(postType == 0) 
+				{
+					//post type 0 = link only
+					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post[i].text+"?pid="+pid+"' class='post-link'>"+post[i].post_title+" by <span class='username'>"+post[i].username+"</span></a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>";
+						$("#content").append(card);	
+						console.log(card);	
+				}
+				else if (postType == 1)
+				{
+					//post type 1 = image with external a link<br>
+					$("#content").append("<div class='card'><div class='card-image'><a href='post.php?pid="+pid+"' class='post-link'><img src='"+post[i].post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+"</a></span> by <span class='username'>"+post[i].username+"</span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>");				
+				}
+						
 			
-			//determine post type
-			if(postType == 0) 
-			{
-				//post type 0 = link only
-				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post[i].text+"'>"+post[i].post_title+" by <span class='username'>"+post[i].username+"</span></a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>";
-					$("#content").append(card);	
-					console.log(card);	
+			  }
+			},
+			error: function(err){
+			  console.log(err);
+			  console.log('fail');
 			}
-			else if (postType == 1)
-			{
-				//post type 1 = image with external a link<br>
-				$("#content").append("<div class='card'><div class='card-image'><img src='"+post[i].post_image+"' class='post-image'><span class='card-title'>"+post[i].post_title+" by <span class='username'>"+post[i].username+"</span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>");				
-			}
-					
-		
-		  }
-        },
-        error: function(err){
-          console.log(err);
-          console.log('fail');
-        }
-      })
+		  });
+		  
+		$(".post-link").on("click", function() {
+			 
+		});
 
 		  
     });
