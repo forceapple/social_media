@@ -15,7 +15,7 @@
 <body>
 	<div class="container">
     	<div class="row">
-        	<div class="col s12" id="header">NONI</div>
+        	<div class="col s12" id="header"><a href="index.php">NONI</a></div>
         </div>
      <!-- start container -->
        <div class="row">

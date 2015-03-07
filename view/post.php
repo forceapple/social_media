@@ -3,8 +3,9 @@
 	$pid = $_GET['pid'];
 	
 	$main = new noniController();
-	print_r($main->get_post($pid));
-
+	$post = $main->get_post($pid);
+	$comments = $main->get_comments($pid);
+	
 ?>
 
 <!doctype html>
@@ -24,7 +25,7 @@
 <body>
 	<div class="container">
     	<div class="row">
-        	<div class="col s12" id="header">NONI</div>
+        	<div class="col s12" id="header"><a href="index.php">NONI</a></div>
         </div>
   
      <!-- start container -->
@@ -35,34 +36,41 @@
           
    			<!-- if else POST LINK -->
             <div class="card-content">
-              <span class="card-title"><a href="#">Link Card</a></span>
-               <p>lorem ipsum dolor blaaaaah</p>
+              <span class="card-title post-title"><?php echo $post['post_title']; ?></span>
+               <p><?php echo $post['text']; ?></p>
             </div><!-- /POST LINK -->
             
             <!-- if else POST IMAGE -->
              <div class="card-image">
-              <img src="http://www.evolutionsupply.com/_images/image9.gif" class="post-image">
-              <span class="card-title">Card Title</span>
+              <img src="<?php echo $post['post_image']; ?>" class="post-image">
+              <!--<span class="card-title">Card Title</span>-->
             </div><!--/POST IMAGE -->
             
             
             <div class="card-action">
-            	 <a href="#"><i class="mdi-hardware-keyboard-arrow-up"></i></a><div class="vote">2 votes</div><a href="#"><i class="mdi-hardware-keyboard-arrow-down"></i></a>
+            	 <a href="#"><i class="mdi-hardware-keyboard-arrow-up"></i></a><div class="vote">2 votes</div><a href="#"><i class="mdi-hardware-keyboard-arrow-down"></i></a> posted by <span class="username"><?php echo $post['username']; ?></span> <img src="<?php echo $post["profile_img"]; ?>" class="userprofilepic">
             </div>
           </div>
           
           <!-- start comments -->
-          <h2># comments</h2>
+          <h2><?php echo count($comments); ?> comments</h2>
            <div class="col m8">
            		<table  class="comments-table">
                <tbody>
-                  <tr>
-                    <td class="user-avatar-td"> <img src="https://shechive.files.wordpress.com/2012/08/0-kids-fashion-1.jpg" alt="" class="circle user-avatar"></td>
-                    <td>Name</td>
-                  </tr>
-                  <tr>
-                    <td colspan="2">Lorem ipsum dolor sit amet, consectetur adipiscing elit. Aenean sagittis vestibulum consectetur. Praesent efficitur urna velit, a euismod libero ullamcorper pretium. Donec dignissim neque quis nibh euismod, non maximus sem viverra. Aenean quis urna sapien. Duis feugiat vehicula pretium. Sed sed nisi enim. Quisque justo nulla, ornare non sem ut, laoreet elementum sem.</td>
-                  </tr>
+               		<?php 
+						
+						foreach ($comments as $i => $comment)
+						{
+							echo "<tr>
+						<td class='user-avatar-td'> <img src='".$comment["profile_img"]."' alt='' class='circle user-avatar'></td>
+						<td>".$comment["username"]."</td>
+					  </tr>
+					  <tr>
+						<td colspan='2' class='commentsbox'>".$comment["comment"]."</td>
+					  </tr>";
+						}
+					
+                  	?>
        		 </tbody>
              </table>
 			</div>

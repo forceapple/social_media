@@ -45,6 +45,10 @@ a {
 	color: #b2ebf2 !important;
 }
 
+.post-title {
+	color: #01579b !important;
+}
+
 .username {
 	font-size: 0.4e;
 	color: #e0e0e0;
@@ -58,6 +62,21 @@ a {
 .vote {
 	padding-right: 12px;
 	display: inline-block;
+}
+
+.card-action .username {
+	color: #757575;
+}
+
+.userprofilepic {
+	height: 50px;
+	width: auto;
+	vertical-align: middle;
+	padding-left: 5px;
+}
+
+.commentsbox {
+	font-weight: 400;
 }
 
 #loginButton, #uid {
