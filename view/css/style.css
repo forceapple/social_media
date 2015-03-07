@@ -37,6 +37,19 @@ a {
 	
 }
 
+.card .card-title .imageLink a  {
+	color: #e0f7fa !important;
+}
+
+.card .card-title .imageLink a:hover  {
+	color: #b2ebf2 !important;
+}
+
+.username {
+	font-size: 0.4e;
+	color: #e0e0e0;
+}
+
 .card-image .card-title {
 	background-color: #00838f !important;
 	color: #fff !important;

@@ -47,10 +47,10 @@ class Noni{
 				$arr['username']= $row['username'];
 				$arr['uid'] = $row['uid'];
 				$arr['profile_img']= $row['profile_img'];
-				$arr2[]=$arr;
+				
 			}
 			
-			return $arr2;
+			return $arr;
 		}
 
 	}
@@ -80,9 +80,9 @@ class Noni{
 	}
 
 }
-
+/*
 $db = new Noni();
 $asd="1";
 print_r($db->get_post($asd));
-
+*/
 ?>
