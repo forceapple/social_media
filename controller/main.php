@@ -14,14 +14,14 @@ class noniController{
 	//returns a single array
 	function get_post($uid){
 		$co = new Noni();
-		return json_encode($co->get_post($uid));
+		return $co->get_post($uid);
 	}
 
 	//function to get comments by post id
 	//returns an array of comments
 	function get_comments($pid){
 		$co = new Noni();
-		return json_encode($co->get_comments($pid));
+		return $co->get_comments($pid);
 	}
 
 }
