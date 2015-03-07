@@ -1,3 +1,12 @@
+<?php
+	include("../controller/main.php");
+	$pid = $_GET['pid'];
+	
+	$main = new noniController();
+	print_r($main->get_post($pid));
+
+?>
+
 <!doctype html>
 <html>
 <head>
