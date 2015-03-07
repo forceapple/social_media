@@ -80,9 +80,9 @@ class Noni{
 	}
 
 }
-
+/*
 $db = new Noni();
 $asd="1";
 print_r($db->get_post($asd));
-
+*/
 ?>
