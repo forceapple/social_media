@@ -53,21 +53,39 @@
           </div>
           
           <!-- start comments -->
+          <div class="row">
+ 			 	<form class="col s12">
+   					<div class="row">
+     					<div class="input-field col s12">
+     					<i class="mdi-editor-mode-edit prefix"></i>
+        				<textarea id="user-comment" class="materialize-textarea"></textarea>
+        				<label for="user-comment-label">What do you say?</label>
+      					</div>
+      					 <button class="btn waves-effect waves-light" id="submit-btn" type="submit" name="submit-comment">Submit
+    					<i class="mdi-content-send right"></i>
+ 						 </button>
+    				</div>
+  				</form>
+			</div>
+          
           <h2><?php echo count($comments); ?> comments</h2>
-           <div class="col m8">
+          	
+           <div class="col m12">
            		<table  class="comments-table">
                <tbody>
                		<?php 
 						
 						foreach ($comments as $i => $comment)
 						{
-							echo "<tr>
-						<td class='user-avatar-td'> <img src='".$comment["profile_img"]."' alt='' class='circle user-avatar'></td>
-						<td>".$comment["username"]."</td>
-					  </tr>
-					  <tr>
-						<td colspan='2' class='commentsbox'>".$comment["comment"]."</td>
-					  </tr>";
+							if ($i % 2 == 0)
+								echo "<tr class='even-row'>";
+							else echo "<tr class='odd-row'>";
+							echo "<td class='user-avatar-td'> <img src='".$comment["profile_img"]."' alt='' class='circle user-avatar'></td>
+							<td>".$comment["username"]."</td>
+					  		</tr>
+					  		<tr>
+							<td colspan='2' class='commentsbox'>".$comment["comment"]."</td>
+					 		 </tr>";
 						}
 					
                   	?>
