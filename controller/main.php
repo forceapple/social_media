@@ -24,6 +24,41 @@ class noniController{
 		return $co->get_comments($pid);
 	}
 
+	//function to create a post
+	//returns true if success
+	function create_post(){
+
+	}
+
+	//function to create a comment for a post
+	//returns true if success
+	function create_comment($pid){
+
+	}
+
+	//function to edit a post
+	//returns true if success
+	function edit_post($pid){
+
+	}
+
+	//function to edit a comment
+	//returns true if success
+	function edit_comment($cid){
+
+	}
+
+	//function to delete a comment
+	//returns true if success
+	function delete_comment($cid){
+
+	}
+
+	//function to delete a post
+	//returns true if success
+	function delete_post($pid){
+
+	}
 }
 
 /*
