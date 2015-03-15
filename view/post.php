@@ -54,18 +54,20 @@
           
           <!-- start comments -->
           <div class="row">
- 			 	<form class="col s12">
-   					<div class="row">
-     					<div class="input-field col s12">
+ 			 	<form class="col s12" method="POST" action="../controller/listener.php" id="submit_comment">
+ 					<div class="row">
+   					<div class="input-field col l12 m12 s12">
      					<i class="mdi-editor-mode-edit prefix"></i>
-        				<textarea id="user-comment" class="materialize-textarea"></textarea>
-        				<label for="user-comment-label">What do you say?</label>
-      					</div>
-      					 <button class="btn waves-effect waves-light" id="submit-btn" type="submit" name="submit-comment">Submit
-    					<i class="mdi-content-send right"></i>
- 						 </button>
-    				</div>
-  				</form>
+      				<textarea id="user-comment" class="materialize-textarea"></textarea>
+      				<label for="user-comment-label">What do you say?</label>
+  					</div>
+            <div class="col l12 m12 s12">
+              <button class="btn waves-effect waves-light" id="submit-btn" type="submit" name="submit-comment">Submit
+              <i class="mdi-content-send right"></i>
+              </button>
+            </div>
+  				</div>
+  			</form>
 			</div>
           
           <h2><?php echo count($comments); ?> comments</h2>
@@ -124,6 +126,27 @@
       <script>
   $(document).ready(
     function() {
+      $('#submit_comment').submit(function(e){
+        var formData = {
+          'phase' : 1,
+          'userID' : 1,
+          'postID' : <?php echo "$pid"; ?>,
+          'comment' : $('#user-comment').val()
+        }
+        $.ajax({
+          type: 'POST',
+          url: '../controller/listener.php',
+          dataType: 'json',
+          data: formData
+        })
+        .done(function(resp){
+          console.log(resp);
+        })
+        .fail(function(err){
+          console.log(err);
+        })
+        e.preventDefault();
+      })
 	
     });
 </script>

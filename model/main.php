@@ -89,6 +89,24 @@ class Noni{
 			$query = "INSERT INTO user_post(uid,pid) VALUES ('".$uid."','".$id."')";
 			$result2 = mysqli_query($con,$query);
 			if($result2){
+				//both inserts are good, return true
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+
+	function create_comment($uid, $pid, $comment){
+		global $con;
+		$query = "INSERT INTO comments(comment) VALUES ('".$comment."')";
+		$result = mysqli_query($con,$query);
+		if($result){
+			$id = mysqli_insert_id($con);
+			$query = "INSERT INTO comments_posts(pid,uid,cid) VALUES('".$pid."','".$uid."','".$id."')";
+			$result2 = mysqli_query($con, $query);
+			if($result2){
+				//both inserts are good, return true
 				return true;
 			}
 			return false;

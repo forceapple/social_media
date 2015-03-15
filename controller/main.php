@@ -37,8 +37,13 @@ class noniController{
 
 	//function to create a comment for a post
 	//returns true if success
-	function create_comment($pid){
-
+	function create_comment($uid, $pid, $comment){
+		$co = new Noni();
+		if($co->create_comment($uid, $pid, $comment)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	//function to edit a post

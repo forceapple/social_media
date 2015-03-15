@@ -46,15 +46,28 @@ if(isset($_POST['phase'])){
 			}else{
 				$lo = new noniController();
 				$lo->create_post($_POST['uid'], $_POST['title'], $_POST['url'], $_POST['type']);
-
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}
-
 			echo json_encode($data);
-
 			break;
 		
+		case 1:
+			if(empty($_POST['comment'])){
+				$error['comment'] = 'Comment is required';
+			}
+			if(!empty($errors)){
+				$data['success'] = false;
+				$data['errors'] = $errors;
+			}else{
+				$lo = new noniController();
+				$lo->create_comment($_POST['userID'], $_POST['postID'], $_POST['comment']);
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}
+			echo json_encode($data);
+			break;
+
 		default:
 			return false;
 			break;
