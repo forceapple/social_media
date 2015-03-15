@@ -79,10 +79,31 @@ class Noni{
 
 	}
 
+	function create_post($uid, $title, $url, $type){
+		global $con;
+		$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$url."','".$url."','".$type."')";
+		$result = mysqli_query($con, $query);
+		if($result){
+			//get last insert id and insert into user_post
+			$id = mysqli_insert_id($con);
+			$query = "INSERT INTO user_post(uid,pid) VALUES ('".$uid."','".$id."')";
+			$result2 = mysqli_query($con,$query);
+			if($result2){
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+
 }
 /*
 $db = new Noni();
-$asd="1";
-print_r($db->get_post($asd));
-*/
+$uid = '1';
+$title = 'stuff';
+$url = 'http://cdn-www.dailypuppy.com/media/dogs/anonymous/Teddy_Welsh_Corgi_08.jpg_w450.jpg';
+$type = '1';
+
+$db->create_post($uid,$title,$url,$type);*/
+
 ?>

@@ -11,6 +11,8 @@ require('main.php');
 // TO DO
 // class constructor
 
+$errors = array();
+$data = array();
 
 if(isset($_GET['phase'])){
 	switch($_GET['phase']){
@@ -26,6 +28,36 @@ if(isset($_GET['phase'])){
 			$lo = new noniController();
 			echo json_encode($lo->get_comments($_GET['cid']));
 		break;
+	}
+}
+
+if(isset($_POST['phase'])){
+	switch ($_POST['phase']) {
+		case 0:
+			//check inputs
+			if(empty($_POST['link_title'])){
+				$error['title'] = 'Title is required';
+			}elseif(empty($_POST['link_url'])){
+				$error['url'] = 'URL is required';
+			}
+			if(!empty($errors)){
+				$data['success'] = false;
+				$data['errors'] = $errors;
+			}else{
+				$lo = new noniController();
+				$lo->create_post($_POST['uid'], $_POST['title'], $_POST['url'], $_POST['type']);
+
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}
+
+			echo json_encode($data);
+
+			break;
+		
+		default:
+			return false;
+			break;
 	}
 }
 
