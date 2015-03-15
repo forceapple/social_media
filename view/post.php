@@ -141,6 +141,10 @@
         })
         .done(function(resp){
           console.log(resp);
+
+          //TO DO
+          //refresh comments to show the added comment
+          //Also, a user can't submit more than 1 comment to a post because of the following index http://i.imgur.com/PvpVffE.jpg
         })
         .fail(function(err){
           console.log(err);
