@@ -8,6 +8,7 @@ class Noni{
 		global $con;
 		$this->con = $con;
 	}
+	//get all post
 	function get_all_post(){
 		global $con;
 		$query = "SELECT * FROM post LEFT JOIN user_post ON user_post.pid = post.pid
@@ -29,7 +30,7 @@ class Noni{
 		}
 
 	}
-
+	//get post by post id
 	function get_post($pid){
 		global $con;
 		$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.post_image, post.type, post.text  FROM post LEFT JOIN user_post ON user_post.pid = post.pid
@@ -54,7 +55,7 @@ class Noni{
 		}
 
 	}
-
+	//get comments by post id
 	function get_comments($pid){
 		global $con;
 		$query = "SELECT * FROM post LEFT JOIN comments_posts ON comments_posts.pid = post.pid
@@ -78,11 +79,11 @@ class Noni{
 		}
 
 	}
-
 }
 /*
 $db = new Noni();
-$asd="1";
-print_r($db->get_post($asd));
+$asd="Gordon";
+$a="1234";
+$db->login_user($asd, $a);
 */
 ?>
