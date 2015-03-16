@@ -13,15 +13,29 @@
 </head>
 
 <body>
+
 	<div class="container">
     	<div class="row">
-        	<div class="col s12" id="header">NONI</div>
+        	<div class="col s12" id="header"><a href="index.php">NONI</a></div>
         </div>
+        	
      <!-- start container -->
        <div class="row">
+	       
        <!-- content -->
         <div id="content" class="col m8">
-        
+	        <!--loading circle -->
+	        <div id="post-loading" style="display:none" class="preloader-wrapper big active">
+			    <div class="spinner-layer spinner-blue-only">
+			      <div class="circle-clipper left">
+			        <div class="circle"></div>
+			      </div><div class="gap-patch">
+			        <div class="circle"></div>
+			      </div><div class="circle-clipper right">
+			        <div class="circle"></div>
+			      </div>
+			    </div>
+			</div>
        
           
          </div><!-- /content-->
@@ -61,7 +75,11 @@
 			data: {phase: 0},
 			type: 'GET',
 			dataType: 'json',
+			beforeSend: function(){
+				$('#post-loading').show();
+			},
 			success: function(post){
+				$('#post-loading').hide();
 			  console.log(post);
 			  
 			  var contentHTML = "";

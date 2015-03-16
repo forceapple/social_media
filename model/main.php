@@ -79,6 +79,40 @@ class Noni{
 		}
 
 	}
+function create_post($uid, $title, $url, $type){
+		global $con;
+		$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$url."','".$url."','".$type."')";
+		$result = mysqli_query($con, $query);
+		if($result){
+			//get last insert id and insert into user_post
+			$id = mysqli_insert_id($con);
+			$query = "INSERT INTO user_post(uid,pid) VALUES ('".$uid."','".$id."')";
+			$result2 = mysqli_query($con,$query);
+			if($result2){
+				//both inserts are good, return true
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+
+	function create_comment($uid, $pid, $comment){
+		global $con;
+		$query = "INSERT INTO comments(comment) VALUES ('".$comment."')";
+		$result = mysqli_query($con,$query);
+		if($result){
+			$id = mysqli_insert_id($con);
+			$query = "INSERT INTO comments_posts(pid,uid,cid) VALUES('".$pid."','".$uid."','".$id."')";
+			$result2 = mysqli_query($con, $query);
+			if($result2){
+				//both inserts are good, return true
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
 }
 /*
 $db = new Noni();
@@ -86,4 +120,9 @@ $asd="Gordon";
 $a="1234";
 $db->login_user($asd, $a);
 */
+
+
+	
+
+
 ?>
