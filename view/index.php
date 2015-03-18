@@ -63,15 +63,15 @@
 				//determine post type
 				if(postType == 0) 
 				{
-					//post type 0 = link only
-					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+" by <span class='username'>"+post[i].username+"</span></a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>";
+					//post type 0 = text or link only
+					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>posted by <span class='username'>"+post[i].username+"</span></div></div>";
 						$("#content").append(card);	
 						console.log(card);	
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = image with external a link<br>
-					$("#content").append("<div class='card'><div class='card-image'><a href='post.php?pid="+pid+"' class='post-link'><img src='"+post[i].post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+"</a></span> by <span class='username'>"+post[i].username+"</span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>");				
+					$("#content").append("<div class='card'><div class='card-image'><a href='post.php?pid="+pid+"' class='post-link'><img src='"+post[i].post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>posted by <span class='username'>"+post[i].username+"</span></div></div>");				
 				}
 						
 			
