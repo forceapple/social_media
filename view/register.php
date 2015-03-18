@@ -9,30 +9,30 @@
              <h5 class="center-align function-heading">Sign Up for Fun</h5>
             <div class="row">
               <div class="input-field col s6">
-                <input id="first_name" type="text" class="validate">
+                <input id="first_name" type="text">
                 <label for="first_name">First Name</label>
               </div>
               <div class="input-field col s6">
-                <input id="last_name" type="text" class="validate">
+                <input id="last_name" type="text">
                 <label for="last_name">Last Name</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="username" type="text" class="validate">
+                <input id="username" type="text" required>
                 <label for="username">Username</label>
               </div>
             </div>
             <div class="row">
               <div class="input-field col s12">
-                <input id="password" type="password" class="validate">
+                <input id="password1" type="password" required>
                 <label for="password">Password</label>
               </div>
             </div>
-            <div class="row">
+             <div class="row">
               <div class="input-field col s12">
-                <input id="email" type="email" class="validate">
-                <label for="email">Email</label>
+                <input id="password2" type="password" class="validate" data-parsley-equalto="#password1" required>
+                <label for="password">Confirm Password</label>
               </div>
             </div>
             <div class="row">

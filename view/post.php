@@ -1,11 +1,7 @@
 <?php
 	include("../controller/main.php");
 	$pid = $_GET['pid'];
-	
-	//$main = new noniController();
-	//$post = $main->get_post($pid);
-	//$comments = $main->get_comments($pid);
-	
+
 	include('header.php'); 
 ?>
      <!-- start wrapper -->
@@ -14,22 +10,6 @@
        
         <div id="post-comments-container" class="col m8">
         	<div id="post-container" style="display:none;">
-                <div class="card">
-                <!-- if else POST LINK -->
-                <div class="card-content">
-                  <span class="card-title post-title"></span>
-                   <p class="post-text"></p>
-                </div><!-- /POST LINK -->
-                
-                <!-- if else POST IMAGE -->
-                 <div class="card-image">
-                  <!--<span class="card-title">Card Title</span>-->
-                </div><!--/POST IMAGE -->
-                
-                <div class="card-action">
-                     <a href="#"><i class="mdi-hardware-keyboard-arrow-up"></i></a><div class="vote">2 votes</div><a href="#"><i class="mdi-hardware-keyboard-arrow-down"></i></a> posted by <span class="username"></span> <img src="" class="userprofilepic">
-                </div>
-              </div>
             </div><!--end of post container-->
             
             <!--loading circle -->
@@ -52,7 +32,7 @@
                         <div class="row">
                         <div class="input-field col l12 m12 s12">
                             <i class="mdi-editor-mode-edit prefix"></i>
-                        <textarea id="user-comment" class="materialize-textarea"></textarea>
+                        <textarea id="user-comment" class="materialize-textarea" data-parsley-error-message="You forgot to write your comment, Noni lover!" required></textarea>
                         <label for="user-comment-label">What do you say?</label>
                         </div>
                 <div class="col l12 m12 s12">
@@ -68,7 +48,6 @@
                <div class="col m12">
                   <table class="comments-table">
                    <tbody>
-                      
                  </tbody>
                  </table>
                 </div>
@@ -89,8 +68,10 @@
 
 	  <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+      <script src="js/parsley.min.js"></script>
       <script type="text/javascript" src="js/materialize.min.js"></script>
       <script>
+	  $('#submit_comment').parsley();
   $(document).ready(
     function() {
 		
@@ -110,48 +91,36 @@
 				$('#post-container').show();
 			},
         })
-        .done(function(resp){
-          console.log(resp);
-			$(".post-title").text(resp.post_title);
-			$(".post-text").text(resp.text);
-			$(".card-image").html("<img src='"+resp.post_image+"' class='post-image' />");
-			$(".username").text(resp.username);
-			$(".userprofilepic").attr("src", resp.profile_img);
-        })
-        .fail(function(err){
-          console.log(err);
-        });
-	
-		//get comments by post id
-        $.ajax({
-          type: 'POST',
-          url: '../controller/listener.php',
-          dataType: 'json',
-		  type: 'GET',
-          data: { phase: 2, cid: <?php echo $pid; ?> },
-		  beforeSend: function(){
-				$('#post-loading').show();
-				$('#comments-container').hide();
-			},
-		  success: function(post) {
-				$('#post-loading').hide();
-				$('#comments-container').show();
-			},
-        })
-        .done(function(commentsObj){
-          console.log(commentsObj);
-		  var comment = ""; 
-		  
-		  $("#comments-heading").text(commentsObj.length+" comments");
-		  for(var i in commentsObj)
-		  {
-			if (i % 2 == 0)
-			{
-				comment = '<tr class="odd-row">';
-			} else comment = '<tr class="even-row">';
-			comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'</td></tr><tr><td colspan="2" class="commentsbox">'+commentsObj[i].comment+'</td></tr>';
-			$(".comments-table tbody").append(comment);
-		  }
+        .done(function(post){
+          console.log(post);
+		  var card;
+			$(".post-title").text(post.post_title);
+			$(".post-text").text(post.text);
+			$(".card-image").html("<img src='"+post.post_image+"' class='post-image' />");
+			$(".username").text(post.username);
+			$(".userprofilepic").attr("src", post.profile_img);
+			
+			var postType = post.post_type;
+			//determine post type
+				if(postType == 0) 
+				{
+					//post type 0 = text or link only
+					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>posted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div></div>";
+				}
+				else if (postType == 1)
+				{
+					//post type 1 = image with external a link<br>
+					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>posted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";				
+				}
+				else if (postType == 2)
+				{
+					//post type 2 = text only
+					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.post_text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>posted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";
+										
+				}	
+			
+			$("#post-container").append(card);
+			getComments();
         })
         .fail(function(err){
           console.log(err);
@@ -172,9 +141,10 @@
 			})
 			.done(function(resp){
 			  console.log(resp);
-	
+				getComments();
+				toast(resp.message);
 			  //TO DO
-			  //refresh comments to show the added comment
+			  //DONE ->//refresh comments to show the added comment
 			  //Also, a user can't submit more than 1 comment to a post because of the following index http://i.imgur.com/PvpVffE.jpg
 			})
 			.fail(function(err){
@@ -184,6 +154,55 @@
       });
 	
     });
+	
+		//get comments by post id
+		function getComments() {
+			$.ajax({
+			  type: 'POST',
+			  url: '../controller/listener.php',
+			  dataType: 'json',
+			  type: 'GET',
+			  data: { phase: 2, cid: <?php echo $pid; ?> },
+			  beforeSend: function(){
+					$('#post-loading').show();
+					$('#comments-container').hide();
+				},
+			  success: function(post) {
+					$('#post-loading').hide();
+					$('#comments-container').show();
+				}
+			})
+			.done(function(commentsObj){
+			  console.log(commentsObj);
+			  var comment = ""; 
+			  var num_comments = commentsObj.length;
+			  var nullFlag = false;
+			  
+			  $(".comments-table tbody").empty();
+			  if (commentsObj[0].cid === null)
+			  {
+				  num_comments = "No";
+				  nullFlag = true;
+			  }
+			  $("#comments-heading").text( num_comments+" comments");
+			  
+			  if (!nullFlag) 
+			  {
+					for(var i in commentsObj)
+				  {
+					if (i % 2 == 0)
+						comment = '<tr class="odd-row">';
+					else comment = '<tr class="even-row">';
+					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'</td></tr><tr><td colspan="2" class="commentsbox">'+commentsObj[i].comment+'</td></tr>';
+					$(".comments-table tbody").append(comment);
+				  }  
+			  }
+			  
+			})
+			.fail(function(err){
+			  console.log(err);
+			});
+		}
 </script>
 </body>
 </html>
