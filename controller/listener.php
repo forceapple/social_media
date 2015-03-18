@@ -8,6 +8,13 @@ require('main.php');
 // 1 - get post by user id
 // 2 - get comments by post id
 
+// *******************
+// POST PHASES
+// *******************
+// 0 - create new post
+// 1 - post new comment
+// 2 - ?
+
 // TO DO
 // class constructor
 
