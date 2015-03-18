@@ -52,7 +52,7 @@ if(isset($_POST['phase'])){
 				$data['errors'] = $errors;
 			}else{
 				$lo = new noniController();
-				$lo->create_post($_POST['uid'], $_POST['title'], $_POST['url'], $_POST['type']);
+				$lo->create_post($_POST['uid'], $_POST['title'], $_POST['text'], $_POST['url'], $_POST['type']);
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}

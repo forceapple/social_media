@@ -26,9 +26,9 @@ class noniController{
 
 	//function to create a post
 	//returns true if success
-	function create_post($uid, $title, $url, $type){
+	function create_post($uid, $title, $text, $url, $type){
 		$co = new Noni();
-		if($co->create_post($uid, $title, $url, $type)){
+		if($co->create_post($uid, $title, $text, $url, $type)){
 			return true;
 		}else{
 			return false;
