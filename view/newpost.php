@@ -13,19 +13,24 @@
                     <option value="" disabled selected>Choose what type of post</option>
                     <option value="0">Link only</option>
                     <option value="1">Image from external link</option>
-                   
+                    <option value="2">Plain text</option>
                   </select>
                   </div>
+                  
                    <div class="row">
 			      <div class="input-field col l12 m12 s12">
 			        <input id="link_title" name="link_title" type="text" class="validate" required>
 			        <label for="link_title">Title</label>
 			      </div>
 			    </div>
-			    <div class="row">
-			      <div class="input-field col l12 m12 s12">
-			        <input id="link_url" name="link_url" type="text" class="validate" required>
+			    <div class="row" id="change_field">
+			      <div class="input-field col l12 m12 s12" id="url_field">
+			        <input id="link_url" name="link_url" type="url" class="validate">
 			        <label for="link_url">URL</label>
+			      </div>
+                   <div class="input-field col l12 m12 s12" id="text_field" style="display:none;">
+			        <input id="post_text" name="post_text" type="text" class="validate">
+			        <label for="post_text">Text</label>
 			      </div>
 			    </div>
 			    <div class="row">
@@ -76,6 +81,24 @@ $('#createPostForm').parsley();
 $(document).ready(function(){
 	
     $('select').material_select();
+	
+	$('#post-type-select').change(function() {
+		var postType = $('#post-type-select').val();
+		if (postType==0 || postType==1)
+		{
+			$("#text_field").hide();
+			$("#post_text").prop("required", false);
+			$("#url_field").show();
+			$("#link_url").prop("required", true);
+		} else if (postType == 2)
+		{
+			$("#text_field").show();
+			$("#post_text").prop("required", true);
+			$("#url_field").hide();	
+			$("#link_url").prop("required", false);
+		}
+	});
+	
 	$('.modal-trigger').leanModal();
  
 	$('#createPostForm').submit(function(e){
@@ -85,6 +108,7 @@ $(document).ready(function(){
 			'title' : $('#link_title').val(),
 			'url' : $('#link_url').val(),
 			'type' : $("#post-type-select").val(),
+			'text' : $("#post_text").val(),
 		}
 
 		console.log(formData);
@@ -110,6 +134,9 @@ $(document).ready(function(){
 		var postType= $("#post-type-select").val();
 		var post_title = $("#link_title").val();
 		var post_url = $("#link_url").val();
+		var post_text = $("#post_text").val();
+		
+		$('#createPostForm').parsley();
 		
 		if (!postType)
 		{
@@ -119,15 +146,21 @@ $(document).ready(function(){
 			if(postType == 0) 
 			{
 				//post type 0 = link only
-				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post_url+"' target='_blank' class='post-link'>"+post_title+" by <span class='username'>TEST USER</span></a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'># of comments</a></div></div>";
+				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post_url+"' target='_blank' class='post-link'>"+post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'># of comments</a> by <span class='username'>TEST USER</span></div></div>";
 				$("#previewPostContainer").html(card);	
 				
 			}
 			else if (postType == 1)
 			{
 				//post type 1 = image with external a link<br>
-				$("#previewPostContainer").html("<div class='card'><div class='card-image'><a href='"+post_url+"' class='post-link'><img src='"+post_url+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='#' class='post-link'>"+post_title+"</a></span> by <span class='username'>TEST USER</span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a></div></div>");				
+				$("#previewPostContainer").html("<div class='card'><div class='card-image'><a href='"+post_url+"' class='post-link'><img src='"+post_url+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='#' class='post-link'>"+post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>by <span class='username'>TEST USER</span></div></div>");				
 			}
+			else if (postType == 2)
+			{
+				//post type 2 = text only
+				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='#' target='_blank' class='post-link'>"+post_title+"</a></span><p>"+post_text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'># of comments</a>by <span class='username'>TEST USER</span></div></div>";
+				$("#previewPostContainer").html(card);					
+			}	
 		}
 	});
 
