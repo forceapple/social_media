@@ -18,6 +18,12 @@ require('main.php');
 // TO DO
 // class constructor
 
+//REMINDER OF POST TYPES
+//post type 0 = title and URL only
+//post type 1 = title image URL a link
+//post type 2 = title and text only
+
+
 $errors = array();
 $data = array();
 
