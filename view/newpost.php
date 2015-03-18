@@ -5,7 +5,7 @@
 	       
        <!-- content -->
         <div id="content" class="col m8">
-        	<h1>New Post</h1>
+        	<h2 class="post-heading">Create New Post</h2>
 	        <form action="../controller/listener.php" class="col l12 m12 s12 container" id="linkform" method="POST">
 			    <div class="row">
 			      <div class="input-field col l12 m12 s12">

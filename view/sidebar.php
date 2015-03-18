@@ -1,5 +1,6 @@
          <!-- sidebar: username? -->
           <div class="col m4">
+          <!--
            <form id="insertUserForm">
         <div class="row block-content">
         	<div class="col">
@@ -12,5 +13,13 @@
            <div id="insertUserMsgBox" class="col s3 center med-content">	
            </div>
         </div>
-        </form>
-        </div><!-- end sidebar -->
+        </form>-->
+        
+	<table class="hoverable">
+    <thead><tr><th>Temporary Menu</th></tr></thead>
+    <tbody>
+    	<tr><td><a href="newpost.php">New Post</a></td></tr>
+    </tbody>
+	 </table>
+  
+</div><!-- end sidebar -->
