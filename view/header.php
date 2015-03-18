@@ -8,7 +8,7 @@
 <!--Let browser know website is optimized for mobile-->
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta charset="UTF-8">
-    <title>Reddit?</title>
+    <title>Reddit? No. It's Noni.</title>
 
 </head>
 
@@ -53,10 +53,10 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="#">Menu when Logged In <i class="mdi-action-trending-neutral right"></i></a></li>
       <li><a href="index.php">Home</a></li>
-      <li><a href="#">My Posts</a></li>   
-      <li><a href="#">Liked</a></li> 
-      <li><a href="#">Disliked</a></li>
-      <li><a href="#">Comments</a></li>
+      <li><a href="myposts.php">My Posts</a></li>   
+      <li><a href="mylikedposts.php">Liked</a></li> 
+      <li><a href="mydislikedposts.php">Disliked</a></li>
+      <li><a href="mycomments.php">Comments</a></li>
       <li><a href="#">Log Out</a></li>
     </ul>
   </div>

@@ -66,7 +66,6 @@
 					//post type 0 = link only
 					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>posted by <span class='username'>"+post[i].username+"</span></div></div>";
 						$("#content").append(card);	
-						console.log(card);	
 				}
 				else if (postType == 1)
 				{
