@@ -15,6 +15,50 @@
 <body>
 
 	<div class="container">
-    	<div class="row">
+    	<header>
         	<div class="col s12" id="header"><a href="index.php">NONI</a></div>
+        </header>
+        
+        <!-- Menu: when not in session -->
+<nav>
+  <div class="nav-wrapper">
+  	<ul class="left hide-on-med-and-down">
+    	<li style="padding-left: 10px;"><form>
+        <div class="input-field">
+          <input id="search" type="text" required>
+          <label for="search"><i class="mdi-action-search"></i></label>
         </div>
+      </form></li>
+    </ul>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#">Menu for unregistered users<i class="mdi-action-trending-neutral right"></i></a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="#">Register</a></li>
+      <li><a href="#">Log In</a></li>
+    </ul>
+  </div>
+</nav>
+
+        <!-- Menu: Make visible only when in session -->
+<nav>
+  <div class="nav-wrapper">
+  	<ul class="left hide-on-med-and-down">
+    	<li style="padding-left: 10px;"><form>
+        <div class="input-field">
+          <input id="search" type="text" required>
+          <label for="search"><i class="mdi-action-search"></i></label>
+        </div>
+      </form></li>
+    </ul>
+    <ul id="nav-mobile" class="right hide-on-med-and-down">
+      <li><a href="#">Menu when Logged In <i class="mdi-action-trending-neutral right"></i></a></li>
+      <li><a href="index.php">Home</a></li>
+      <li><a href="#">My Posts</a></li>   
+      <li><a href="#">Liked Posts</a></li> 
+      <li><a href="#">Disliked Posts</a></li>
+      <li><a href="#">Comments</a></li>
+      <li><a href="#">Log Out</a></li>
+    </ul>
+  </div>
+</nav>
+        
