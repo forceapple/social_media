@@ -114,20 +114,51 @@ function create_post($uid, $title, $text, $url, $type){
 		}
 		return false;
 	}
-	function edit_post($pid,$uid){
+	function edit_post($pid,$uid, $title, $url, $type){
 		global $con;
+		$query = "SELECT * FROM user_post LEFT JOIN post ON post.pid = user_post.pid WHERE user_post.uid=".$uid;
+		$result = mysqli_query($con,$query);
 
-		$query = "UPDATE post "
+		if($result){
+			$query = "UPDATE post SET title='".$title."',text='".$url."', post_image='".$url."', type='".$type."' WHERE pid=".$pid;
+			$result2 = mysqli_query($con,$query);
+			if($result2){
+				return true;
+			}
+			return false;
+		}
+		return false;
+					
 
+	}
+	function del_post($pid,$uid){
+		global $con;
+		$query = "SELECT * FROM user_post LEFT JOIN post ON post.pid = user_post.pid WHERE user_post.uid=".$uid;
+		$result = mysqli_query($con,$query);
+		//$query ="DELETE FROM user_post WHERE user_post.pid='".$pid."' AND user_post.uid= ".$uid;
+		if($result){
+			$query2 ="DELETE FROM post WHERE post.pid=".$pid;
+			$result2 = mysqli_query($con,$query2);
+			if($result2){
+				return true;
+			}
+			return false;
+		}
+		return false;
 	}
 }
 /*
 $db = new Noni();
-$asd="Gordon";
-$a="1234";
-$db->login_user($asd, $a);
-*/
+$asd="5";
+$a="1";
+$f="Noni!!!!!!";
+$r="I never had noni beo22222fre";
+$w="http://www.costaricannoni.com/pics/P1050237.JPG";
 
+$db->del_post($asd, $a);
+//$db->edit_post($asd, $a,$f,$r,$w);
+
+*/
 
 	
 
