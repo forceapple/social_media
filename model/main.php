@@ -99,7 +99,7 @@ function create_post($uid, $title, $url, $type){
 
 	function create_comment($uid, $pid, $comment){
 		global $con;
-		$query = "INSERT INTO comments(comment) VALUES ('".$comment."')";
+	 	$query = "INSERT INTO comments(comment) VALUES ('".$comment."')";
 		$result = mysqli_query($con,$query);
 		if($result){
 			$id = mysqli_insert_id($con);
@@ -112,6 +112,12 @@ function create_post($uid, $title, $url, $type){
 			return false;
 		}
 		return false;
+	}
+	function edit_post($pid,$uid){
+		global $con;
+
+		$query = "UPDATE post "
+
 	}
 }
 /*
