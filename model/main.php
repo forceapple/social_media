@@ -18,6 +18,7 @@ class Noni{
 			$arr = array();
 			while($row = mysqli_fetch_array($result)){
 				$arr['post_title']= $row['title'];
+				$arr['post_text']= $row['text'];
 				$arr['pid']= $row['pid'];
 				$arr['post_image']= $row['post_image'];
 				$arr['post_type']= $row['type'];
@@ -79,9 +80,9 @@ class Noni{
 		}
 
 	}
-function create_post($uid, $title, $url, $type){
+function create_post($uid, $title, $text, $url, $type){
 		global $con;
-		$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$url."','".$url."','".$type."')";
+		$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$text."','".$url."','".$type."')";
 		$result = mysqli_query($con, $query);
 		if($result){
 			//get last insert id and insert into user_post
