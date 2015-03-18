@@ -5,7 +5,7 @@ require('main.php');
 // GET PHASES
 // *******************
 // 0 - get all posts
-// 1 - get post by user id
+// 1 - get post by post id
 // 2 - get comments by post id
 
 // *******************
