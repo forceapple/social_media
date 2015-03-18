@@ -109,3 +109,14 @@ a {
 .even-row {
 	background-color: #f5f5f5;
 }
+
+#footer {
+	background-color: #363636;
+	color: #fff;
+	text-align: center;
+	font-size: 0.8em;
+	padding-top: 2em;
+	padding-bottom: 2em;
+	letter-spacing: 2px;
+	font-weight: 200;
+}

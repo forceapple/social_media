@@ -1,25 +1,6 @@
-<!doctype html>
-<html>
-<head>
-<!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link rel="stylesheet" href="css/style.css">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-<!--Let browser know website is optimized for mobile-->
-   <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
-    <meta charset="UTF-8">
-    <title>Reddit?</title>
-
-</head>
-
-<body>
-
-	<div class="container">
-    	<div class="row">
-        	<div class="col s12" id="header"><a href="index.php">NONI</a></div>
-        </div>
+<?php include('header.php'); ?>
         	
-     <!-- start container -->
+     <!-- start wrapper -->
        <div class="row">
 	       
        <!-- content -->
@@ -40,28 +21,18 @@
           
          </div><!-- /content-->
          
-         <!-- sidebar: username? -->
-          <div class="col m4">
-           <form id="insertUserForm">
-        <div class="row block-content">
-        	<div class="col">
-        		<div class="form-group center med-content">
-                    	<label>Username</label>
-                           <input type="text" class="form-control" id="uid" value="1" placeholder="user ID" required>
-               </div>
-           </div>
-    		<button id="loginButton" class="btn waves-effect waves-light btn-large" type="submit" name="action">LOGIN<i class="mdi-hardware-keyboard-alt right"></i></button>
-           <div id="insertUserMsgBox" class="col s3 center med-content">	
-           </div>
-        </div>
-        </form>
-        </div><!-- end sidebar -->
+		<?php include('sidebar.php'); ?>
+        
       </div>
      
-     <!-- end CONTAINER -->
+     <!-- start footer -->
+     	<?php include('footer.php'); ?>
+     <!-- end footer -->
+     
+     <!-- end wrapper -->
      
   
-    </div><!-- end of container-->
+  </div><!-- end of container-->
 
 	  <!--Import jQuery before materialize.js-->
       <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
