@@ -136,17 +136,18 @@ $(document).ready(function(){
 		var post_url = $("#link_url").val();
 		var post_text = $("#post_text").val();
 		
-		$('#createPostForm').parsley();
+		//$('#createPostForm').parsley().validate();
 		
 		if (!postType)
 		{
 			$('#PostPreviewError').openModal();
-		} else {
+		} else if ($('#createPostForm').parsley().validate())
+		{
 			//determine post type
 			if(postType == 0) 
 			{
 				//post type 0 = link only
-				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post_url+"' target='_blank' class='post-link'>"+post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'># of comments</a> by <span class='username'>TEST USER</span></div></div>";
+				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post_url+"' target='_blank' class='post-link'>"+post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'># of comments</a>by <span class='username'>TEST USER</span></div></div>";
 				$("#previewPostContainer").html(card);	
 				
 			}
