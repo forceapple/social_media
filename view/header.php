@@ -33,8 +33,8 @@
     <ul id="nav-mobile" class="right hide-on-med-and-down">
       <li><a href="#">Menu for unregistered users<i class="mdi-action-trending-neutral right"></i></a></li>
       <li><a href="index.php">Home</a></li>
-      <li><a href="#">Register</a></li>
-      <li><a href="#">Log In</a></li>
+      <li><a href="register.php">Register</a></li>
+      <li><a href="login.php">Log In</a></li>
     </ul>
   </div>
 </nav>
@@ -54,8 +54,8 @@
       <li><a href="#">Menu when Logged In <i class="mdi-action-trending-neutral right"></i></a></li>
       <li><a href="index.php">Home</a></li>
       <li><a href="#">My Posts</a></li>   
-      <li><a href="#">Liked Posts</a></li> 
-      <li><a href="#">Disliked Posts</a></li>
+      <li><a href="#">Liked</a></li> 
+      <li><a href="#">Disliked</a></li>
       <li><a href="#">Comments</a></li>
       <li><a href="#">Log Out</a></li>
     </ul>

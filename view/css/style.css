@@ -162,3 +162,19 @@ textarea.parsley-error {
 .parsley-errors-list.filled {
   opacity: 1;
 }
+
+#login {
+	height: 600px;
+	width: 100%;
+	padding: 2em;
+}
+
+#loginForm {
+	margin: auto;
+}
+
+.function-heading {
+	font-weight: 300;
+	color: #ef5350;
+	font-size: 3em;
+}
