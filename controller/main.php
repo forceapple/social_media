@@ -48,26 +48,46 @@ class noniController{
 
 	//function to edit a post
 	//returns true if success
-	function edit_post($pid){
-
+	function edit_post($pid, $uid, $title, $text, $url, $type){
+		$co = new Noni();
+		if($co->edit_post($pid, $uid, $title, $text, $url, $type)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	//function to edit a comment
 	//returns true if success
-	function edit_comment($cid){
-
+	function edit_comment($pid,$uid, $cid, $comment){
+		$co = new Noni();
+		if($co->edit_comment($pid,$uid, $cid, $comment)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	//function to delete a comment
 	//returns true if success
-	function delete_comment($cid){
-
+	function delete_comment($cid,$uid){
+		$co = new Noni();
+		if($co->delete_comment($cid,$uid)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 
 	//function to delete a post
 	//returns true if success
-	function delete_post($pid){
-
+	function delete_post($pid, $uid){
+		$co = new Noni();
+		if($co->del_post($pid, $uid)){
+			return true;
+		}else{
+			return false;
+		}
 	}
 }
 

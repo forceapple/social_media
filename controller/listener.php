@@ -7,13 +7,16 @@ require('main.php');
 // 0 - get all posts
 // 1 - get post by post id
 // 2 - get comments by post id
+// 3 - delete post by post id
+// 4 - delete comment by comment id
 
 // *******************
 // POST PHASES
 // *******************
 // 0 - create new post
 // 1 - post new comment
-// 2 - ?
+// 2 - edit post by post id
+// 3 - edit comment by comment id
 
 // TO DO
 // class constructor
@@ -41,6 +44,29 @@ if(isset($_GET['phase'])){
 			$lo = new noniController();
 			echo json_encode($lo->get_comments($_GET['cid']));
 		break;
+		case 3:
+			$lo = new noniController();
+			if($lo->delete_post($_GET['pid'], $_GET['uid'])){
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}else{
+				$data['success'] = false;
+				$data['errors'] = 'Error';
+			}
+			echo json_encode($data);
+			break;
+		case 4:
+			$lo = new noniController();
+			if($lo->delete_comment($_GET['cid'], $_GET['uid'])){
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}else{
+				$data['success'] = false;
+				$data['errors'] = 'Error';
+			}
+			echo json_encode($data);
+			break;
+
 	}
 }
 
@@ -48,10 +74,14 @@ if(isset($_POST['phase'])){
 	switch ($_POST['phase']) {
 		case 0:
 			//check inputs
-			if(empty($_POST['link_title'])){
-				$error['title'] = 'Title is required';
+			if(empty($_POST['title'])){
+				$errors['title'] = 'Title is required';
 			}elseif(empty($_POST['link_url'])){
-				$error['url'] = 'URL is required';
+				$errors['url'] = 'URL is required';
+			}elseif(empty($_POST['type'])){
+				$errors['type'] = 'Please select the post type';
+			}elseif(empty($_POST['text'])){
+				$errors['text'] = 'Text is required';
 			}
 			if(!empty($errors)){
 				$data['success'] = false;
@@ -67,7 +97,7 @@ if(isset($_POST['phase'])){
 		
 		case 1:
 			if(empty($_POST['comment'])){
-				$error['comment'] = 'Comment is required';
+				$errors['comment'] = 'Comment is required';
 			}
 			if(!empty($errors)){
 				$data['success'] = false;
@@ -80,7 +110,42 @@ if(isset($_POST['phase'])){
 			}
 			echo json_encode($data);
 			break;
-
+		case 2:
+			if(empty($_POST['title'])){
+				$errors['title'] = 'Title is required';
+			}elseif(empty($_POST['url'])){
+				$errors['url'] = 'URL is required';
+			}elseif(empty($_POST['type'])){
+				$errors['type'] = 'Please select the post type';
+			}elseif(empty($_POST['text'])){
+				$errors['text'] = 'Text is required';
+			}
+			if(!empty($errors)){
+				$data['success'] = false;
+				$data['errors'] = $errors;
+			}else{
+				$lo = new noniController();
+				$lo->edit_post($_POST['pid'],$_POST['uid'],$_POST['title'], $_POST['text'], $_POST['url'], $_POST['type']);
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}
+			echo json_encode($data);
+			break;
+		case 3:
+			if(empty($_POST['comment'])){
+				$errors['comment'] = 'Comment is required';
+			}
+			if(!empty($errors)){
+				$data['success'] = false;
+				$data['errors'] = $errors;
+			}else{
+				$lo = new noniController();
+				$lo->edit_comment($_POST['pid'],$_POST['uid'],$_POST['cid'],$_POST['comment']);
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}
+			echo json_encode($data);			
+			break;
 		default:
 			return false;
 			break;
