@@ -178,3 +178,8 @@ textarea.parsley-error {
 	color: #ef5350;
 	font-size: 3em;
 }
+
+.post-options {
+	float: right;
+	padding-top: 15px;
+}
