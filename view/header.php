@@ -48,6 +48,7 @@
           <li><a href="myposts.php">My Posts</a></li>   
           <li><a href="mylikedposts.php">Liked</a></li> 
           <li><a href="mydislikedposts.php">Disliked</a></li>
+          <li><a href="savedposts.php">Saved</a></li>
           <li><a href="mycomments.php">Comments</a></li>
           <li><a href="#">Log Out</a></li>
     </ul>
