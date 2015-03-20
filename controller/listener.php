@@ -76,12 +76,26 @@ if(isset($_POST['phase'])){
 			//check inputs
 			if(empty($_POST['title'])){
 				$errors['title'] = 'Title is required';
-			}elseif(empty($_POST['link_url'])){
-				$errors['url'] = 'URL is required';
-			}elseif(empty($_POST['type'])){
+			}elseif(!isset($_POST['type'])){
 				$errors['type'] = 'Please select the post type';
-			}elseif(empty($_POST['text'])){
-				$errors['text'] = 'Text is required';
+			}else{
+				switch($_POST['type']){
+					case 0:
+						if(empty($_POST['url'])){
+							$errors['url'] = 'URL is required';
+						}
+						break;
+					case 1:
+						if(empty($_POST['url'])){
+							$errors['url'] = 'URL is required';
+						}
+						break;
+					case 2:
+						if(empty($_POST['text'])){
+							$errors['text'] = 'Text is required';
+						}
+						break;
+				}
 			}
 			if(!empty($errors)){
 				$data['success'] = false;
