@@ -236,7 +236,7 @@
 						var cid = $(this).attr("id");
 						var comment = $("#commentBox"+cid).text();
 						
-						$("#commentBox"+cid).html("<textarea type='text' id='editedComment'>'"+comment+"'</textarea>");
+						$("#commentBox"+cid).html("<textarea type='text' id='editedComment'>"+comment+"</textarea>");
 						
 						$('#editedComment').bind("enterKey",function(e){
 						   //submit edited comment
