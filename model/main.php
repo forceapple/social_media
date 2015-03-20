@@ -22,6 +22,9 @@ class Noni{
 		if($result){
 			$arr = array();
 			while($row = mysqli_fetch_array($result)){
+				$pid = $row['pid'];
+				
+				
 				$arr['post_title']= $row['title'];
 				$arr['post_text']= $row['text'];
 				$arr['pid']= $row['pid'];
@@ -29,9 +32,16 @@ class Noni{
 				$arr['post_type']= $row['type'];
 				$arr['username']= $row['username'];
 				$arr['profile_img']= $row['profile_img'];
+				$query2="SELECT COUNT(*) FROM comments_posts WHERE comments_posts.pid=".$pid;
+				$result2 = mysqli_query($con, $query2);
+				while($row2 = mysqli_fetch_array($result2)){
+					$arr4['count']=$row2['COUNT(*)'];
+					$arr['num_comment']= $arr4['count'];
+				}
+
 				$arr2[]=$arr;
 			}
-			
+			print_r($arr2);
 			return $arr2;
 		}
 
@@ -204,7 +214,7 @@ class Noni{
 	}
 }
 
-/*
+
 $db = new Noni();
 $asd="1";
 $a="5";
@@ -213,9 +223,9 @@ $f="Noni!!!!!!";
 $r="I never  noni beo22222fre";
 $w="http://www.costaricannoni.com/pics/P1050237.JPG";
 
-$db->del_comment($a, $a2);
+$db->get_all_post();
 //$db->edit_post($asd, $a,$f,$r,$w);
-*/
+
 
 	
 
