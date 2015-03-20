@@ -33,11 +33,11 @@
               <li><a href="savedposts.php">Saved</a></li>
               <li><a href="mycomments.php">Comments</a></li>
               <li><a href="#">Log Out</a></li>
-              <!--
-              <li><a href="#">Menu for unregistered users<i class="mdi-action-trending-neutral right"></i></a></li>
+              
+              <li><a href="#">Gordon<i class="mdi-action-trending-neutral right"></i></a></li>
               <li><a href="index.php">Home</a></li>
               <li><a href="register.php">Register</a></li>
-              <li><a href="login.php">Log In</a></li>-->
+              <li><a href="login.php">Log In</a></li>
         </ul>
         <ul class="side-nav" id="mobile-demo">
           <li><a href="index.php">Home</a></li>

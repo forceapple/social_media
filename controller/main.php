@@ -26,9 +26,9 @@ class noniController{
 
 	//function to create a post
 	//returns true if success
-	function create_post($uid, $title, $text, $url, $type){
+	function create_post($uid, $title, $text, $type){
 		$co = new Noni();
-		if($co->create_post($uid, $title, $text, $url, $type)){
+		if($co->create_post($uid, $title, $text, $type)){
 			return true;
 		}else{
 			return false;
@@ -48,9 +48,9 @@ class noniController{
 
 	//function to edit a post
 	//returns true if success
-	function edit_post($pid, $uid, $title, $text, $url, $type){
+	function edit_post($pid, $uid, $title, $text, $type){
 		$co = new Noni();
-		if($co->edit_post($pid, $uid, $title, $text, $url, $type)){
+		if($co->edit_post($pid, $uid, $title, $text, $type)){
 			return true;
 		}else{
 			return false;

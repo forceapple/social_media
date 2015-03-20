@@ -34,7 +34,20 @@
                 <input id="password2" type="password" class="validate" data-parsley-equalto="#password1" required>
                 <label for="password">Confirm Password</label>
               </div>
+             </div>
+              <div class="row">
+              <div class="input-field col s12">
+                <input id="email" type="email" required>
+                <label for="email">Email</label>
+              </div>
             </div>
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="location" type="text" required>
+                <label for="location">Location</label>
+              </div>
+            </div>
+             
             <div class="row">
               <div class="center-align col s12">
                 <button type="submit" id="registerButton" class="waves-effect waves-light btn-large">Register</button>

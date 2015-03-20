@@ -44,7 +44,7 @@
                 </form>
                 </div>
               
-              <h2 id="comments-heading"></h2>
+              <h3 id="comments-heading"></h3>
                <div class="col m12">
                   <table class="comments-table">
                    <tbody>
@@ -124,17 +124,17 @@
 				if(postType == 0) 
 				{
 					//post type 0 = text or link only
-					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div></div>";
+					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#' class='upvote'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#' class='downvote'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div></div>";
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = image with external a link
-					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div>";				
+					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#' class='upvote'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#' class='downvote'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div>";				
 				}
 				else if (postType == 2)
 				{
 					//post type 2 = text only
-					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><a href='#' class='upvote'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#' class='downvote'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div>";
 										
 				}	
 				//for delete modal
@@ -245,13 +245,11 @@
 							  data: { phase: 3, cid: cid, uid: 1, pid: <?php echo $pid; ?>, comment: $("#editedComment").val() },
 							  success: function(res) {
 									toast(res.message, 4000);
-									alert($("#editedComment").val());
 								}
 							}).done(function() {
-								//redirect to home page
-								setTimeout(function () {
-								   window.location.href = "post.php?pid=<?php echo $pid; ?>";
-								}, 2000);
+								//reload comments
+								
+								getComments();
 							})
 							.fail(function(err){
 								  console.log(err);
@@ -323,16 +321,17 @@
 								toast(res.message, 1000);
 							}
 						}).done(function() {
-							//redirect to home page
-							setTimeout(function () {
-							   window.location.href = "post.php?pid=<?php echo $pid; ?>";
-							}, 1000);
+							//reload comments
+							getComments();
 						})
 						.fail(function(err){
 						  console.log(err);
 						  toast(err.errors, 4000)
 				});	
 			});
+			
+			//upvote post
+			
 			
 		}
 </script>
