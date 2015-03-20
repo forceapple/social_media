@@ -11,7 +11,7 @@
         <div id="post-comments-container" class="col m8">
         	<div id="post-container" style="display:none;">
             </div><!--end of post container-->
-            
+
             <!--loading circle -->
 	        <div id="post-loading" style="display:none" class="preloader-wrapper big active">
 			    <div class="spinner-layer spinner-blue-only">
@@ -52,6 +52,17 @@
                  </table>
                 </div>
              </div><!-- end of comments container-->
+             
+             <!-- delete modal window  -->
+          <div id="deleteWindow" class="modal">
+            <div class="modal-content">
+              <h4>Delete this Post</h4>
+              <p>Are you sure about this?</p>
+            </div>
+            <div class="modal-footer"> 
+              <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">No</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close" id="confirmDeleteBtn">Yes</a>
+            </div>
+          </div>
           
          </div><!-- /content-->
          
@@ -75,6 +86,9 @@
   $(document).ready(
     function() {
 		
+		//delete modal window
+		$('.modal-trigger').leanModal();
+		
 		//get post
         $.ajax({
           type: 'POST',
@@ -92,31 +106,35 @@
 			},
         })
         .done(function(post){
-          console.log(post);
-		  var card;
-			
+          	console.log(post);
+		  	var card;
 			
 			var postType = post.post_type;
 			//determine post type
 				if(postType == 0) 
 				{
 					//post type 0 = text or link only
-					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a href='#'>delete</a></div></div></div></div>";
+					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div></div>";
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = image with external a link
-					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a href='#'>delete</a></div></div></div>";				
+					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div>";				
 				}
 				else if (postType == 2)
 				{
 					//post type 2 = text only
-					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a href='#'>delete</a></div></div></div>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div>";
 										
 				}	
-			
-			$("#post-container").append(card);
-			getComments();
+				//for delete modal
+				$(document).on("click", ".deleteBtn", function(e) {
+					e.preventDefault();
+					$('#deleteWindow').openModal();
+				});
+	
+				$("#post-container").append(card);
+				getComments();
         })
         .fail(function(err){
           console.log(err);
@@ -140,7 +158,6 @@
 				getComments();
 				toast(resp.message);
 			  //TO DO
-			  //DONE ->//refresh comments to show the added comment
 			  //Also, a user can't submit more than 1 comment to a post because of the following index http://i.imgur.com/PvpVffE.jpg
 			})
 			.fail(function(err){
@@ -154,7 +171,6 @@
 		//get comments by post id
 		function getComments() {
 			$.ajax({
-			  type: 'POST',
 			  url: '../controller/listener.php',
 			  dataType: 'json',
 			  type: 'GET',
@@ -197,6 +213,28 @@
 			})
 			.fail(function(err){
 			  console.log(err);
+			});
+			
+			$("#confirmDeleteBtn").click(function() {
+				$.ajax({
+					  type: 'POST',
+					  url: '../controller/listener.php',
+					  dataType: 'json',
+					  data: { phase: 4, pid: <?php echo $pid; ?>, uid: 1 },
+					  success: function(res) {
+							toast(res.message, 4000);
+						}
+				}).done(function() {
+					//redirect to home page
+					setTimeout(function () {
+					   window.location.href = "index.php";
+					}, 2000);
+				})
+				.fail(function(err){
+				  console.log(err);
+				  toast(err.errors, 4000)
+				});
+					
 			});
 		}
 </script>

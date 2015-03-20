@@ -147,7 +147,7 @@ $(document).ready(function(){
 			.done(function(updatePostObj){
 			  		console.log(updatePostObj);
 			  		toast(updatePostObj.message, 4000);
-					console.log("test"+$("#post_text").val());
+					console.log($("#post_text").val());
 					console.log($("#link_url").val());
 					
 				})
