@@ -117,7 +117,12 @@ $(document).ready(function(){
 		})
 		.done(function(resp){
 			console.log(resp);
-			 toast(resp.message, 4000)
+			 toast(resp.message, 4000);
+			 //redirect to post page
+			setTimeout(function () {
+				//window.location.href = "post.php?pid=<?php echo $pid; ?>";
+				window.location.href = "index.php";
+			}, 1000);
 		})
 		.fail(function(err){
 			console.log(err);
