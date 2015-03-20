@@ -28,7 +28,6 @@ class Noni{
 				$arr['post_title']= $row['title'];
 				$arr['post_text']= $row['text'];
 				$arr['pid']= $row['pid'];
-				$arr['post_image']= $row['post_image'];
 				$arr['post_type']= $row['type'];
 				$arr['username']= $row['username'];
 				$arr['profile_img']= $row['profile_img'];
@@ -49,7 +48,7 @@ class Noni{
 	//get post by post id
 	function get_post($pid){
 		global $con;
-		$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.post_image, post.type, post.text, post.time_stamp  FROM post LEFT JOIN user_post ON user_post.pid = post.pid
+		$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.type, post.text, post.time_stamp  FROM post LEFT JOIN user_post ON user_post.pid = post.pid
 									LEFT JOIN user ON user.uid = user_post.uid WHERE post.pid=".$pid;
 		$result = mysqli_query($con, $query);
 		if($result){
@@ -58,7 +57,6 @@ class Noni{
 
 				$arr['post_title']= $row['title'];
 				$arr['pid']= $row['pid'];
-				$arr['post_image']= $row['post_image'];
 				$arr['text']= $row['text'];
 				$arr['post_type']= $row['type'];
 				$arr['username']= $row['username'];
@@ -74,7 +72,7 @@ class Noni{
 	// get post by uid
 		function get_post_by_uid($uid){
 			global $con;
-			$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.post_image, post.type, post.text FROM post LEFT JOIN user_post ON user_post.pid = post.pid LEFT JOIN user ON user.uid = user_post.uid WHERE user.uid=".$uid;
+			$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.type, post.text FROM post LEFT JOIN user_post ON user_post.pid = post.pid LEFT JOIN user ON user.uid = user_post.uid WHERE user.uid=".$uid;
 			$result = mysqli_query($con, $query);
 			if($result){
 				$arr = array();
@@ -82,7 +80,6 @@ class Noni{
 
 					$arr['post_title']= $row['title'];
 					$arr['pid']= $row['pid'];
-					$arr['post_image']= $row['post_image'];
 					$arr['text']= $row['text'];
 					$arr['post_type']= $row['type'];
 					$arr['time_stamp']= $row['time_stamp'];
@@ -119,9 +116,9 @@ class Noni{
 		}
 
 	}
-	function create_post($uid, $title, $text, $url, $type){
+	function create_post($uid, $title, $text, $type){
 			global $con;
-			$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$text."','".$url."','".$type."')";
+			$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$text."','".$type."')";
 			$result = mysqli_query($con, $query);
 			if($result){
 				//get last insert id and insert into user_post
@@ -153,13 +150,13 @@ class Noni{
 		}
 		return false;
 	}
-	function edit_post($pid,$uid, $title, $text, $url, $type){
+	function edit_post($pid,$uid, $title, $text, $type){
 		global $con;
 		$query = "SELECT * FROM user_post LEFT JOIN post ON post.pid = user_post.pid WHERE user_post.uid=".$uid;
 		$result = mysqli_query($con,$query);
 
 		if($result){
-			$query = "UPDATE post SET title='".$title."',text='".$url."', post_image='".$url."', type='".$type."' WHERE pid=".$pid;
+			$query = "UPDATE post SET title='".$title."',text='".$url."', type='".$type."' WHERE pid=".$pid;
 			$result2 = mysqli_query($con,$query);
 			if($result2){
 				return true;
