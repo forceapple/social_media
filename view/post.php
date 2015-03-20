@@ -53,7 +53,7 @@
                 </div>
              </div><!-- end of comments container-->
              
-             <!-- delete modal window  -->
+             <!-- delete post modal window  -->
           <div id="deleteWindow" class="modal">
             <div class="modal-content">
               <h4>Delete this Post</h4>
@@ -61,6 +61,17 @@
             </div>
             <div class="modal-footer"> 
               <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">No</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close" id="confirmDeleteBtn">Yes</a>
+            </div>
+          </div>
+          
+          <!-- delete comment modal window  -->
+          <div id="deletecommentWindow" class="modal">
+            <div class="modal-content">
+              <h4>Delete this Post</h4>
+              <p>Are you sure about this?</p>
+            </div>
+            <div class="modal-footer"> 
+              <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">No</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close" id="confirmDeleteCommentBtn">Yes</a>
             </div>
           </div>
           
@@ -206,7 +217,7 @@
 					if (i % 2 == 0)
 						comment = '<tr class="odd-row">';
 					else comment = '<tr class="even-row">';
-					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr><tr><td colspan="2" class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
+					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#deletecommentWindow" class="deleteCommentBtn modal-trigger" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr><tr><td colspan="2" class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
 					
 					//delete comment 
 					$(document).on("click", ".deleteCommentBtn", function(e){

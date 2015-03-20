@@ -187,3 +187,7 @@ textarea.parsley-error {
 .commentActions {
 	color: #ffab40; float: right; padding-right: 10px;
 }
+
+#user-comment {
+	width: 100%;
+}
