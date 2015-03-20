@@ -41,7 +41,6 @@ class Noni{
 
 				$arr2[]=$arr;
 			}
-			print_r($arr2);
 			return $arr2;
 		}
 
@@ -214,7 +213,7 @@ class Noni{
 	}
 }
 
-
+/*
 $db = new Noni();
 $asd="1";
 $a="5";
@@ -227,7 +226,7 @@ $db->get_all_post();
 //$db->edit_post($asd, $a,$f,$r,$w);
 
 
-	
+	*/
 
 
 ?>
