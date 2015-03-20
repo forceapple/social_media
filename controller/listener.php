@@ -55,31 +55,15 @@ if(isset($_POST['phase'])){
 				$errors['title'] = 'Title is required';
 			}elseif(!isset($_POST['type'])){
 				$errors['type'] = 'Please select the post type';
-			}else{
-				switch($_POST['type']){
-					case 0:
-						if(empty($_POST['url'])){
-							$errors['url'] = 'URL is required';
-						}
-						break;
-					case 1:
-						if(empty($_POST['url'])){
-							$errors['url'] = 'URL is required';
-						}
-						break;
-					case 2:
-						if(empty($_POST['text'])){
-							$errors['text'] = 'Text is required';
-						}
-						break;
-				}
-			}
+			}elseif(empty($_POST['text'])){
+				$errors['text'] = 'Text is required';
+			}			
 			if(!empty($errors)){
 				$data['success'] = false;
 				$data['errors'] = $errors;
 			}else{
 				$lo = new noniController();
-				$lo->create_post($_POST['uid'], $_POST['title'], $_POST['text'], $_POST['url'], $_POST['type']);
+				$lo->create_post($_POST['uid'], $_POST['title'], $_POST['text'], $_POST['type']);
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}
@@ -107,31 +91,15 @@ if(isset($_POST['phase'])){
 				$errors['title'] = 'Title is required';
 			}elseif(!isset($_POST['type'])){
 				$errors['type'] = 'Please select the post type';
-			}else{
-				switch($_POST['type']){
-					case 0:
-						if(empty($_POST['url'])){
-							$errors['url'] = 'URL is required';
-						}
-						break;
-					case 1:
-						if(empty($_POST['url'])){
-							$errors['url'] = 'URL is required';
-						}
-						break;
-					case 2:
-						if(empty($_POST['text'])){
-							$errors['text'] = 'Text is required';
-						}
-						break;
-				}
+			}elseif(empty($_POST['text'])){
+				$errors['text'] = 'Text is required';
 			}
 			if(!empty($errors)){
 				$data['success'] = false;
 				$data['errors'] = $errors;
 			}else{
 				$lo = new noniController();
-				$lo->edit_post($_POST['pid'],$_POST['uid'],$_POST['title'], $_POST['text'], $_POST['url'], $_POST['type']);
+				$lo->edit_post($_POST['pid'],$_POST['uid'],$_POST['title'], $_POST['text'], $_POST['type']);
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}
