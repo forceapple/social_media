@@ -32,8 +32,7 @@
 			    </div>
 			    
 			    <div class="row">
-					<!--<a class="waves-effect waves-light btn modal-trigger" id="previewBtn" href="#previewWindow">Submit<i class="mdi-content-send right"></i></a>-->
-                    <a class="waves-effect waves-light btn modal-trigger" id="previewBtn">Submit<i class="mdi-content-send right"></i></a>
+					<a class="waves-effect waves-light btn modal-trigger" id="previewBtn" href="#previewWindow">Submit<i class="mdi-content-send right"></i></a>
 			    </div>
 
               <!-- Modal Structure -->
@@ -102,7 +101,7 @@ $(document).ready(function(){
 				$("#post_text").val(post.text);
 			}
 			
-			/*$("#previewBtn").click(function(e){
+			$("#previewBtn").click(function(e){
 
 			//get new data
 				var title = $("#link_title").val();
@@ -128,14 +127,14 @@ $(document).ready(function(){
 				}	
 			
 			$("#post-container").html(card);
-		});*/
+		});
 			
         })
         .fail(function(err){
           console.log(err);
         });
 		
-		$("#previewBtn").click(function() {
+		$("#submitChangesBtn").click(function() {
 			
 			//udpate post
 			$.ajax({
@@ -147,8 +146,10 @@ $(document).ready(function(){
 			.done(function(updatePostObj){
 			  		console.log(updatePostObj);
 			  		toast(updatePostObj.message, 4000);
-					console.log($("#post_text").val());
-					console.log($("#link_url").val());
+					//redirect to post page
+					setTimeout(function () {
+						window.location.href = "post.php?pid=<?php echo $pid; ?>";
+					}, 1000);
 					
 				})
 				.fail(function(err){
