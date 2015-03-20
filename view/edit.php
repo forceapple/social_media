@@ -32,7 +32,7 @@
 			    </div>
 			    
 			    <div class="row">
-					<a class="waves-effect waves-light btn modal-trigger" href="#previewWindow">Submit<i class="mdi-content-send right"></i></a>
+					<a class="waves-effect waves-light btn modal-trigger" id="previewBtn" href="#previewWindow">Submit<i class="mdi-content-send right"></i></a>
 			    </div>
 
               <!-- Modal Structure -->
@@ -42,7 +42,7 @@
               <p>Are you happy with this?</p>
               <div id="post-container"></div>
             </div>
-            <div class="modal-footer">
+            <div class="modal-footer"> 
               <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">No, I changed my mind</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Yes</a>
             </div>
           </div>
@@ -89,67 +89,50 @@ $(document).ready(function(){
 		  
 		  	$("#link_title").focus();
 		  	$("#link_title").val(post.post_title);
+			if (postType == 0 || postType == 1)
+			{
+				$("#link_url").focus();
+				$("#link_url").val(post.post_image);
+			} else if (postType == 2)
+			{
+				$("#url_field").hide();
+				$("#text_field").show();
+				$("#post_text").focus();
+				$("#post_text").val(post.text);
+			}
+			
+			$("#previewBtn").click(function(e){
+
+			//get new data
+				var title = $("#link_title").val();
+				var url = $("#link_url").val();
+				var text = $("#post_text").val();
 				
 			//determine post type
 				if(postType == 0) 
 				{
-					//post type 0 = text or link only
-					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div></div>";
+					//post type 0 = title and link only
+					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+url+"' target='_blank' class='post-link'>"+title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div></div>";
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = image with external a link
-					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";				
+					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+url+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";				
 				}
 				else if (postType == 2)
 				{
-					//post type 2 = text only
-					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";
+					//post type 2 = title and text only
+					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+title+"</span><p>"+text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";
 										
 				}	
 			
-			$("#post-container").append(card);
+			$("#post-container").html(card);
+		});
 			
         })
         .fail(function(err){
           console.log(err);
         });
-	
-	$("#previewPostBtn").click(function(e){
-		e.preventDefault();
-		var postType= $("#post-type-select").val();
-		var post_title = $("#link_title").val();
-		var post_url = $("#link_url").val();
-		var post_text = $("#post_text").val();
-		
-		//$('#createPostForm').parsley().validate();
-		
-		if (!postType)
-		{
-			$('#PostPreviewError').openModal();
-		} else if ($('#createPostForm').parsley().validate())
-		{
-			//determine post type
-			if(postType == 0) 
-			{
-				//post type 0 = link only
-				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post_url+"' target='_blank' class='post-link'>"+post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'># of comments</a>by <span class='username'>TEST USER</span></div></div>";
-				$("#previewPostContainer").html(card);	
-				
-			}
-			else if (postType == 1)
-			{
-				//post type 1 = image with external a link<br>
-				$("#previewPostContainer").html("<div class='card'><div class='card-image'><a href='"+post_url+"' class='post-link'><img src='"+post_url+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='#' class='post-link'>"+post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php'># of comments</a>by <span class='username'>TEST USER</span></div></div>");				
-			}
-			else if (postType == 2)
-			{
-				//post type 2 = text only
-				var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='#' target='_blank' class='post-link'>"+post_title+"</a></span><p>"+post_text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'># of comments</a>by <span class='username'>TEST USER</span></div></div>";
-				$("#previewPostContainer").html(card);					
-			}	
-		}
-	});
 
 })
 	
