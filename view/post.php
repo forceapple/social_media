@@ -153,6 +153,7 @@
           console.log(err);
         });
 	
+		//add comment
       $('#submit_comment').submit(function(e){
 			var formData = {
 			  'phase' : 1,
@@ -170,7 +171,7 @@
 			  console.log(resp);
 			  	$('#user-comment').val("");
 				getComments();
-				toast(resp.message);
+				toast(resp.message, 4000);
 			  //TO DO
 			  //Also, a user can't submit more than 1 comment to a post because of the following index http://i.imgur.com/PvpVffE.jpg
 			})
@@ -308,7 +309,7 @@
 						  dataType: 'json',
 						  data: { phase: 5, cid: cid, uid: 1 },
 						  success: function(res) {
-								toast(res.message, 4000);
+								toast(res.message, 1000);
 							}
 						}).done(function() {
 							//redirect to home page
