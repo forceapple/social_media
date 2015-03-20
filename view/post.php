@@ -97,7 +97,7 @@
   $(document).ready(
     function() {
 		//global variables
-		var cid;
+		var cid, origComment;
 		
 		//delete modal window
 		$('.modal-trigger').leanModal();
@@ -233,10 +233,10 @@
 					$(document).on("click", ".editCommentBtn", function(e){
 						e.preventDefault();
 						
-						var cid = $(this).attr("id");
-						var comment = $("#commentBox"+cid).text();
+						cid = $(this).attr("id");
+						origComment = $("#commentBox"+cid).text();
 						
-						$("#commentBox"+cid).html("<textarea type='text' id='editedComment'>"+comment+"</textarea>");
+						$("#commentBox"+cid).html("<textarea type='text' id='editedComment'>"+origComment+"</textarea>");
 						$("#editedComment").focus();
 						
 						$('#editedComment').bind("enterKey",function(e){
@@ -261,6 +261,8 @@
 								  toast(err.errors, 4000)
 							});
 						});
+						
+						//user hit enter key to edited comment
 						$('#editedComment').keyup(function(e){
 							if(e.keyCode == 13)
 							{
@@ -268,6 +270,17 @@
 							}
 						});
 						
+						//revert changes on edited comment
+						$('#editedComment').bind("escKey",function(e){
+							$("#commentBox"+cid).text(origComment);
+						});
+						//user hit esc key to cancel edit comment
+						$('#editedComment').keyup(function(e){
+							if(e.keyCode == 27)
+							{
+								$(this).trigger("escKey");
+							}
+						});
 					});
 			
 					$(".comments-table tbody").append(comment);
