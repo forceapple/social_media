@@ -153,7 +153,7 @@ class Noni{
 		}
 		return false;
 	}
-	function edit_post($pid,$uid, $title, $url, $type){
+	function edit_post($pid,$uid, $title, $text, $url, $type){
 		global $con;
 		$query = "SELECT * FROM user_post LEFT JOIN post ON post.pid = user_post.pid WHERE user_post.uid=".$uid;
 		$result = mysqli_query($con,$query);
