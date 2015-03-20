@@ -183,3 +183,7 @@ textarea.parsley-error {
 	float: right;
 	padding-top: 15px;
 }
+
+.commentActions {
+	color: #ffab40; float: right; padding-right: 10px;
+}
