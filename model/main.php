@@ -32,6 +32,7 @@ class Noni{
 				$arr['post_type']= $row['type'];
 				$arr['username']= $row['username'];
 				$arr['profile_img']= $row['profile_img'];
+				$arr['time_stamp']= $row['time_stamp'];
 				$query2="SELECT COUNT(*) FROM comments_posts WHERE comments_posts.pid=".$pid;
 				$result2 = mysqli_query($con, $query2);
 				while($row2 = mysqli_fetch_array($result2)){
@@ -61,6 +62,7 @@ class Noni{
 				$arr['text']= $row['text'];
 				$arr['post_type']= $row['type'];
 				$arr['username']= $row['username'];
+				$arr['time_stamp']= $row['time_stamp'];
 				$arr['uid'] = $row['uid'];
 				$arr['profile_img']= $row['profile_img'];
 				
@@ -83,6 +85,7 @@ class Noni{
 					$arr['post_image']= $row['post_image'];
 					$arr['text']= $row['text'];
 					$arr['post_type']= $row['type'];
+					$arr['time_stamp']= $row['time_stamp'];
 					$arr['username']= $row['username'];
 					$arr['uid'] = $row['uid'];
 					$arr['profile_img']= $row['profile_img'];
