@@ -36,10 +36,10 @@
           <li><a href="login.php">Log In</a></li>
       </ul>
   	<ul class="right hide-on-med-and-down">
-    	<li style="padding-left: 10px;"><form>
+    	<li style="padding-left: 10px;"><form action="search.php" method="get">
         <div class="input-field">
-          <input id="search" type="text" required>
-          <label for="search"><i class="mdi-action-search"></i></label>
+          <input id="searchInput" name="searchInput" type="text" required>
+          <label for="searchInput"><i class="mdi-action-search"></i></label>
         </div>
       </form></li>
     </ul>
