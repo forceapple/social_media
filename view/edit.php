@@ -43,7 +43,7 @@
               <div id="post-container"></div>
             </div>
             <div class="modal-footer"> 
-              <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">No, I changed my mind</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Yes</a>
+              <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">No, I changed my mind</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close" id="submitChangesBtn">Yes</a>
             </div>
           </div>
           </form>
@@ -73,10 +73,10 @@ $('#createPostForm').parsley();
 $(document).ready(function(){
 	 
 	 $('.modal-trigger').leanModal();
+	 var postType;
 	 
 	//get post
         $.ajax({
-          type: 'POST',
           url: '../controller/listener.php',
           dataType: 'json',
 		  type: 'GET',
@@ -85,7 +85,7 @@ $(document).ready(function(){
         .done(function(post){
           console.log(post);
 		  var card;
-		  var postType = post.post_type;
+		  postType = post.post_type;
 		  
 		  	$("#link_title").focus();
 		  	$("#link_title").val(post.post_title);
@@ -112,17 +112,17 @@ $(document).ready(function(){
 				if(postType == 0) 
 				{
 					//post type 0 = title and link only
-					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+url+"' target='_blank' class='post-link'>"+title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div></div>";
+					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+url+"' target='_blank' class='post-link'>"+title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href=''><i class='mdi-communication-forum'></i> 0</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div></div>";
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = image with external a link
-					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+url+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";				
+					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+url+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href=''><i class='mdi-communication-forum'></i> 0</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";				
 				}
 				else if (postType == 2)
 				{
 					//post type 2 = title and text only
-					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+title+"</span><p>"+text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+title+"</span><p>"+text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href=''><i class='mdi-communication-forum'></i> 0</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";
 										
 				}	
 			
@@ -133,6 +133,26 @@ $(document).ready(function(){
         .fail(function(err){
           console.log(err);
         });
+		
+		$("#submitChangesBtn").click(function() {
+			//udpate post
+			$.ajax({
+			  type: 'POST',
+			  url: '../controller/listener.php',
+			  dataType: 'json',
+			  data: { phase: 2, pid: <?php echo $pid; ?>, uid: 1, title: $("#link_title").val(), text: $("#post_text").val(), url: $("#link_url").val(), type: postType },
+			})
+			.done(function(updatePostObj){
+			  		console.log(updatePostObj);
+			  		toast(updatePostObj.message, 4000)
+					
+				})
+				.fail(function(err){
+				  console.log(err);
+				  toast(err.errors, 4000)
+				});
+	
+		});
 
 })
 	
