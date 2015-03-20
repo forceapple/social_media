@@ -38,8 +38,8 @@
   	<ul class="right hide-on-med-and-down">
     	<li style="padding-left: 10px;"><form action="search.php" method="get">
         <div class="input-field">
-          <input id="searchInput" name="searchInput" type="text" required>
-          <label for="searchInput"><i class="mdi-action-search"></i></label>
+          <input id="for" name="for" type="text" required>
+          <label for="for"><i class="mdi-action-search"></i></label>
         </div>
       </form></li>
     </ul>

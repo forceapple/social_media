@@ -1,5 +1,5 @@
 <?php include('header.php'); 
-	$searchString = $_GET['searchInput'];
+	$searchString = $_GET['for'];
 ?>
         	
      <!-- start wrapper -->
