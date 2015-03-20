@@ -67,7 +67,7 @@
           <!-- delete comment modal window  -->
           <div id="deletecommentWindow" class="modal">
             <div class="modal-content">
-              <h4>Delete this Post</h4>
+              <h4>Delete this Comment</h4>
               <p>Are you sure about this?</p>
             </div>
             <div class="modal-footer"> 
@@ -96,6 +96,8 @@
 	  $('#submit_comment').parsley();
   $(document).ready(
     function() {
+		//global variables
+		var cid;
 		
 		//delete modal window
 		$('.modal-trigger').leanModal();
@@ -217,30 +219,13 @@
 					if (i % 2 == 0)
 						comment = '<tr class="odd-row">';
 					else comment = '<tr class="even-row">';
-					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#deletecommentWindow" class="deleteCommentBtn modal-trigger" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr><tr><td colspan="2" class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
+					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="modal-trigger deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr><tr><td colspan="2" class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
 					
 					//delete comment 
 					$(document).on("click", ".deleteCommentBtn", function(e){
 						e.preventDefault();
-						
-						$.ajax({
-						  type: 'POST',
-						  url: '../controller/listener.php',
-						  dataType: 'json',
-						  data: { phase: 5, cid: $(this).attr("id"), uid: 1 },
-						  success: function(res) {
-								toast(res.message, 4000);
-							}
-						}).done(function() {
-							//redirect to home page
-							setTimeout(function () {
-							   window.location.href = "post.php?pid=<?php echo $pid; ?>";
-							}, 2000);
-						})
-						.fail(function(err){
-						  console.log(err);
-						  toast(err.errors, 4000)
-						});
+						$("#deletecommentWindow").openModal();
+						cid = $(this).attr("id");
 					});
 					
 					//edit comment
@@ -292,6 +277,7 @@
 			  console.log(err);
 			});
 			
+			//confirm delete post
 			$("#confirmDeleteBtn").click(function() {
 				$.ajax({
 					  type: 'POST',
@@ -312,6 +298,28 @@
 				  toast(err.errors, 4000)
 				});
 					
+			});
+			
+			//confirm delete comment
+			$("#confirmDeleteCommentBtn").click(function() {
+				$.ajax({
+						  type: 'POST',
+						  url: '../controller/listener.php',
+						  dataType: 'json',
+						  data: { phase: 5, cid: cid, uid: 1 },
+						  success: function(res) {
+								toast(res.message, 4000);
+							}
+						}).done(function() {
+							//redirect to home page
+							setTimeout(function () {
+							   window.location.href = "post.php?pid=<?php echo $pid; ?>";
+							}, 1000);
+						})
+						.fail(function(err){
+						  console.log(err);
+						  toast(err.errors, 4000)
+				});	
 			});
 			
 		}
