@@ -32,14 +32,21 @@
 			    </div>
 			    
 			    <div class="row">
-					<button class="btn waves-effect waves-light" type="submit" name="link_submit">Submit
-					    <i class="mdi-content-send right"></i>
-					</button>
+					<a class="waves-effect waves-light btn modal-trigger" href="#previewWindow">Submit<i class="mdi-content-send right"></i></a>
 			    </div>
-			 </form>
-    
-          <div id="post-container" style="display:none;">
+
+              <!-- Modal Structure -->
+          <div id="previewWindow" class="modal modal-fixed-footer">
+            <div class="modal-content">
+              <h4>Preview your changes</h4>
+              <p>Are you happy with this?</p>
+              <div id="post-container"></div>
             </div>
+            <div class="modal-footer">
+              <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">No, I changed my mind</a> <a href="#" class="waves-effect waves-green btn-flat modal-action modal-close">Yes</a>
+            </div>
+          </div>
+          </form>
             
          </div><!-- /content-->
          
@@ -65,6 +72,8 @@ $('#createPostForm').parsley();
 
 $(document).ready(function(){
 	 
+	 $('.modal-trigger').leanModal();
+	 
 	//get post
         $.ajax({
           type: 'POST',
@@ -76,26 +85,26 @@ $(document).ready(function(){
         .done(function(post){
           console.log(post);
 		  var card;
+		  var postType = post.post_type;
 		  
 		  	$("#link_title").focus();
 		  	$("#link_title").val(post.post_title);
 				
-			var postType = post.post_type;
 			//determine post type
 				if(postType == 0) 
 				{
 					//post type 0 = text or link only
-					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a href='#'>delete</a></div></div></div></div>";
+					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div></div>";
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = image with external a link
-					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a href='#'>delete</a></div></div></div>";				
+					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";				
 				}
 				else if (postType == 2)
 				{
 					//post type 2 = text only
-					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a href='#'>delete</a></div></div></div>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";
 										
 				}	
 			
