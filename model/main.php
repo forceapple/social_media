@@ -111,7 +111,7 @@ class Noni{
 				$arr['username']= $row['username'];
 				$arr['profile_img']= $row['profile_img'];
 				$arr['comment']= $row['comment'];
-				
+				$arr['comment_time_stamp'] = $row['comment_time_stamp'];
 				$arr2[]=$arr;
 			}
 			
