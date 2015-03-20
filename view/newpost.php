@@ -64,13 +64,13 @@ $(document).ready(function(){
 	
 	$('#post-type-select').change(function() {
 		var postType = $('#post-type-select').val();
-		if (postType==0 || postType==1)
+		if (postType==0)
 		{
 			$("#text_field").hide();
 			$("#post_text").prop("required", false);
 			$("#url_field").show();
 			$("#link_url").prop("required", true);
-		} else if (postType == 2)
+		} else
 		{
 			$("#text_field").show();
 			$("#post_text").prop("required", true);
@@ -113,6 +113,7 @@ $(document).ready(function(){
 			/*setTimeout(function () {
 				window.location.href = "index.php";
 			}, 1000);*/
+			console.log(formData);
 		})
 		.fail(function(err){
 			console.log(err);
