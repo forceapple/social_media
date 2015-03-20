@@ -205,9 +205,9 @@
 					if (i % 2 == 0)
 						comment = '<tr class="odd-row">';
 					else comment = '<tr class="even-row">';
-					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<i class="mdi-image-edit commentActions"></i><a href="#" class="deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr><tr><td colspan="2" class="commentsbox">'+commentsObj[i].comment+'</td></tr>';
+					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr><tr><td colspan="2" class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
 					
-					//delete button 
+					//delete comment 
 					$(document).on("click", ".deleteCommentBtn", function(e){
 						e.preventDefault();
 						
@@ -228,6 +228,44 @@
 						.fail(function(err){
 						  console.log(err);
 						  toast(err.errors, 4000)
+						});
+					});
+					
+					//edit comment
+					$(document).on("click", ".editCommentBtn", function(e){
+						e.preventDefault();
+						
+						var cid = $(this).attr("id");
+						var comment = $("#commentBox"+cid).html();
+						
+						$("#commentBox"+cid).html("<textarea type='text' id='editedComment'>'"+comment+"'</textarea>");
+						
+						$('#editedComment').bind("enterKey",function(e){
+						   //submit edited comment
+						   $.ajax({
+							  type: 'POST',
+							  url: '../controller/listener.php',
+							  dataType: 'json',
+							  data: { phase: 3, cid: cid, uid: 1, pid: <?php echo $pid; ?>, comment: $('#editedComment').val() },
+							  success: function(res) {
+									toast(res.message, 4000);
+								}
+							}).done(function() {
+								//redirect to home page
+								setTimeout(function () {
+								   window.location.href = "post.php?pid=<?php echo $pid; ?>";
+								}, 2000);
+							})
+							.fail(function(err){
+								  console.log(err);
+								  toast(err.errors, 4000)
+							});
+						});
+						$('#editedComment').keyup(function(e){
+							if(e.keyCode == 13)
+							{
+								$(this).trigger("enterKey");
+							}
 						});
 						
 					});
