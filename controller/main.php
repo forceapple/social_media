@@ -72,7 +72,7 @@ class noniController{
 	//returns true if success
 	function delete_comment($cid,$uid){
 		$co = new Noni();
-		if($co->delete_comment($cid,$uid)){
+		if($co->del_comment($cid,$uid)){
 			return true;
 		}else{
 			return false;
