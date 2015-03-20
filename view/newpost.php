@@ -11,7 +11,7 @@
                 <label>Post Type</label>
                   <select id="post-type-select" required>
                     <option value="0" selected>URL</option>
-                    <option value="2">Text</option>
+                    <option value="1">Text</option>
                   </select>
                   </div>
                   
