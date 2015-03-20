@@ -32,7 +32,8 @@
 			    </div>
 			    
 			    <div class="row">
-					<a class="waves-effect waves-light btn modal-trigger" id="previewBtn" href="#previewWindow">Submit<i class="mdi-content-send right"></i></a>
+					<!--<a class="waves-effect waves-light btn modal-trigger" id="previewBtn" href="#previewWindow">Submit<i class="mdi-content-send right"></i></a>-->
+                    <a class="waves-effect waves-light btn modal-trigger" id="previewBtn">Submit<i class="mdi-content-send right"></i></a>
 			    </div>
 
               <!-- Modal Structure -->
@@ -101,7 +102,7 @@ $(document).ready(function(){
 				$("#post_text").val(post.text);
 			}
 			
-			$("#previewBtn").click(function(e){
+			/*$("#previewBtn").click(function(e){
 
 			//get new data
 				var title = $("#link_title").val();
@@ -127,14 +128,15 @@ $(document).ready(function(){
 				}	
 			
 			$("#post-container").html(card);
-		});
+		});*/
 			
         })
         .fail(function(err){
           console.log(err);
         });
 		
-		$("#submitChangesBtn").click(function() {
+		$("#previewBtn").click(function() {
+			
 			//udpate post
 			$.ajax({
 			  type: 'POST',
@@ -144,7 +146,9 @@ $(document).ready(function(){
 			})
 			.done(function(updatePostObj){
 			  		console.log(updatePostObj);
-			  		toast(updatePostObj.message, 4000)
+			  		toast(updatePostObj.message, 4000);
+					console.log("test"+$("#post_text").val());
+					console.log($("#link_url").val());
 					
 				})
 				.fail(function(err){
