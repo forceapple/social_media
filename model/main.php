@@ -146,12 +146,12 @@ class Noni{
 		}
 		return false;
 	}
-	function edit_post($pid,$uid, $title, $text, $url, $type){
+	function edit_post($pid,$uid, $title, $text, $type){
 		$query = "SELECT * FROM user_post LEFT JOIN post ON post.pid = user_post.pid WHERE user_post.uid=".$uid;
 		$result = mysqli_query($this->con,$query);
 
 		if($result){
-			$query = "UPDATE post SET title='".$title."',text='".$url."', post_image='".$url."', type='".$type."' WHERE pid=".$pid;
+			$query = "UPDATE post SET title='".$title."',text='".$url."', type='".$type."' WHERE pid=".$pid;
 			$result2 = mysqli_query($this->con,$query);
  			if($result2){
 				return true;
