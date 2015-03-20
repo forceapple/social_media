@@ -59,8 +59,30 @@ class Noni{
 			
 			return $arr;
 		}
-
 	}
+	// get post by uid
+		function get_post_by_uid($uid){
+			global $con;
+			$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.post_image, post.type, post.text FROM post LEFT JOIN user_post ON user_post.pid = post.pid LEFT JOIN user ON user.uid = user_post.uid WHERE user.uid=".$uid;
+			$result = mysqli_query($con, $query);
+			if($result){
+				$arr = array();
+				while($row = mysqli_fetch_array($result)){
+
+					$arr['post_title']= $row['title'];
+					$arr['pid']= $row['pid'];
+					$arr['post_image']= $row['post_image'];
+					$arr['text']= $row['text'];
+					$arr['post_type']= $row['type'];
+					$arr['username']= $row['username'];
+					$arr['uid'] = $row['uid'];
+					$arr['profile_img']= $row['profile_img'];
+					
+				}
+				return $arr;
+			}
+
+		}	
 	//get comments by post id
 	function get_comments($pid){
 		global $con;
@@ -85,22 +107,22 @@ class Noni{
 		}
 
 	}
-function create_post($uid, $title, $text, $url, $type){
-		global $con;
-		$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$text."','".$url."','".$type."')";
-		$result = mysqli_query($con, $query);
-		if($result){
-			//get last insert id and insert into user_post
-			$id = mysqli_insert_id($con);
-			$query = "INSERT INTO user_post(uid,pid) VALUES ('".$uid."','".$id."')";
-			$result2 = mysqli_query($con,$query);
-			if($result2){
-				//both inserts are good, return true
-				return true;
+	function create_post($uid, $title, $text, $url, $type){
+			global $con;
+			$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$text."','".$url."','".$type."')";
+			$result = mysqli_query($con, $query);
+			if($result){
+				//get last insert id and insert into user_post
+				$id = mysqli_insert_id($con);
+				$query = "INSERT INTO user_post(uid,pid) VALUES ('".$uid."','".$id."')";
+				$result2 = mysqli_query($con,$query);
+				if($result2){
+					//both inserts are good, return true
+					return true;
+				}
+				return false;
 			}
 			return false;
-		}
-		return false;
 	}
 
 	function create_comment($uid, $pid, $comment){
@@ -151,18 +173,48 @@ function create_post($uid, $title, $text, $url, $type){
 		}
 		return false;
 	}
+	function edit_comment($cid, $uid, $pid, $comment){
+		global $con;
+		$query = "SELECT * FROM comments_posts LEFT JOIN comments ON comments.cid = comments_posts.cid LEFT JOIN post ON comments_posts.pid=post.pid WHERE comments_posts.pid='".$pid."' AND comments_posts.cid='".$cid."' AND comments_posts.uid='".$uid."'";
+		$result = mysqli_query($con,$query);
+
+		if($result){
+			$query = "UPDATE comments SET comment='".$comment."'WHERE cid=".$cid;
+			$result2 = mysqli_query($con,$query);
+			if($result2){
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
+	function del_comment($cid,$uid){
+		global $con;
+		$query = "SELECT * FROM comments_posts LEFT JOIN comments ON comments.cid = comments_posts.cid LEFT JOIN post ON comments_posts.pid=post.pid WHERE comments_posts.uid='".$uid."' AND comments_posts.cid='".$cid."'";
+		$result = mysqli_query($con,$query);
+		if($result){
+			$query2 ="DELETE FROM comments WHERE comments.cid=".$cid;
+			$result2 = mysqli_query($con,$query2);
+			if($result2){
+				return true;
+			}
+			return false;
+		}
+		return false;
+	}
 }
+
 /*
 $db = new Noni();
-$asd="5";
-$a="1";
+$asd="1";
+$a="5";
+$a2="1";
 $f="Noni!!!!!!";
-$r="I never had noni beo22222fre";
+$r="I never  noni beo22222fre";
 $w="http://www.costaricannoni.com/pics/P1050237.JPG";
 
-$db->del_post($asd, $a);
+$db->del_comment($a, $a2);
 //$db->edit_post($asd, $a,$f,$r,$w);
-
 */
 
 	
