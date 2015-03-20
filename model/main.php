@@ -185,7 +185,7 @@ class Noni{
 		}
 		return false;
 	}
-	function edit_comment($cid, $uid, $pid, $comment){
+	function edit_comment($pid, $uid, $cid, $comment){
 		global $con;
 		$query = "SELECT * FROM comments_posts LEFT JOIN comments ON comments.cid = comments_posts.cid LEFT JOIN post ON comments_posts.pid=post.pid WHERE comments_posts.pid='".$pid."' AND comments_posts.cid='".$cid."' AND comments_posts.uid='".$uid."'";
 		$result = mysqli_query($con,$query);
