@@ -246,9 +246,10 @@
 							  type: 'POST',
 							  url: '../controller/listener.php',
 							  dataType: 'json',
-							  data: { phase: 3, cid: cid, uid: 1, pid: <?php echo $pid; ?>, comment: $('#editedComment').val() },
+							  data: { phase: 3, cid: cid, uid: 1, pid: <?php echo $pid; ?>, comment: $("#editedComment").val() },
 							  success: function(res) {
 									toast(res.message, 4000);
+									alert($("#editedComment").val());
 								}
 							}).done(function() {
 								//redirect to home page
