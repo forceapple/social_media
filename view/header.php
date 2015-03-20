@@ -14,7 +14,8 @@
 
 <body>
 
-	<div class="container">
+	<div id="wrapper">
+    
     	<header>
         	<div class="col s12" id="header"><a href="index.php">NONI</a></div>
         </header>
@@ -22,12 +23,18 @@
         <!-- Menu: when not in session -->
 <nav>
   <div class="nav-wrapper">
+  	 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   	  <ul id="nav-mobile" class="left hide-on-med-and-down">
           <li><a href="#">Menu for unregistered users<i class="mdi-action-trending-neutral right"></i></a></li>
           <li><a href="index.php">Home</a></li>
           <li><a href="register.php">Register</a></li>
           <li><a href="login.php">Log In</a></li>
     	</ul>
+        <ul class="side-nav" id="mobile-demo">
+          <li><a href="index.php">Home</a></li>
+          <li><a href="register.php">Register</a></li>
+          <li><a href="login.php">Log In</a></li>
+      </ul>
   	<ul class="right hide-on-med-and-down">
     	<li style="padding-left: 10px;"><form>
         <div class="input-field">
