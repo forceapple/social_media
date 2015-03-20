@@ -28,7 +28,7 @@
 	  <!--Import jQuery before materialize.js-->
 	  <script src="js/parsley.min.js"></script>
 <script type="text/javascript">
-$('#searchForm').parsley();
+//$('#searchForm').parsley();
 
 $(document).ready(function(){
 	
