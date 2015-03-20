@@ -90,6 +90,7 @@ $(document).ready(function(){
 			text = $('#link_url').val();
 		} else text = $("#post_text").val();
 		
+		
 		var formData = {
 			'phase' : 0,
 			'uid' : 1,
@@ -109,10 +110,10 @@ $(document).ready(function(){
 			console.log(resp);
 			 toast(resp.message, 4000);
 			 //redirect to post page
-			setTimeout(function () {
-				//window.location.href = "post.php?pid=<?php echo $pid; ?>";
+			/*setTimeout(function () {
 				window.location.href = "index.php";
-			}, 1000);
+			}, 1000);*/
+			console.log(formData);
 		})
 		.fail(function(err){
 			console.log(err);
