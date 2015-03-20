@@ -65,7 +65,7 @@
 					
 					$(testImage).error(function() {
 						//just URL
-						cardType = "<div class='card-content'><span class='card-title'><a href='"+post[i].text+"' target='_blank'>"+post[i].text+"</a></span></div>";
+						cardType = "<div class='card-content'><span class='card-title'><a href='"+post[i].post_text+"' target='_blank'>"+post[i].text+"</a></span></div>";
 					});
 					
 					//post type 0 = text and link or image only

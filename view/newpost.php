@@ -62,6 +62,9 @@ $(document).ready(function(){
 	
     $('select').material_select();
 	
+	//init
+	$("#post_text").prop("required", false);
+	
 	$('#post-type-select').change(function() {
 		var postType = $('#post-type-select').val();
 		if (postType==0)
@@ -111,7 +114,7 @@ $(document).ready(function(){
 			 toast(resp.message, 4000);
 			 //redirect to post page
 			/*setTimeout(function () {
-				window.location.href = "index.php";
+				window.location.href = "index.php";	
 			}, 1000);*/
 			console.log(formData);
 		})
