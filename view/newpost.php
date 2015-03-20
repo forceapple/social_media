@@ -113,7 +113,6 @@ $(document).ready(function(){
 			/*setTimeout(function () {
 				window.location.href = "index.php";
 			}, 1000);*/
-			console.log(formData);
 		})
 		.fail(function(err){
 			console.log(err);
