@@ -72,18 +72,13 @@ $(document).ready(function(){
           dataType: 'json',
 		  type: 'GET',
           data: { phase: 1, pid: <?php echo $pid; ?> },
-		  beforeSend: function(){
-				$('#post-loading').show();
-				$('#post-container').hide();
-			},
-		  success: function(post) {
-				$('#post-loading').hide();
-				$('#post-container').show();
-			},
         })
         .done(function(post){
           console.log(post);
 		  var card;
+		  
+		  	$("#link_title").focus();
+		  	$("#link_title").val(post.post_title);
 				
 			var postType = post.post_type;
 			//determine post type
