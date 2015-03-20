@@ -49,7 +49,7 @@ class Noni{
 	//get post by post id
 	function get_post($pid){
 		global $con;
-		$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.post_image, post.type, post.text  FROM post LEFT JOIN user_post ON user_post.pid = post.pid
+		$query = "SELECT user.username, user_post.pid,user.profile_img, user_post.uid, post.title, post.post_image, post.type, post.text, post.time_stamp  FROM post LEFT JOIN user_post ON user_post.pid = post.pid
 									LEFT JOIN user ON user.uid = user_post.uid WHERE post.pid=".$pid;
 		$result = mysqli_query($con, $query);
 		if($result){
