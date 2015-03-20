@@ -234,7 +234,7 @@
 						e.preventDefault();
 						
 						var cid = $(this).attr("id");
-						var comment = $("#commentBox"+cid).html();
+						var comment = $("#commentBox"+cid).text();
 						
 						$("#commentBox"+cid).html("<textarea type='text' id='editedComment'>'"+comment+"'</textarea>");
 						
