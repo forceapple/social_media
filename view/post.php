@@ -155,6 +155,7 @@
 			})
 			.done(function(resp){
 			  console.log(resp);
+			  	$('#user-comment').val("");
 				getComments();
 				toast(resp.message);
 			  //TO DO
