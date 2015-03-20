@@ -10,9 +10,8 @@ a {
 }
 
 #header {
-	height:300px;
+	height:100px;
 	background-color: #e0f7fa;
-	line-height: 300px;
 	padding-left: 1em;
 	padding-right: 1em;
 	font-weight: 300;
