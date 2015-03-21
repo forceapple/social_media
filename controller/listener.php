@@ -7,6 +7,7 @@ require('main.php');
 // 0 - get all posts
 // 1 - get post by post id
 // 2 - get comments by post id
+// 3 - get votes by post id
 
 // *******************
 // POST PHASES
@@ -44,6 +45,9 @@ if(isset($_GET['phase'])){
 			$lo = new noniController();
 			echo json_encode($lo->get_comments($_GET['cid']));
 		break;
+		case 3:
+			$lo = new noniController();
+			echo $lo->get_votes_by_post_id($_GET['pid']);
 	}
 }
 

@@ -265,6 +265,17 @@ class Noni{
 		return false;
 	}
 
+	public function get_votes_by_post_id($pid){
+		$query = "SELECT votes FROM post WHERE pid = ".$pid;
+		$result = mysqli_query($this->con, $query);
+		if($result){
+			while ($row=mysqli_fetch_row($result)){
+				return $row[0];
+			}	
+		}
+		return false;
+	}
+
 	//aka PHP's ! operator is retarded
 	function returnNot($type){
 		switch($type){
@@ -283,7 +294,7 @@ class Noni{
 //voting test
 //$db = new Noni();
 //$db->vote_post(1,2,0);
-
+//echo $db->get_votes_by_post_id(3);
 /*
 $db = new Noni();
 $asd="1";

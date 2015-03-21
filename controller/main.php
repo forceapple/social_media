@@ -98,10 +98,15 @@ class noniController{
 			return false;
 		}	
 	}
+
+	function get_votes_by_post_id($pid){
+		$co = new Noni();
+		return $co->get_votes_by_post_id($pid);
+	}
 }
 
-/*
+
 $test = new noniController();
-print_r($test->get_all_post());
-*/
+print_r($test->get_votes_by_post_id(1));
+
 ?>
