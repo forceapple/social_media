@@ -17,7 +17,7 @@ class Noni{
 	function get_all_post(){
 		
 		$query = "SELECT * FROM post LEFT JOIN user_post ON user_post.pid = post.pid
-										LEFT JOIN user ON user.uid = user_post.uid";
+										LEFT JOIN user ON user.uid = user_post.uid LIMIT 20";
 		$result = mysqli_query($this->con, $query);
 		if($result){
 			$arr = array();
@@ -234,6 +234,7 @@ class Noni{
 				$vote = ($votetype == 0 ? 1 : - 1);
 				$query2 = "UPDATE post SET votes = votes - ".$vote." WHERE pid= ".$pid;
 				$result2 = mysqli_query($this->con, $query2);
+				return true;
 			}
 		}else{
 			//user has not voted
