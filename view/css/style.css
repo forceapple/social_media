@@ -192,3 +192,19 @@ textarea.parsley-error {
 #user-comment {
 	width: 100%;
 }
+
+.voteCount {
+	width: 30px;
+}
+
+.voteBox {
+	float: left;
+	position: relative;
+  top: -10px;
+  width: 50px;
+  text-align: center;
+}
+
+.postDetails {
+	line-height: 50px;
+}
