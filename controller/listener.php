@@ -17,7 +17,7 @@ require('main.php');
 // 3 - edit comment by comment id
 // 4 - delete post by post id
 // 5 - delete comment by comment id
-// 6 - vote for post by post id
+// 6 - vote for post by post id (type: 0 is upvote, 1 is minus)
 
 // TO DO
 // class constructor
