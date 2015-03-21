@@ -278,11 +278,11 @@ class Noni{
 	}
 
 }
-/*
+
 //voting test
-$db = new Noni();
-$db->vote_post(1,2,0);
-*/
+//$db = new Noni();
+//$db->vote_post(1,2,0);
+
 /*
 $db = new Noni();
 $asd="1";
