@@ -85,10 +85,9 @@
 				{
 					//post type 1 = title and text
 					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+"</a></span><p>"+post[i].post_text+"</p></div><div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+post[i].pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+post[i].pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='post.php?pid="+post[i].pid+"'><i class='mdi-communication-forum'></i> "+post[i].num_comment+"</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+post[i].username+"</a></span></div></div></div>";
-					
+					$("#card"+post[i].pid).append(card);	
 				}
-				
-				$("#card"+post[i].pid).append(card);	
+	
 				getVoteCount(post[i].pid);
 			
 			  }
