@@ -136,7 +136,6 @@ function votingFunc() {
 			var pid = $(this).data('pid');
 			var currVoteCount = parseInt($("#voteBox"+pid).text());
 			var uservotetype = $(this).data('uservote');
-			console.log($(this).data());
 			
 			if (!votetype)
 			{
