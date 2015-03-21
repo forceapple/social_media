@@ -73,20 +73,6 @@
 						card = "<div class='card'>"+cardType+"<div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='post.php?pid="+resp.pid+"'><i class='mdi-communication-forum'></i> "+resp.num_comment+"</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+resp.username+"</a></span></div></div></div>";
 						
 						votingFunc();
-						$.ajax({
-							url:'../controller/listener.php',
-							data: {phase: 3, pid: resp.pid},
-							type: 'GET',
-							dataType: 'json',
-							success: function (voteNum) {
-								console.log(voteNum);
-								$("#voteBox"+resp.pid).text(voteNum);
-							}, 
-							error: function(err) {
-								error("Voting Error: "+err);
-							}
-						});
-						
 						
 						$("#card"+resp.pid).append(card);
 						//alert(card);
@@ -104,13 +90,20 @@
 					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post.php?pid="+pid+"' class='post-link'>"+post[i].post_title+"</a></span><p>"+post[i].post_text+"</p></div><div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+post[i].pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+post[i].pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='post.php?pid="+post[i].pid+"'><i class='mdi-communication-forum'></i> "+post[i].num_comment+"</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+post[i].username+"</a></span></div></div></div>";
 				}
 				
-				//get votes
-				getVoteCount(post.pid, function(resp) {
-					console.log(resp);
-				}, function (err) {
-					console.log(err);	
-				});
-				
+				$.ajax({
+							url:'../controller/listener.php',
+							data: {phase: 3, pid: post[i].pid},
+							type: 'GET',
+							dataType: 'json',
+							success: function (voteNum) {
+								console.log(post[i].pid);
+								console.log(voteNum);
+								$("#voteBox"+post[i].pid).text(voteNum);
+							}, 
+							error: function(err) {
+								error("Voting Error: "+err);
+							}
+						});
 				
 				$("#card"+post[i].pid).append(card);	
 			
