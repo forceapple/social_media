@@ -119,7 +119,7 @@ function votingFunc() {
 			
 			var formData = {
 				phase: 6, 
-				uid: 1, //user in session
+				uid: <?php echo $userId_session; ?>, //user in session
 				pid: $(this).data('pid'), 
 				votetype: $(this).data('votetype') 
 			};
