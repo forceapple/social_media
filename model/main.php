@@ -222,6 +222,10 @@ class Noni{
 		
 	}
 
+	// function to upvote a post
+	// votetype - type of vote to be invoked
+	// 0 - upvote
+	// 1 - downvote
 	function vote_post($uid, $pid, $votetype){
 		if($this->check_user_voted($uid,$pid,$votetype)){
 			//user voted, return
@@ -230,17 +234,12 @@ class Noni{
 			if($result){
 				$vote = ($votetype == 0 ? 1 : - 1);
 				$query2 = "UPDATE post SET votes = votes - ".$vote." WHERE pid= ".$pid;
-				//echo $query2;
 				$result2 = mysqli_query($this->con, $query2);
-				if($result2){
-					echo 'yay';
-				}
 			}
 		}else{
 			//user has not voted
 			$t = $this->returnNot($votetype);
 			if($this->check_user_voted($uid,$pid,$t)){
-				echo "step 1";
 				//user has upvoted / downvoted before that, delete the record of that
 				$query = "DELETE FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid."";
 				$result = mysqli_query($this->con, $query);
@@ -248,19 +247,12 @@ class Noni{
 					$vote = ($votetype == 0 ? 1 : -1 );
 					$query2 = "UPDATE post SET votes = votes + ".$vote." WHERE pid= ".$pid;
 					$result2 = mysqli_query($this->con, $query2);
-					if($result2){
-						echo "success";
-					}
-
 				}
 			}
-			echo "step 2";
 			//increase / decrease the number of votes
 			//insert the record of vote into votes tables
 			$vote = ($votetype == 0 ? 1 : - 1);
-			//echo "$vote";
 			$query = "UPDATE post SET votes = votes +".$vote." WHERE pid = ".$pid;
-			//echo $query;
 			$result = mysqli_query($this->con, $query);
 			if($result){
 				$query2 = "INSERT INTO votes (user_id, post_id, votetype) VALUES (".$uid.",".$pid.",".$votetype.")";
@@ -271,11 +263,6 @@ class Noni{
 			}
 		}
 		return false;
-	}
-
-	function test_check(){
-		$a = false;
-		echo !$a;
 	}
 
 	//aka PHP's ! operator is retarded
@@ -292,17 +279,11 @@ class Noni{
 	}
 
 }
-
+/*
+//voting test
 $db = new Noni();
-//echo $db->check_user_voted(1,2,1);
 $db->vote_post(1,2,0);
-/*$t = $db->returnNot(0);
-if($db->check_user_voted(1,2,$t)){
-	echo "stuff worked";
-}else{
-	echo "stuff didnt work";
-}*/
-
+*/
 /*
 $db = new Noni();
 $asd="1";
