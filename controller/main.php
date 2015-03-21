@@ -89,6 +89,15 @@ class noniController{
 			return false;
 		}
 	}
+
+	function vote_post($uid, $pid, $votetype){
+		$co = new Noni();
+		if($co->vote_post($uid, $pid, $votetype)){
+			return true;
+		}else{
+			return false;
+		}	
+	}
 }
 
 /*

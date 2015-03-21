@@ -208,7 +208,7 @@ class Noni{
 	// $votetype
 	// 0 - upvote
 	// 1 - downvote
-	function check_user_voted($uid, $pid, $votetype){
+	private function check_user_voted($uid, $pid, $votetype){
 		$query = "SELECT * FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid." AND votetype = ".$votetype;
 		$result = mysqli_query($this->con, $query);
 		if($result){

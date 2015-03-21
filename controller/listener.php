@@ -17,6 +17,7 @@ require('main.php');
 // 3 - edit comment by comment id
 // 4 - delete post by post id
 // 5 - delete comment by comment id
+// 6 - vote for post by post id
 
 // TO DO
 // class constructor
@@ -139,6 +140,17 @@ if(isset($_POST['phase'])){
 			}else{
 				$data['success'] = false;
 				$data['errors'] = 'Error';
+			}
+			echo json_encode($data);
+			break;
+		case 6:
+			$lo = new noniController();
+			if($lo->vote_post($_POST['uid'], $_POST['pid'], $_POST['votetype'])){
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}else{
+				$data['success'] = false;
+				$data['errors'] = 'Error';	
 			}
 			echo json_encode($data);
 			break;
