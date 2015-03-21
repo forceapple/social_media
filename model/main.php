@@ -205,17 +205,75 @@ class Noni{
 	}
 
 	// function to check if user upvoted / downvoted a post
-	// $votetype = 'up' / 'down'
+	// $votetype
+	// 0 - upvote
+	// 1 - downvote
 	function check_user_voted($uid, $pid, $votetype){
-		$query = "SELECT FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid." AND type = '".$votetype."'";
+		$query = "SELECT * FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid." AND votetype = ".$votetype;
 		$result = mysqli_query($this->con, $query);
 		if($result){
-			return true;
+			if(mysqli_num_rows($result) == 0){
+				return false;
+			}else{
+				return true;
+			}
+		}
+		return false;
+		
+	}
+
+	function vote_post($uid, $pid, $votetype){
+		if($this->check_user_voted($uid,$pid,$votetype)){
+			//user voted, return
+			$query = "DELETE FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid;
+			$result = mysqli_query($this->con, $query);
+			if($result){
+				$vote = ($votetype == 0 ? 1 : - 1);
+				$query2 = "UPDATE post SET votes = votes - ".$vote." WHERE pid= ".$pid;
+				echo $query2;
+				$result2 = mysqli_query($this->con, $query2);
+				if($result2){
+					echo 'yay';
+				}
+			}
+		}else{
+			//user has not voted
+			if($this->check_user_voted($uid,$pid,!$votetype)){
+				echo "voted";
+				//user has upvoted / downvoted before that, delete the record of that
+				$query = "DELETE FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid."";
+				$result = mysqli_query($this->con, $query);
+			}
+			echo "not voted";
+			//increase / decrease the number of votes
+			//insert the record of vote into votes tables
+			$vote = ($votetype == 0 ? 1 : - 1);
+			echo "$vote";
+			$query = "UPDATE post SET votes = votes +".$vote." WHERE pid = ".$pid;
+			echo $query;
+			$result = mysqli_query($this->con, $query);
+			if($result){
+				$query2 = "INSERT INTO votes (user_id, post_id, votetype) VALUES (".$uid.",".$pid.",".$votetype.")";
+				$result2 = mysqli_query($this->con, $query2);
+				if($result2){
+					return true;
+				}
+			}
 		}
 		return false;
 	}
 
+	function test_check(){
+		$a = false;
+		echo !$a;
+	}
+
 }
+
+$db = new Noni();
+//echo $db->check_user_voted(1,2,1);
+$db->vote_post(1,2,0);
+
 
 /*
 $db = new Noni();
