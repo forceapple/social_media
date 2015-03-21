@@ -106,7 +106,7 @@ class noniController{
 }
 
 
-$test = new noniController();
-print_r($test->get_votes_by_post_id(1));
+//$test = new noniController();
+//print_r($test->get_votes_by_post_id(1));
 
 ?>
