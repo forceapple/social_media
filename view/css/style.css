@@ -208,3 +208,8 @@ textarea.parsley-error {
 .postDetails {
 	line-height: 50px;
 }
+
+.disableVote {
+	color: #0091ea !important;
+	cursor: default}
+
