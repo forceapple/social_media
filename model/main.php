@@ -203,6 +203,18 @@ class Noni{
 		}
 		return false;
 	}
+
+	// function to check if user upvoted / downvoted a post
+	// $votetype = 'up' / 'down'
+	function check_user_voted($uid, $pid, $votetype){
+		$query = "SELECT FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid." AND type = '".$votetype."'";
+		$result = mysqli_query($this->con, $query);
+		if($result){
+			return true;
+		}
+		return false;
+	}
+
 }
 
 /*
