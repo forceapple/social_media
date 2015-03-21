@@ -117,28 +117,39 @@
         })
         .done(function(post){
           	console.log(post);
-		  	var card;
-			
-			var postType = post.post_type;
-			//determine post type
+		  		var pid = parseInt(post.pid);
+				var postType = post.post_type;
+				var cardType, card;
+				
+				//determine post type
+				//post type 0 = text and link or image only
 				if(postType == 0) 
 				{
-					//post type 0 = text and link or image only
-					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+post.text+"' target='_blank' class='post-link'>"+post.post_title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#' class='upvote'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#' class='downvote'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div></div>";
+					//check if image
+					IsValidImageUrl(post, function(resp){
+						//image
+						cardType= "<div class='card-image'><a href='post.php?pid="+resp.pid+"'><img src='"+resp.text+"' class='post-image'/><span class='card-title'>"+resp.post_title+"</span></a></div>";
+						card = "<div class='card'>"+cardType+"<div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>0 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='post.php?pid="+resp.pid+"'><i class='mdi-communication-forum'></i> "+resp.num_comment+"</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+resp.username+"</a></span></div></div>";
+						$("#post-container").append(card);
+					}, function(resp){
+						cardType = "<div class='card-content'><span class='card-title'><a href='"+resp.text+"' target='_blank'>"+resp.post_title+"</a></span></div>";
+						card = "<div class='card'>"+cardType+"<div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>0 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+resp.username+"</a></span></div></div>";
+						$("#post-container").append(card);
+					});	
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = title and text
-					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+post.post_image+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+post.post_title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#' class='upvote'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href='#' class='downvote'><i class='mdi-action-grade'></i>0</a>by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='edit.php?pid="+post.pid+"'>edit</a> <a href='#'>save</a> <a class='modal-trigger deleteBtn' href='#'>delete</a></div></div></div>";				
+					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post.php?pid="+pid+"' class='post-link'>"+post.post_title+"</a></span><p>"+post.text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>0 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+post.username+"</a></span></div></div>";
+					$("#post-container").append(card);	
 				}
-				
+		
 				//for delete modal
 				$(document).on("click", ".deleteBtn", function(e) {
 					e.preventDefault();
 					$('#deleteWindow').openModal();
 				});
 	
-				$("#post-container").append(card);
 				getComments();
         })
         .fail(function(err){
@@ -329,6 +340,16 @@
 			
 			
 		}
+		
+function IsValidImageUrl(post, callback, error) {
+    console.log(post);
+	$("<img>", {
+        src: post.text,
+		async: false,
+        error: function() { error(post); },
+        load: function() { callback(post); }
+    });
+}
 </script>
 </body>
 </html>

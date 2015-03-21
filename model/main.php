@@ -115,7 +115,7 @@ class Noni{
 
 	}
 	function create_post($uid, $title, $text, $type){
-		$query = "INSERT INTO post(title, text, post_image, type) VALUES ('".$title."','".$text."','".$type."')";
+		$query = "INSERT INTO post(title, text, type) VALUES ('".$title."','".$text."','".$type."')";
 		$result = mysqli_query($this->con, $query);
 		if($result){
 			//get last insert id and insert into user_post

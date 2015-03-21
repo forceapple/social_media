@@ -11,7 +11,7 @@
                 <label>Post Type</label>
                   <select id="post-type-select" required>
                     <option value="0" selected>URL</option>
-                    <option value="2">Text</option>
+                    <option value="1">Text</option>
                   </select>
                   </div>
                   
@@ -62,15 +62,18 @@ $(document).ready(function(){
 	
     $('select').material_select();
 	
+	//init
+	$("#post_text").prop("required", false);
+	
 	$('#post-type-select').change(function() {
 		var postType = $('#post-type-select').val();
-		if (postType==0 || postType==1)
+		if (postType==0)
 		{
 			$("#text_field").hide();
 			$("#post_text").prop("required", false);
 			$("#url_field").show();
 			$("#link_url").prop("required", true);
-		} else if (postType == 2)
+		} else
 		{
 			$("#text_field").show();
 			$("#post_text").prop("required", true);
@@ -89,6 +92,7 @@ $(document).ready(function(){
 			//text and URL	
 			text = $('#link_url').val();
 		} else text = $("#post_text").val();
+		
 		
 		var formData = {
 			'phase' : 0,
@@ -109,10 +113,10 @@ $(document).ready(function(){
 			console.log(resp);
 			 toast(resp.message, 4000);
 			 //redirect to post page
-			setTimeout(function () {
-				//window.location.href = "post.php?pid=<?php echo $pid; ?>";
-				window.location.href = "index.php";
-			}, 1000);
+			/*setTimeout(function () {
+				window.location.href = "index.php";	
+			}, 1000);*/
+			console.log(formData);
 		})
 		.fail(function(err){
 			console.log(err);
