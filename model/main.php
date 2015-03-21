@@ -230,7 +230,7 @@ class Noni{
 			if($result){
 				$vote = ($votetype == 0 ? 1 : - 1);
 				$query2 = "UPDATE post SET votes = votes - ".$vote." WHERE pid= ".$pid;
-				echo $query2;
+				//echo $query2;
 				$result2 = mysqli_query($this->con, $query2);
 				if($result2){
 					echo 'yay';
@@ -238,19 +238,29 @@ class Noni{
 			}
 		}else{
 			//user has not voted
-			if($this->check_user_voted($uid,$pid,!$votetype)){
-				echo "voted";
+			$t = $this->returnNot($votetype);
+			if($this->check_user_voted($uid,$pid,$t)){
+				echo "step 1";
 				//user has upvoted / downvoted before that, delete the record of that
 				$query = "DELETE FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid."";
 				$result = mysqli_query($this->con, $query);
+				if($result){
+					$vote = ($votetype == 0 ? 1 : -1 );
+					$query2 = "UPDATE post SET votes = votes + ".$vote." WHERE pid= ".$pid;
+					$result2 = mysqli_query($this->con, $query2);
+					if($result2){
+						echo "success";
+					}
+
+				}
 			}
-			echo "not voted";
+			echo "step 2";
 			//increase / decrease the number of votes
 			//insert the record of vote into votes tables
 			$vote = ($votetype == 0 ? 1 : - 1);
-			echo "$vote";
+			//echo "$vote";
 			$query = "UPDATE post SET votes = votes +".$vote." WHERE pid = ".$pid;
-			echo $query;
+			//echo $query;
 			$result = mysqli_query($this->con, $query);
 			if($result){
 				$query2 = "INSERT INTO votes (user_id, post_id, votetype) VALUES (".$uid.",".$pid.",".$votetype.")";
@@ -268,12 +278,30 @@ class Noni{
 		echo !$a;
 	}
 
+	//aka PHP's ! operator is retarded
+	function returnNot($type){
+		switch($type){
+			case 0:
+				return 1;
+				break;
+			case 1:
+				return 0;
+				break;
+		}
+
+	}
+
 }
 
 $db = new Noni();
 //echo $db->check_user_voted(1,2,1);
 $db->vote_post(1,2,0);
-
+/*$t = $db->returnNot(0);
+if($db->check_user_voted(1,2,$t)){
+	echo "stuff worked";
+}else{
+	echo "stuff didnt work";
+}*/
 
 /*
 $db = new Noni();
