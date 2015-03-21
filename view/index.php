@@ -61,6 +61,20 @@
 				var cardType, card;
 				
 				$("#content").append("<div id='card"+pid+"'></div>");
+				//votes
+				$.ajax({
+					url:'../controller/listener.php',
+					data: {phase: 3, pid: pid},
+					type: 'GET',
+					dataType: 'json',
+					success: function(voteNum) {
+						$("#voteBox"+pid).text(voteNum);
+					}, 
+					error: function(err) {
+						console.log("Voting Error: "+err);
+					}
+				});
+				
 				//determine post type
 				//post type 0 = text and link or image only
 				if(postType == 0) 
@@ -69,7 +83,7 @@
 					IsValidImageUrl(post[i], function(resp){
 						//image
 						cardType= "<div class='card-image'><a href='post.php?pid="+resp.pid+"'><img src='"+resp.post_text+"' class='post-image'/><span class='card-title'>"+resp.post_title+"</span></a></div>";
-						card = "<div class='card'>"+cardType+"<div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='post.php?pid="+resp.pid+"'><i class='mdi-communication-forum'></i> "+resp.num_comment+"</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+resp.username+"</a></span></div></div></div>";
+						card = "<div class='card'>"+cardType+"<div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='post.php?pid="+resp.pid+"'><i class='mdi-communication-forum'></i> "+resp.num_comment+"</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'><a href='#'>"+resp.username+"</a></span></div></div></div>";
 						
 						votingFunc();
 						
