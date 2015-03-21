@@ -1,10 +1,9 @@
 <?php
 require ("db.php");
 
-//REMINDER OF POST TYPES
-//post type 0 = title and URL only
-//post type 1 = title image URL a link
-//post type 2 = title and text only
+//REMINDER FOR POST TYPES
+//post type 0 = title and URL/image only
+//post type 1 = title and text only
 
 class Noni{
 	private $con;
