@@ -27,6 +27,7 @@
   	  <ul id="nav-mobile" class="left hide-on-med-and-down">
       	    <li><a href="#">Menu when Logged In <i class="mdi-action-trending-neutral right"></i></a></li>
               <li><a href="index.php">Home</a></li>
+              <li><a href="newpost.php">New Post</a></li>
               <li><a href="myposts.php">My Posts</a></li>   
               <li><a href="mylikedposts.php">Liked</a></li> 
               <li><a href="mydislikedposts.php">Disliked</a></li>

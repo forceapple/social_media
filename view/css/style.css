@@ -1,5 +1,23 @@
 @charset "UTF-8";
 /* CSS Document */
+ * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+/* masonry */
+
+.item {  
+	width: 32%; 
+	  min-width: 348px;
+	 }
+.item.w2 { width: 50%; }
+
+#container {
+	width: 100%;
+	position: relative;
+}
 
 body {
 	font-weight: 400;
@@ -9,7 +27,6 @@ body {
 a {
 	
 }
-      
 
 #header {
 	height:100px;
