@@ -110,7 +110,7 @@
 		  }).done(function() {
 			  	//when all cards are present bind event listener for votes
 				votingFunc();  
-				$("#container").packery('reloadItems').layout();
+				$("#container").packery('reloadItems');
 		  });
 
 		  
