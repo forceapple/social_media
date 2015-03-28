@@ -298,9 +298,9 @@ class Noni{
 }
 
 //voting test
-$df="dsvsvfsdfswef";
-$db = new Noni($df);
-echo $db->uid;
+//$df="dsvsvfsdfswef";
+//$db = new Noni($df);
+//echo $db->uid;
 //$db->vote_post(1,2,0);
 //echo $db->get_votes_by_post_id(3);
 /*
@@ -317,6 +317,6 @@ $db->get_all_post();
 
 
 	*/
-$db->test();
+//$db->test();
 
 ?>
