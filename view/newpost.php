@@ -1,5 +1,3 @@
-<?php include('header.php'); ?>
-        	
      <!-- start wrapper -->
        <div class="row">
 	       
@@ -37,16 +35,12 @@
 					</button>
 			    </div>
 			 </form>
-          
+          	<a href="/route/">Back to home page</a>
          </div><!-- /content-->
          
-		<?php include('sidebar.php'); ?>
         
       </div>
      
-     <!-- start footer -->
-     	<?php include('footer.php'); ?>
-     <!-- end footer -->
      
      <!-- end wrapper -->
      
@@ -54,7 +48,7 @@
   </div><!-- end of container-->
 
 	  <!--Import jQuery before materialize.js-->
-	  <script src="js/parsley.min.js"></script>
+	  <script src="/route/js/parsley.min.js"></script>
 <script type="text/javascript">
 $('#createPostForm').parsley();
 

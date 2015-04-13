@@ -1,8 +1,7 @@
 <?php
-	include("../controller/main.php");
-	$pid = $_GET['pid'];
+	
+	//echo $_GET['pid'];
 
-	include('header.php'); 
 ?>
      <!-- start wrapper -->
        <div class="row">
@@ -77,18 +76,17 @@
           
          </div><!-- /content-->
          
-         <?php include('sidebar.php'); ?>
       </div>
      
          <!-- start footer -->
-            <?php include('footer.php'); ?>
+
          <!-- end footer -->
      
      <!-- end wrapper -->
   
     </div><!-- end of container-->
 
-      <script src="js/parsley.min.js"></script>
+      <script src="/route/js/parsley.min.js"></script>
       <script>
 	  $('#submit_comment').parsley();
   $(document).ready(
@@ -101,11 +99,10 @@
 		
 		//get post
         $.ajax({
-          type: 'POST',
           url: '../controller/listener.php',
           dataType: 'json',
 		  type: 'GET',
-          data: { phase: 1, pid: <?php echo $pid; ?> },
+          data: { async: true, phase: 1, pid: <?php echo $_GET['pid']; ?> },
 		  beforeSend: function(){
 				$('#post-loading').show();
 				$('#post-container').hide();
@@ -161,7 +158,7 @@
 			var formData = {
 			  'phase' : 1,
 			  'userID' : 1,
-			  'postID' : <?php echo "$pid"; ?>,
+			  'postID' : <?php echo $_GET['pid']; ?>,
 			  'comment' : $('#user-comment').val()
 			}
 			$.ajax({
@@ -192,7 +189,7 @@
 			  url: '../controller/listener.php',
 			  dataType: 'json',
 			  type: 'GET',
-			  data: { phase: 2, cid: <?php echo $pid; ?> },
+			  data: { phase: 2, cid: <?php echo $_GET['pid']; ?> },
 			  beforeSend: function(){
 					$('#post-loading').show();
 					$('#comments-container').hide();
@@ -248,7 +245,7 @@
 							  type: 'POST',
 							  url: '../controller/listener.php',
 							  dataType: 'json',
-							  data: { phase: 3, cid: cid, uid: 1, pid: <?php echo $pid; ?>, comment: $("#editedComment").val() },
+							  data: { phase: 3, cid: cid, uid: 1, pid: <?php echo $_GET['pid'] ?>, comment: $("#editedComment").val() },
 							  success: function(res) {
 									toast(res.message, 4000);
 								}
@@ -299,7 +296,7 @@
 					  type: 'POST',
 					  url: '../controller/listener.php',
 					  dataType: 'json',
-					  data: { phase: 4, pid: <?php echo $pid; ?>, uid: 1 },
+					  data: { phase: 4, pid: <?php echo $_GET['pid']; ?>, uid: 1 },
 					  success: function(res) {
 							toast(res.message, 4000);
 						}
@@ -351,5 +348,3 @@ function IsValidImageUrl(post, callback, error) {
     });
 }
 </script>
-</body>
-</html>

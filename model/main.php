@@ -7,11 +7,10 @@ require ("db.php");
 
 class Noni{
 	private $con;
-	private $uid;
-	function __construct($uid){
+	function __construct(){
+		
 		global $con;
 		$this->con = $con;
-		$this->uid = $uid;
 		//echo $this->con;
 	}
 	//get all post
@@ -289,18 +288,11 @@ class Noni{
 		}
 
 	}
-	function test(){
-		//print_r("er");
-		//echo $this->uid;
-		//print_r($this->con);
-	}
 
 }
 
 //voting test
-//$df="dsvsvfsdfswef";
-//$db = new Noni($df);
-//echo $db->uid;
+//$db = new Noni();
 //$db->vote_post(1,2,0);
 //echo $db->get_votes_by_post_id(3);
 /*
@@ -317,6 +309,6 @@ $db->get_all_post();
 
 
 	*/
-//$db->test();
+
 
 ?>

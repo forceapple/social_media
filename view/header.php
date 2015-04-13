@@ -2,14 +2,15 @@
 <html>
 <head>
 <!--Import materialize.css-->
-    <link type="text/css" rel="stylesheet" href="css/materialize.min.css"  media="screen,projection"/>
-    <link rel="stylesheet" href="css/style.css">
+    <link type="text/css" rel="stylesheet" href="/route/css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="/route/css/style.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--Let browser know website is optimized for mobile-->
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
     <meta charset="UTF-8">
     <title>Reddit? No. It's Noni.</title>
-
+	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
+	 <script type="text/javascript" src="/route/js/materialize.min.js"></script>
 </head>
 
 <body>
@@ -27,7 +28,6 @@
   	  <ul id="nav-mobile" class="left hide-on-med-and-down">
       	    <li><a href="#">Menu when Logged In <i class="mdi-action-trending-neutral right"></i></a></li>
               <li><a href="index.php">Home</a></li>
-              <li><a href="newpost.php">New Post</a></li>
               <li><a href="myposts.php">My Posts</a></li>   
               <li><a href="mylikedposts.php">Liked</a></li> 
               <li><a href="mydislikedposts.php">Disliked</a></li>
@@ -56,4 +56,3 @@
   </div>
 </nav>
 
-        
