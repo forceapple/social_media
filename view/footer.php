@@ -26,6 +26,6 @@
        
  <!--Import jQuery before materialize.js-->
      
-      <script src="/route/js/requirements.js"></script>
+      <script src="/social_media/js/requirements.js"></script>
 </body>
 </html>

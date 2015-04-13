@@ -86,7 +86,7 @@
   
     </div><!-- end of container-->
 
-      <script src="/route/js/parsley.min.js"></script>
+      <script src="/social_media/js/parsley.min.js"></script>
       <script>
 	  $('#submit_comment').parsley();
   $(document).ready(

@@ -10,7 +10,7 @@
     <meta charset="UTF-8">
     <title>Reddit? No. It's Noni.</title>
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	 <script type="text/javascript" src="/route/js/materialize.min.js"></script>
+	 <script type="text/javascript" src="/social_media/js/materialize.min.js"></script>
 </head>
 
 <body>
