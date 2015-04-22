@@ -1,15 +1,12 @@
 <?php
-require ("db.php");
+require ("_model_interface.php");
 
 // $a="test";
 // $b="1234";
-class login_model{
-
-	private $con;
+class user_model extends _Model_Interface{
 	function __construct(){
-		
-		global $con;
-		$this->con = $con;
+		// parent::__construct("user"); //passing the table
+		parent::__construct();
 	}
 
 
