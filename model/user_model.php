@@ -27,12 +27,17 @@ class user_model extends _Model_Interface{
 		}
 		return false;
 	}
+
+	function del_user($uid){
+		$this->del_row($uid);
+	}
 	
 
 
 }
+$a=2;
 
-// $db = new login_model();
-// $db->login($a,$b);
+$db = new user_model();
+$db->del_user($a);
 
 ?>
