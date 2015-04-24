@@ -125,9 +125,9 @@ class post_model extends _Model_Interface{
 
 }
 
-$a=5;
-$db = new post_model();
-$db->del_post($a);
+// $a=5;
+// $db = new post_model();
+// $db->del_post($a);
 /*echo "<pre>";
 print_r($db->get_post_by_uid($a));
 echo "</pre>";*/
