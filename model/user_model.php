@@ -1,18 +1,21 @@
 <?php
 require ("_model_interface.php");
-
-// $a="test";
-// $b="1234";
+ $c="test";
+ $b="1234";
 class user_model extends _Model_Interface{
-	function __construct(){
-		// parent::__construct("user"); //passing the table
+	private $username;
+	private $pass;
+
+	function __construct($username, $pass){
 		parent::__construct();
+		$this->username=$username;
+		$this->password=$pass;
 	}
 
 
-	function login($username, $pass){
-		$query = "SELECT user.username, user.f_name, user.l_name, user.profile_img FROM user WHERE user.username='".$username."' AND user.password=".$pass;
-		$result = mysqli_query($this->con, $query);
+	public function login(){
+		$query = "SELECT user.username, user.f_name, user.l_name, user.profile_img FROM user WHERE user.username='".$this->username."' AND user.password=".$this->password;
+		$result = mysqli_query($this->_con, $query);
 		$arr= array();
 		if($result){
 			while($row = mysqli_fetch_array($result)){
@@ -22,7 +25,7 @@ class user_model extends _Model_Interface{
 				$arr['profile_img']= $row['profile_img'];
 				
 			}	
-			print_r($arr);
+			//print_r($arr);
 			return $arr;
 		}
 		return false;
@@ -30,14 +33,15 @@ class user_model extends _Model_Interface{
 
 	function del_user($uid){
 		$this->del_row($uid);
+		return true;
 	}
 	
 
 
 }
-$a=2;
+/*$a=2;
 
-$db = new user_model();
-$db->del_user($a);
+$db = new user_model($c, $b, null, null, null, null);
+$db->login();*/
 
 ?>

@@ -29,7 +29,7 @@ class _Model_Interface{
 
 	function del_row($where){
 		// gets the first col of the table, which is id
-		$sql = "DESCRIBE ".$this->_table;
+		$sql = "DESCRIBE".$this->_table;
 		$result = $this->result($sql);
 		$row = mysqli_fetch_array($result);
 		$id = $row[0];
