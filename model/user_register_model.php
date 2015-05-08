@@ -20,7 +20,7 @@ class user_register_model extends _Model_Interface{
 	}
 
 	function register_user(){
-		$query = "INSERT INTO $this->_table(username, password, profile_img, email, f_name, l_name, location) VALUES ('".$this->username."','".$this->password."','".$this->profile_img."', '".$this->email."', '".$this->f_name."', '".$this->l_name."', '".$this->location."' )";
+		$query = "INSERT INTO $this->_table(username, password, profile_img, email, f_name, l_name, location) VALUES ('".$this->username."','".$this->password."','".$this->profile_img."', '".$this->email."', '".$this->f_name."', '".$this->l_name."', '".$this->location."')";
 
 		$result = $this->result($query);
 		return true;

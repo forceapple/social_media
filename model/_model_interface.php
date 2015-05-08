@@ -40,5 +40,16 @@ class _Model_Interface{
 		return true;
 	}
 
+/*	function count(){
+
+		// $query="SELECT COUNT(*) FROM ".$this->_table." WHERE ".$this->_table."(".$cols.") VALUES (".$equal.")";
+		$query="SELECT COUNT(*) AS 'count'FROM $this->_table";
+		// ".$this->_table."(".$cols.") = ".$equal."
+		$result = $this->result($query);
+		$row = mysqli_fetch_assoc($result);
+		$result = $row['count'];
+		return $result;
+	}*/
+
 	
 }
