@@ -35,7 +35,7 @@
 					</button>
 			    </div>
 			 </form>
-          	<a href="/route/">Back to home page</a>
+          	<a href="/social_media/">Back to home page</a>
          </div><!-- /content-->
          
         
@@ -48,7 +48,7 @@
   </div><!-- end of container-->
 
 	  <!--Import jQuery before materialize.js-->
-	  <script src="/route/js/parsley.min.js"></script>
+	  <script src="/social_media	/js/parsley.min.js"></script>
 <script type="text/javascript">
 $('#createPostForm').parsley();
 
