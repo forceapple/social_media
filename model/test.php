@@ -1,6 +1,5 @@
 <?php
 require ("db.php");
-require ("load_models.php");
 
 //REMINDER FOR POST TYPES
 //post type 0 = title and URL/image only
@@ -9,11 +8,10 @@ require ("load_models.php");
 class Noni{
 	private $con;
 	function __construct(){
+		
 		global $con;
 		$this->con = $con;
 		//echo $this->con;
-
-		// /$this->user_model();
 	}
 	//get all post
 	function get_all_post(){
@@ -311,10 +309,6 @@ $db->get_all_post();
 
 
 	*/
-
-// $test = new user_model();
-// echo "here";
-
 
 
 ?>
