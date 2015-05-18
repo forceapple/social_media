@@ -1,6 +1,6 @@
 <?php
 	
-	echo $_GET['pid'];
+	//echo $_GET['pid'];
 
 ?>
      <!-- start wrapper -->
@@ -96,7 +96,6 @@
 		
 		//delete modal window
 		$('.modal-trigger').leanModal();
-		
 		//get post
         $.ajax({
           url: '../controller/listener.php',
@@ -106,6 +105,7 @@
 		  beforeSend: function(){
 				$('#post-loading').show();
 				$('#post-container').hide();
+
 			},
 		  success: function(post) {
 				$('#post-loading').hide();

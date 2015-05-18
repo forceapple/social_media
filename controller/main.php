@@ -10,7 +10,7 @@ class noniController{
 		return $co->get_all_post();
 	}
 
-	//function to get post by user id
+	//function to get post by post id
 	//returns a single array
 	function get_post($uid){
 		$co = new Noni();
