@@ -1,6 +1,6 @@
 <?php
 	
-	//echo $_GET['pid'];
+	echo $_GET['pid'];
 
 ?>
      <!-- start wrapper -->

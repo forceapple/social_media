@@ -1,5 +1,5 @@
 <?php
-require_once('../model/main.php');
+require_once('/../model/main.php');
 
 class noniController{
 
