@@ -1,5 +1,24 @@
 @charset "UTF-8";
 /* CSS Document */
+ * {
+        -webkit-box-sizing: border-box;
+        -moz-box-sizing: border-box;
+        box-sizing: border-box;
+}
+
+/* masonry */
+
+.item {  
+	width: 32%; 
+}
+
+.item.w2 { width: 80%; }
+
+#container {
+	width: 100%;
+	position: relative;
+	margin: auto auto;
+}
 
 body {
 	font-weight: 400;
@@ -9,7 +28,6 @@ body {
 a {
 	
 }
-      
 
 #header {
 	height:100px;
@@ -212,4 +230,22 @@ textarea.parsley-error {
 .disableVote {
 	color: #0091ea !important;
 	cursor: default}
+	
+@media only screen and (max-width: 960px) {
+	.item {  
+		width: 49%; 
+	 	min-width: 328px;
+	 }
+}
 
+@media only screen and (max-width: 768px) {
+	
+	
+}
+
+@media only screen and (max-width: 480px) {
+	.item {  
+		width: 100%; 
+		  min-width: 365px;
+	 }	
+}
