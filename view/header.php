@@ -5,8 +5,6 @@
   <?php $folder = "/social_media/";
     $server_path = "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $folder;
     define("ROOT_FOLDER", $server_path);
-    echo ROOT_FOLDER;
-    
    ?>
     <link type="text/css" rel="stylesheet" href="<?php echo ROOT_FOLDER; ?>css/materialize.min.css"  media="screen,projection"/>
     <link rel="stylesheet" href="<?php echo ROOT_FOLDER; ?>css/style.css">
