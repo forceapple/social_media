@@ -2,9 +2,12 @@
 <html>
 <head>
 <!--Import materialize.css-->
-  <?php $folder = "/social_media/" ?>
-    <link type="text/css" rel="stylesheet" href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $folder; ?>css/materialize.min.css"  media="screen,projection"/>
-    <link rel="stylesheet" href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $folder; ?>css/style.css">
+  <?php $folder = "/social_media/";
+
+    
+   ?>
+    <link type="text/css" rel="stylesheet" href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $folder; ?>css/materialize.min.css"  media="screen,projection"/>
+    <link rel="stylesheet" href="<?php echo "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $folder; ?>css/style.css">
     <meta http-equiv="X-UA-Compatible" content="IE=edge">
 <!--Let browser know website is optimized for mobile-->
    <meta name="viewport" content="width=device-width, initial-scale=1.0, maximum-scale=1.0, user-scalable=no"/>
@@ -12,8 +15,8 @@
     <title>Reddit? No. It's Noni.</title>
 
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	 <script type="text/javascript" src="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $folder; ?>js/materialize.min.js"></script>
-    <script src="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $folder; ?>js/parsley.min.js"></script>
+	 <script type="text/javascript" src="<?php echo "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $folder; ?>js/materialize.min.js"></script>
+    <script src="<?php echo "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $folder; ?>js/parsley.min.js"></script>
 </head>
 
 <body>
