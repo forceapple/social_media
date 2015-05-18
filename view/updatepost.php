@@ -6,7 +6,6 @@
         	<h2 class="post-heading">Edit Post</h2>
 	        <form action="../controller/listener.php" class="col l12 m12 s12 container" id="createPostForm" method="POST" data-parsley-validate>
 			    <div class="row">
-               
                   </div>
                   
                    <div class="row">
@@ -78,44 +77,17 @@ $(document).ready(function(){
 		  
 		  	$("#link_title").focus();
 		  	$("#link_title").val(post.post_title);
-			if (postType == 0 || postType == 1)
+			if (postType == 0)
 			{
 				$("#link_url").focus();
-				$("#link_url").val(post.post_image);
-			} else if (postType == 2)
+				$("#link_url").val(post.text);
+			} else if (postType == 1)
 			{
 				$("#url_field").hide();
 				$("#text_field").show();
 				$("#post_text").focus();
 				$("#post_text").val(post.text);
 			}
-			
-			$("#previewBtn").click(function(e){
-			//get new data
-				var title = $("#link_title").val();
-				var url = $("#link_url").val();
-				var text = $("#post_text").val();
-				
-			//determine post type
-				if(postType == 0) 
-				{
-					//post type 0 = title and link only
-					card = "<div class='card'><div class='card-content'><span class='card-title'><a href='"+url+"' target='_blank' class='post-link'>"+title+"</a></span><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href=''><i class='mdi-communication-forum'></i> 0</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div></div>";
-				}
-				else if (postType == 1)
-				{
-					//post type 1 = image with external a link
-					card = "<div class='card'><div class='card-image'><a href='post.php?pid="+post.pid+"' class='post-link'><img src='"+url+"' class='post-image'></a><span class='card-title'><span class='imageLink'><a href='post.php?pid="+post.pid+"' class='post-link'>"+title+"</a></span></span></div><div class='card-content'><!-- if you wanna put <p> text --></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href=''><i class='mdi-communication-forum'></i> 0</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";				
-				}
-				else if (postType == 2)
-				{
-					//post type 2 = title and text only
-					var card = "<div class='card'><div class='card-content'><span class='card-title blue-text text-darken-2'>"+title+"</span><p>"+text+"</p></div><div class='card-action'><a href='#'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='vote'>2 votes</div><a href='#'><i class='mdi-hardware-keyboard-arrow-down'></i></a><a href=''><i class='mdi-communication-forum'></i> 0</a> <a href='#'><i class='mdi-action-grade'></i>0</a>submitted by <span class='username'>"+post.username+"</span> <img src='"+post.profile_img+"' class='userprofilepic'></div></div>";
-										
-				}	
-			
-			$("#post-container").html(card);
-		});
 			
         })
         .fail(function(err){
