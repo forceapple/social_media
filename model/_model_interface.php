@@ -22,5 +22,34 @@ class _Model_Interface{
 		$this->_table = array_shift($table_name);
 	}
 
+	function result($query){
+		$result = mysqli_query($this->_con, $query);
+		return $result;
+	}
+
+	function del_row($where){
+		// gets the first col of the table, which is id
+		$sql = "DESCRIBE".$this->_table;
+		$result = $this->result($sql);
+		$row = mysqli_fetch_array($result);
+		$id = $row[0];
+		//################################################
+		//del query
+		$query ="DELETE FROM ".$this->_table." WHERE ".$this->_table.".".$id."=".$where;
+		$result = $this->result($query);
+		return true;
+	}
+
+/*	function count(){
+
+		// $query="SELECT COUNT(*) FROM ".$this->_table." WHERE ".$this->_table."(".$cols.") VALUES (".$equal.")";
+		$query="SELECT COUNT(*) AS 'count'FROM $this->_table";
+		// ".$this->_table."(".$cols.") = ".$equal."
+		$result = $this->result($query);
+		$row = mysqli_fetch_assoc($result);
+		$result = $row['count'];
+		return $result;
+	}*/
+
 	
 }
