@@ -1,8 +1,3 @@
-<?php
-	
-	//echo $_GET['pid'];
-
-?>
      <!-- start wrapper -->
        <div class="row">
        <!-- content -->
