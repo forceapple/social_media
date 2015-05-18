@@ -26,6 +26,6 @@
        
  <!--Import jQuery before materialize.js-->
      
-      <script src="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $_SERVER['REQUEST_URI']; ?>js/requirements.js"></script>
+      <script src="<?php echo "http://" . $_SERVER['SERVER_NAME'] . $folder; ?>js/requirements.js"></script>
 </body>
 </html>
