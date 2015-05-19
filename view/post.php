@@ -1,3 +1,6 @@
+ <?php
+ 	$userId_session = 1;
+ ?>  
      <!-- start wrapper -->
        <div class="row">
        <!-- content -->
@@ -120,7 +123,7 @@
 					//check if image
 					IsValidImageUrl(post, function(resp){
 						//image
-						cardType= "<div class='card-image'><a href='post.php?pid="+resp.pid+"'><img src='"+resp.text+"' class='post-image'/><span class='card-title'>"+resp.post_title+"</span></a></div>";
+						cardType= "<div class='card-image'><img src='"+resp.text+"' class='post-image'/><span class='card-title'>"+resp.post_title+"</span></div>";
 						card = "<div class='card'>"+cardType+"<div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div></div></div></div>";
 						$("#post-container").append(card);
 					}, function(resp){	
@@ -132,7 +135,7 @@
 				else if (postType == 1)
 				{
 					//post type 1 = title and text
-					var card = "<div class='card'><div class='card-content'><span class='card-title'><a href='post/"+pid+"' class='post-link'>"+post.post_title+"</a></span><p>"+post.text+"</p></div><div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div></div></div></div>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div></div></div></div>";
 					$("#post-container").append(card);	
 				}
 		
