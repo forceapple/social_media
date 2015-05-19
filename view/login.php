@@ -1,5 +1,3 @@
-<?php include('header.php'); ?>
-        	
      <!-- start wrapper -->
 
 	   
@@ -33,7 +31,6 @@
 
      
      <!-- start footer -->
-     	<?php include('footer.php'); ?>
      <!-- end footer -->
      
      <!-- end wrapper -->
@@ -42,9 +39,6 @@
   </div><!-- end of container-->
 
 	  <!--Import jQuery before materialize.js-->
-      <script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-      <script src="js/parsley.min.js"></script>
-      <script type="text/javascript" src="js/materialize.min.js"></script>
       <script>
 	  $('#loginForm').parsley();
   $(document).ready(
