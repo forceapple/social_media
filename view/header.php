@@ -33,7 +33,7 @@
   	 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   	  <ul id="nav-mobile" class="left hide-on-med-and-down">
       	    <li><a href="#">Menu when Logged In <i class="mdi-action-trending-neutral right"></i></a></li>
-              <li><a href="index.php">Home</a></li>
+              <li><a href="/home">Home</a></li>
               <li><a href="myposts.php">My Posts</a></li>   
               <li><a href="mylikedposts.php">Liked</a></li> 
               <li><a href="mydislikedposts.php">Disliked</a></li>
