@@ -60,6 +60,12 @@ if(isset($_GET['_url'])){
 			$_POST['pid'] = $params[1];
 			require_once("view/deletepost.php");
 		break;
+		case "register":
+			require_once("view/register.php");
+		break;
+		case "login":
+			require_once("view/login.php");
+		break;
 	}
 	require_once('view/footer.php');
 }else{

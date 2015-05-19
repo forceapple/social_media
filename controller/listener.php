@@ -19,6 +19,8 @@ require('main.php');
 // 4 - delete post by post id
 // 5 - delete comment by comment id
 // 6 - vote for post by post id (type: 0 is upvote, 1 is minus)
+// 7 - login 
+// 8 - register
 
 // TO DO
 // class constructor
@@ -156,6 +158,16 @@ if(isset($_POST['phase'])){
 				$data['errors'] = 'Error';	
 			}
 			echo json_encode($data);
+			break;
+		case 7:
+			$log = new noniController();
+			if($lo->login($_POST['username'], $_POST['password'])){
+				$data['success'] = true;
+				$data['message'] = 'Succesful login';
+			}else{
+				$data['success'] = false;
+				$data['errors'] = 'Error logging in';	
+			}
 			break;
 		default:
 			return false;
