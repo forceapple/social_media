@@ -103,10 +103,16 @@ class noniController{
 		$co = new Noni();
 		return $co->get_votes_by_post_id($pid);
 	}
+
+	function login_user($username, $password){
+		$co = new user_model($username, $password);
+		return $co->login();
+	}
 }
 
 
+
 //$test = new noniController();
-//print_r($test->get_votes_by_post_id(1));
+//print_r($test->login_user("Gordon", "1234"));
 
 ?>

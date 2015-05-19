@@ -28,7 +28,9 @@ require('main.php');
 //REMINDER FOR POST TYPES
 //post type 0 = title and URL/image only
 //post type 1 = title and text only
-
+// $_POST['phase'] = 7;
+// $_POST['username'] = "Gordon";
+// $_POST['password'] = "1234";
 
 $errors = array();
 $data = array();
@@ -160,20 +162,25 @@ if(isset($_POST['phase'])){
 			echo json_encode($data);
 			break;
 		case 7:
-			$log = new noniController();
-			if($lo->login($_POST['username'], $_POST['password'])){
+			$lo = new noniController();
+			$arr = $lo->login_user($_POST['username'], $_POST['password']);
+			if($arr){
 				$data['success'] = true;
-				$data['message'] = 'Succesful login';
+				$data['message'] = 'Successful login';
+				$data['user_info'] = $arr;
+				$_SESSION['user_id'] = $arr['uid'];
 			}else{
 				$data['success'] = false;
 				$data['errors'] = 'Error logging in';	
 			}
+			echo json_encode($data);
 			break;
 		default:
 			return false;
 			break;
 	}
 }
+
 
 
 ?>

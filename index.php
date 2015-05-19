@@ -1,7 +1,7 @@
 <?php
 require_once('view/header.php');
 if(isset($_GET['_url'])){
-	
+	session_start();
 	$params = explode("/", $_GET['_url']);
 	if(isset($_GET['async'])){
 		
@@ -65,6 +65,13 @@ if(isset($_GET['_url'])){
 		break;
 		case "login":
 			require_once("view/login.php");
+		break;
+		case "logout":
+			if(isset($_SESSION['user_id'])){
+				require_once("view/logout.php");
+			}else{
+				header('Location: '. ROOT_FOLDER);
+			}
 		break;
 	}
 	require_once('view/footer.php');
