@@ -165,13 +165,18 @@ if(isset($_POST['phase'])){
 			$lo = new noniController();
 			$arr = $lo->login_user($_POST['username'], $_POST['password']);
 			if($arr){
+				session_start();
 				$data['success'] = true;
 				$data['message'] = 'Successful login';
 				$data['user_info'] = $arr;
 				$_SESSION['user_id'] = $arr['uid'];
+				$_SESSION['username'] = $arr['username'];
+				$_SESSION['profile_img'] = $arr['profile_img'];
+				$_SESSION['f_name'] = $arr['f_name'];
+				$_SESSION['l_name'] = $arr['l_name'];
 			}else{
 				$data['success'] = false;
-				$data['errors'] = 'Error logging in';	
+				$data['errors'] = 'Error logging in. Check your username and/or password.';	
 			}
 			echo json_encode($data);
 			break;

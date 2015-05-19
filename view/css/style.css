@@ -165,12 +165,12 @@ textarea.parsley-error {
   opacity: 1;
 }
 
-#login {
+#login, #register {
 	width: 100%;
 	padding: 2em;
 }
 
-#loginForm {
+#loginForm, #registerForm {
 	margin: auto;
 }
 

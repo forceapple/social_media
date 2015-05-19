@@ -1,6 +1,5 @@
 <?php  
 	$userId_session = 1;
-
 ?>
         	
      <!-- start wrapper -->

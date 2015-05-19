@@ -1,5 +1,6 @@
  <?php
- 	$userId_session = 1;
+ 	$userId_session = $_SESSION['uid'];
+	$username = $_SESSION['username'];
  ?>  
      <!-- start wrapper -->
        <div class="row">

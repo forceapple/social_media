@@ -2,8 +2,8 @@
 
 	   
        <!-- content -->
-       <div id="login" class="valign-wrapper">
-          <form id="loginForm" class="col s12">
+       <div id="register" class="valign-wrapper">
+          <form id="registerForm" class="col s12" method="POST" action="controller/listener.php">
              <h5 class="center-align function-heading">Sign Up for Fun</h5>
             <div class="row">
               <div class="input-field col s6">
@@ -69,11 +69,31 @@
 
 	  <!--Import jQuery before materialize.js-->
       <script>
-	  $('#loginForm').parsley();
+	  $('#registerButton').parsley();
   $(document).ready(
     function() {
-
-		  
+		$("#registerButton").submit(function(e) {
+			e.preventDefault();
+			
+			$.ajax(function() {
+				url: 'controller/listener.php',
+				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), location: $("#location").val(),},
+				dataType:"json",
+				type: "POST",
+				success: function(resp) {
+					console.log(resp);
+				}
+				}).done(function(resp) {
+					if (resp.success) 
+				{
+					toast(resp.message, 4000);
+    				setInterval(function(){ location.href = "<?php echo ROOT_FOLDER; ?>"; }, 2000);
+				} else {
+					toast(resp.errors, 4000);
+					$("#registerForm").parsley().reset();
+				}
+				}); 
+			});  
     });
 </script>
 </body>

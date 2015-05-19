@@ -1,5 +1,5 @@
 <?php
-require_once('view/header.php');
+include('view/session.php'); //this has to be first
 if(isset($_GET['_url'])){
 	session_start();
 	$params = explode("/", $_GET['_url']);
@@ -27,6 +27,7 @@ if(isset($_GET['_url'])){
 		exit;
 	}
 	
+	include('view/header.php');
 	
 	//check which page to show
 	switch($params[0]){
@@ -68,6 +69,7 @@ if(isset($_GET['_url'])){
 		break;
 		case "logout":
 			if(isset($_SESSION['user_id'])){
+				session_destroy();
 				require_once("view/logout.php");
 			}else{
 				header('Location: '. ROOT_FOLDER);
@@ -76,7 +78,7 @@ if(isset($_GET['_url'])){
 	}
 	require_once('view/footer.php');
 }else{
-	require_once('view/header.php');
+	include('view/header.php');
 	require_once('view/front.php');
 	require_once('view/footer.php');
 }
