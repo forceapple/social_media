@@ -290,6 +290,7 @@
 			
 			//confirm delete post
 			$("#confirmDeleteBtn").click(function() {
+				console.log('fired');
 				$.ajax({
 					  type: 'POST',
 					  url: '../controller/listener.php',
@@ -301,7 +302,7 @@
 				}).done(function() {
 					//redirect to home page
 					setTimeout(function () {
-					   window.location.href = "index.php";
+					   window.location.href = "<?php echo ROOT_FOLDER; ?>";
 					}, 2000);
 				})
 				.fail(function(err){
