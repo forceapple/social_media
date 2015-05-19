@@ -27,8 +27,9 @@ class user_model extends _Model_Interface{
 			}	
 			//print_r($arr);
 			return $arr;
+		}else{
+			return false;
 		}
-		return false;
 	}
 
 	function del_user($uid){
