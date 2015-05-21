@@ -2,7 +2,7 @@
 <html>
 <head>
 <!--Import materialize.css-->
-  <?php $folder = "/social_media/";
+  <?php $folder = "/social_media/"; 
     $server_path = "http://" . $_SERVER['SERVER_NAME'] . ":" . $_SERVER['SERVER_PORT'] . $folder;
     define("ROOT_FOLDER", $server_path);
    ?>
