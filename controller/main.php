@@ -109,8 +109,8 @@ class noniController{
 		return $co->login();
 	}
 
-	function register_user($fname, $lname, $username, $password, $email, $location){
-		$co = new user_register_model($fname, $lname, $username, $password, $email, $location);
+	function register_user($username, $pass, $profile_img, $email, $f_name, $l_name, $location){
+		$co = new user_register_model($username, $pass, $profile_img, $email, $f_name, $l_name, $location);
 		return $co->register_user();
 	}
 }
@@ -118,6 +118,6 @@ class noniController{
 
 
 $test = new noniController();
-print_r($test->register_user("Gordon", "Lee", "Gordo", "1234", "gordon@gmail.com", "Vancouver"));
+print_r($test->register_user("Gordon", "1234", "google.ca", "g@g.g", "Gordo", "Broro", "Vancouver"));
 
 ?>
