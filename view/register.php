@@ -47,7 +47,7 @@
             <div class="row">
               <div class="input-field col s12">
                 <input id="location" type="text" required>
-                <label for="location">Your Location</label>
+                <label for="location">Location</label>
               </div>
             </div>
             <div class="row">

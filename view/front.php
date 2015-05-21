@@ -7,6 +7,9 @@
 	       
        <!-- content -->
         <div id="content" class="col m12">
+        
+           <div id="container"></div> <!-- packery container -->
+        
 	        <!--loading circle -->
 	        <div id="post-loading" style="display:none" class="preloader-wrapper big active">
 			    <div class="spinner-layer spinner-blue-only">
@@ -19,7 +22,6 @@
 			      </div>
 			    </div>
 			</div>
-       <div id="container"></div> <!-- packery container -->
           
          </div><!-- /content-->
          
@@ -39,12 +41,17 @@
 	  <script src="<?php echo ROOT_FOLDER; ?>js/packery.pkgd.min.js"></script>
       <script src='<?php echo ROOT_FOLDER; ?>js/packery-custom.js'></script>
       <script>
+  var pageNum = 0;
   $(document).ready(
     function() {
-
-		$.ajax({
+		loadPosts();
+    });
+	
+	
+function loadPosts() {
+	$.ajax({
 			url:'controller/listener.php',
-			data: {phase: 0},
+			data: {phase: 0, page: pageNum},
 			type: 'GET',
 			dataType: 'json',
 			beforeSend: function(){
@@ -60,10 +67,7 @@
 				var postType = post[i].post_type;
 				var cardType, card;
 				
-				$("#container").append("<div id='card"+pid+"' class='item'></div>").packery();
-				//var $container = $('#container').packery();
-				//$container.append("<div id='card"+pid+"' class='item'></div>");
-				//$container.packery( 'appended', "<div id='card"+pid+"' class='item'></div>" );	
+				$("#container").append("<div id='card"+pid+"' class='item'></div>").packery();	
 				
 				//determine post type
 				//post type 0 = text and link or image only
@@ -109,10 +113,16 @@
 			  	//when all cards are present bind event listener for votes
 				votingFunc();  
 				$("#container").packery('reloadItems');
+				pageNum += 1;
+				$("#container").append('<div style="display:block;clear:both; position: absolute; bottom: 0px;"><a href="" id="loadMore">Load more posts...</a></div>');
+				//scroll event listener when bottom of page hits
+				 $("#loadMore").click(function(e) {
+					loadPosts();	
+					e.preventDefault(); 
+					return false;
+				 });
 		  });
-
-		  
-    });
+}
 
 function IsValidImageUrl(url, callback, error) {
     //console.log(url.post_text);

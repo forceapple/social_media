@@ -14,15 +14,15 @@
     <meta charset="UTF-8">
     <title>Reddit? No. It's Noni.</title>
 
-	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
-	 <script type="text/javascript" src="<?php echo ROOT_FOLDER; ?>js/materialize.min.js"></script>
+	<!--<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script> put back when online -->
+    <!-- working offline --> <script type="text/javascript" src="<?php echo ROOT_FOLDER; ?>js/jquery-min.js"></script>
+	<script type="text/javascript" src="<?php echo ROOT_FOLDER; ?>js/materialize.min.js"></script>
     <script src="<?php echo ROOT_FOLDER; ?>js/parsley.min.js"></script>
 </head>
 
 <body>
 
 	<div id="wrapper">
-    
     	<header>
         	<div class="col s12" id="header"><a href="<?php echo ROOT_FOLDER; ?>">NONI</a></div>
         </header>
