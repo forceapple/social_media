@@ -8,7 +8,7 @@ class votes_model extends _Model_Interface{
 	// $votetype
 	// 0 - upvote
 	// 1 - downvote
-/*	private function check_user_voted($uid, $pid, $votetype){
+	private function check_user_voted($uid, $pid, $votetype){
 		$query = "SELECT * FROM votes WHERE user_id = ".$uid." AND post_id = ".$pid." AND votetype = ".$votetype;
 		$result = mysqli_query($this->_con, $query);
 		if($result){
@@ -88,7 +88,9 @@ class votes_model extends _Model_Interface{
 				break;
 		}
 
-	}*/
+	}
+
+	/*
 	// votetype 0 = up vote
 	// votetype 1 = down vote
 	//the user can up vote and up vote again to revert the vote. same for down vote
@@ -168,6 +170,11 @@ class votes_model extends _Model_Interface{
 		}
 	}
 }
+
+*/
+
+
+
 // $a=1;
 // $b=1;
 // //voting test
