@@ -1,5 +1,4 @@
    <!-- start wrapper -->
-
 	   
        <!-- content -->
        <div id="register" class="valign-wrapper">
@@ -40,12 +39,10 @@
               </div>
             </div>
             <div class="row">
-             <div class="file-field input-field">
-                  <input class="file-path validate" type="text"/>
-                  <div class="btn">
-                    <span>Upload a profile picture</span>
-                    <input id="profilePic" type="file" />
-                  </div>
+             	<div class="input-field col s12">
+                <input id="profilePic" type="text" required>
+                <label for="profilePic">Profile Picture (http://)</label>
+              </div>
             </div>
              
             <div class="row">
@@ -95,7 +92,8 @@
 					$("#registerForm").parsley().reset();
 				}
 				}); 
-			});  
+			
+		});  
     });
 </script>
 </body>
