@@ -3,7 +3,7 @@
 	   
        <!-- content -->
        <div id="register" class="valign-wrapper">
-          <form id="registerForm" class="col s12" method="POST" action="controller/listener.php">
+          <form id="registerForm" class="col s12" method="POST" action="controller/listener.php"  enctype="multipart/form-data">
              <h5 class="center-align function-heading">Sign Up for Fun</h5>
             <div class="row">
               <div class="input-field col s6">
