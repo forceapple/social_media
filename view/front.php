@@ -8,15 +8,15 @@
         
 	        <!--loading circle -->
 	        <div id="post-loading" class="preloader-wrapper big active">
-			    <div class="spinner-layer spinner-blue-only">
-			      <div class="circle-clipper left">
-			        <div class="circle"></div>
-			      </div><div class="gap-patch">
-			        <div class="circle"></div>
-			      </div><div class="circle-clipper right">
-			        <div class="circle"></div>
-			      </div>
-			    </div>
+			     <div class="spinner-layer spinner-green-only">
+                  <div class="circle-clipper left">
+                    <div class="circle"></div>
+                  </div><div class="gap-patch">
+                    <div class="circle"></div>
+                  </div><div class="circle-clipper right">
+                    <div class="circle"></div>
+                  </div>
+                </div>
 			</div>
           
          </div><!-- /content-->
@@ -127,13 +127,10 @@ function initMagicScroll() {
 	var scene = new ScrollMagic.Scene({triggerElement: "#post-loading", triggerHook: "onEnter"})
 					.addTo(controller)
 						.on("enter", function (e) {
-							console.log('inside onEnter');
 							if ($("#post-loading").hasClass("active")) {
-								//$("#post-loading").addClass("active");
-								console.log('inside if');
 								if (console){
-									console.log("loading new page");
-									console.log("pageNum "+pageNum);
+									//console.log("loading new page");
+									//console.log("pageNum "+pageNum);
 								}
 								// load new page
 								setTimeout(function() {

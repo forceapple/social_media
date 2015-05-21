@@ -7,13 +7,13 @@ body {
 }
 
 a {
-	
+	color: #689f38;
 }
       
 
 #header {
 	height:100px;
-	background-color: #e0f7fa;
+	background-color: #f1f8e9;
 	padding-left: 1em;
 	padding-right: 1em;
 	font-weight: 300;
@@ -21,6 +21,10 @@ a {
 	color: #00838f;
 	letter-spacing: 4px;
 	text-align: center;
+}
+
+footer.page-footer {
+	background-color: #ef6c00;
 }
 
 .card {
@@ -32,7 +36,7 @@ a {
 }
 
 .card .card-title a {
-	color: #0091ea !important;
+	color: #00796b !important;
 	text-transform:	none;
 }
 
@@ -58,7 +62,7 @@ a {
 }
 
 .card-image .card-title {
-	background-color: #00838f !important;
+	background-color: #00796b !important;
 	color: #fff !important;
 }
 

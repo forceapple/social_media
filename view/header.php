@@ -28,7 +28,7 @@
         </header>
         
         <!-- Menu: when not in session -->
-<nav>
+<nav class="light-green darken-1">
   <div class="nav-wrapper">
   	 <a href="#" data-activates="mobile-demo" class="button-collapse"><i class="mdi-navigation-menu"></i></a>
   	  <ul id="nav-mobile" class="left hide-on-med-and-down">
