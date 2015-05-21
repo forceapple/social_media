@@ -213,3 +213,6 @@ textarea.parsley-error {
 	color: #0091ea !important;
 	cursor: default}
 
+.text-center-xs{
+	text-align: center;
+}

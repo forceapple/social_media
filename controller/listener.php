@@ -180,6 +180,17 @@ if(isset($_POST['phase'])){
 			}
 			echo json_encode($data);
 			break;
+		case 8:
+			$lo = new noniController();
+			if($lo->register_user($_POST['f_name'], $_POST['l_name'], $_POST['username'], $_POST['password'], $_POST['email'], $_POST['location'])){
+				$data['success'] = true;
+				$data['message'] = 'Thanks for signing up!';
+			}else{
+				$data['success'] = false;
+				$data['errors'] = 'Error';	
+			}
+			echo json_encode($data);
+			break;
 		default:
 			return false;
 			break;

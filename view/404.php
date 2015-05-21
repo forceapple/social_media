@@ -1,1 +1,1 @@
-404
+<div class="text-center-xs"><img src="<?php echo ROOT_FOLDER; ?>img/404.jpg" style="margin-top: 1em;"/><p>404</p></div>

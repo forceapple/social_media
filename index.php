@@ -74,6 +74,9 @@ if(isset($_GET['_url'])){
 				header('Location: '. ROOT_FOLDER);
 			}
 		break;
+		default:
+			require_once("view/404.php");
+		break;
 	}
 	require_once('view/footer.php');
 }else{

@@ -108,11 +108,16 @@ class noniController{
 		$co = new user_model($username, $password);
 		return $co->login();
 	}
+
+	function register_user($fname, $lname, $username, $password, $email, $location){
+		$co = new user_register_model($fname, $lname, $username, $password, $email, $location);
+		return $co->register_user();
+	}
 }
 
 
 
-//$test = new noniController();
-//print_r($test->login_user("Gordon", "1234"));
+$test = new noniController();
+print_r($test->register_user("Gordon", "Lee", "Gordo", "1234", "gordon@gmail.com", "Vancouver"));
 
 ?>

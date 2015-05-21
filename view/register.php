@@ -3,7 +3,7 @@
 	   
        <!-- content -->
        <div id="register" class="valign-wrapper">
-          <form id="registerForm" class="col s12" method="POST" action="controller/listener.php">
+          <form id="registerForm" class="col s12">
              <h5 class="center-align function-heading">Sign Up for Fun</h5>
             <div class="row">
               <div class="input-field col s6">
@@ -77,8 +77,8 @@
 			
 			$.ajax(function() {
 				url: 'controller/listener.php',
-				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), location: $("#location").val(),},
-				dataType:"json",
+				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), location: $("#location").val()},
+				dataType:"html",
 				type: "POST",
 				success: function(resp) {
 					console.log(resp);
