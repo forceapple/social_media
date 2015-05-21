@@ -1,5 +1,4 @@
 <?php
-require ("_model_interface.php");
 class user_register_model extends _Model_Interface{
 	private $username;
 	private $pass;

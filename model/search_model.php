@@ -1,6 +1,4 @@
 <?
-require ("_model_interface.php");
-
 class search_model extends _Model_Interface{
 	function __construct(){
 		parent::__construct();

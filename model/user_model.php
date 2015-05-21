@@ -1,7 +1,4 @@
 <?php
-require ("_model_interface.php");
- // $c="test";
- // $b="1234";
 class user_model extends _Model_Interface{
 	private $username;
 	private $pass;

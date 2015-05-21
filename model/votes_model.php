@@ -1,6 +1,4 @@
 <?php
-require ("_model_interface.php");
-
 class votes_model extends _Model_Interface{
 	function __construct(){
 		parent::__construct();

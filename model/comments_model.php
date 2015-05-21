@@ -1,6 +1,4 @@
 <?php
-require ("_model_interface.php");
-
 class comments_model extends _Model_Interface{
 	function __construct(){
 		// parent::__construct("user"); //passing the table

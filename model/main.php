@@ -1,5 +1,4 @@
 <?php
-require ("db.php");
 require ("load_models.php");
 
 //REMINDER FOR POST TYPES

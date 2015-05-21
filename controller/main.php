@@ -117,7 +117,7 @@ class noniController{
 
 
 
-$test = new noniController();
-print_r($test->register_user("Gordon", "1234", "google.ca", "g@g.g", "Gordo", "Broro", "Vancouver"));
+// $test = new noniController();
+// print_r($test->register_user("test2", "1234", "google.ca", "g@g.g", "Gordo", "Broro", "Vancouver"));
 
 ?>

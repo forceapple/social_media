@@ -1,9 +1,4 @@
 <?php
-date_default_timezone_set('Europe/London');
-require ("_model_interface.php");
-
-// $a="test";
-// $b="1234";
 class post_model extends _Model_Interface{
 	function __construct(){
 		// parent::__construct("user"); //passing the table
