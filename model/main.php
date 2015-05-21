@@ -5,7 +5,7 @@ require ("load_models.php");
 //post type 0 = title and URL/image only
 //post type 1 = title and text only
 
-class Noni{
+/*class Noni{
 	private $con;
 	function __construct(){
 		global $con;
@@ -291,7 +291,7 @@ class Noni{
 	}
 
 }
-
+*/
 //voting test
 //$db = new Noni();
 //$db->vote_post(1,2,0);
