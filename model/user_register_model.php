@@ -6,6 +6,7 @@ class user_register_model extends _Model_Interface{
 	private $profile_img;
 	private $f_name;
 	private $l_name;
+	private $email;
 	private $location;
 
 	function __construct($username, $pass, $profile_img, $email, $f_name, $l_name, $location){
