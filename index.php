@@ -1,7 +1,6 @@
 <?php
 include('view/session.php'); //this has to be first
 if(isset($_GET['_url'])){
-	session_start();
 	$params = explode("/", $_GET['_url']);
 	if(isset($_GET['async'])){
 		

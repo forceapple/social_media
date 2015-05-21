@@ -1,5 +1,5 @@
  <?php
- 	$userId_session = $_SESSION['uid'];
+ 	$userId_session = $_SESSION['user_id'];
 	$username = $_SESSION['username'];
  ?>  
      <!-- start wrapper -->
