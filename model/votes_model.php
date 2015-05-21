@@ -89,7 +89,7 @@ class votes_model extends _Model_Interface{
 		}
 
 	}
-
+}
 	/*
 	// votetype 0 = up vote
 	// votetype 1 = down vote
