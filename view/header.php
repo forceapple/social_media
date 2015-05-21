@@ -41,7 +41,7 @@
               <li><a href="mydislikedposts.php">Disliked</a></li>
               <li><a href="savedposts.php">Saved</a></li>
               <li><a href="mycomments.php">Comments</a></li>
-              <li><a href="<?php echo ROOT_FOLDER; ?>/logout">Log Out</a></li>
+              <li><a href="<?php echo ROOT_FOLDER; ?>logout">Log Out</a></li>
             <?php } else { ?>
               <li><a href="<?php echo ROOT_FOLDER; ?>">Home</a></li>
               <li><a href="<?php echo ROOT_FOLDER; ?>register">Register</a></li>
