@@ -44,7 +44,7 @@ class search_model extends _Model_Interface{
 
 			}
 				if($arr){
-					print_r($arr2);
+					//print_r($arr2);
 					return $arr2;	
 				}else{
 					//print_r("none found");
@@ -70,7 +70,7 @@ class search_model extends _Model_Interface{
 
 			}
 				if($arr){
-					print_r($arr2);
+					//print_r($arr2);
 					return $arr2;	
 				}else{
 					//print_r("none found");

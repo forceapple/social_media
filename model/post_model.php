@@ -32,7 +32,8 @@ class post_model extends _Model_Interface{
 						$arr['num_comment']= $arr4['count'];
 					}
 				}else{
-					print_r('asdsad');
+					
+					//print_r('asdsad');
 				}
 				$arr2[]=$arr;
 				
