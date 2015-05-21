@@ -79,7 +79,7 @@
 			
 			$.ajax(function() {
 				url: 'controller/listener.php',
-				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), location: $("#location").val(),},
+				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), profilePic: $("#profilePic").val(),},
 				dataType:"json",
 				type: "POST",
 				success: function(resp) {
