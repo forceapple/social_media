@@ -28,9 +28,16 @@ require('main.php');
 //REMINDER FOR POST TYPES
 //post type 0 = title and URL/image only
 //post type 1 = title and text only
-// $_POST['phase'] = 7;
+
+
+// $_POST['phase'] = 8;
 // $_POST['username'] = "Gordon";
 // $_POST['password'] = "1234";
+// $_POST['f_name'] = "Gordo";
+// $_POST['l_name'] = "G";
+// $_POST['location'] = "NY";
+// $_POST['profilePic'] = "http://google.ca";
+// $_POST['email'] = "e@email.com";
 
 $errors = array();
 $data = array();
@@ -182,7 +189,7 @@ if(isset($_POST['phase'])){
 			break;
 		case 8:
 			$lo = new noniController();
-			if($lo->register_user($_POST['f_name'], $_POST['l_name'], $_POST['username'], $_POST['password'], $_POST['email'], $_POST['location'])){
+			if($lo->register_user($_POST['username'], $_POST['password'], $_POST['profilePic'], $_POST['email'], $_POST['f_name'], $_POST['l_name'], $_POST['location'])){
 				$data['success'] = true;
 				$data['message'] = 'Thanks for signing up!';
 			}else{

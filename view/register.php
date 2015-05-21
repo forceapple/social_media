@@ -44,7 +44,12 @@
                 <label for="profilePic">Profile Picture (http://)</label>
               </div>
             </div>
-             
+            <div class="row">
+              <div class="input-field col s12">
+                <input id="location" type="text" required>
+                <label for="location">Your Location</label>
+              </div>
+            </div>
             <div class="row">
               <div class="center-align col s12" style="padding-top:1.5rem;">
                 <button type="submit" id="registerButton" class="waves-effect waves-light btn-large">Register</button>
@@ -74,23 +79,29 @@
 		$("#registerButton").submit(function(e) {
 			e.preventDefault();
 			
-			$.ajax(function() {
+			$.ajax({
 				url: 'controller/listener.php',
-				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), profilePic: $("#profilePic").val()},
+				data: {
+          phase:      8,
+          f_name:     $("#first_name").val(),
+          l_name:     $("#last_name").val(),
+          username:   $("#username").val(),
+          password:   $("#password1").val(),
+          email:      $("#email").val(),
+          profilePic: $("#profilePic").val(),
+          location:   $("#location").val()
+        },
 				dataType:"json",
-				type: "POST",
-				success: function(resp) {
-					console.log(resp);
-				}
+				type: "POST"
 				}).done(function(resp) {
 					if (resp.success) 
-				{
-					toast(resp.message, 4000);
-    				setInterval(function(){ location.href = "<?php echo ROOT_FOLDER; ?>"; }, 2000);
-				} else {
-					toast(resp.errors, 4000);
-					$("#registerForm").parsley().reset();
-				}
+  				{
+  					toast(resp.message, 4000);
+      				setInterval(function(){ location.href = "<?php echo ROOT_FOLDER; ?>"; }, 2000);
+  				} else {
+  					toast(resp.errors, 4000);
+  					$("#registerForm").parsley().reset();
+  				}
 				}); 
 			
 		});  
