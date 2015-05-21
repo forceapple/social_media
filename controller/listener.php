@@ -39,7 +39,7 @@ if(isset($_GET['phase'])){
 	switch($_GET['phase']){
 		case 0:
 			$lo = new noniController();
-			echo json_encode($lo->get_all_post());
+			echo json_encode($lo->get_all_post($_GET['page']));
 		break;
 		case 1:
 			$lo = new noniController();
