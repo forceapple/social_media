@@ -7,7 +7,7 @@
            <div id="container"></div> <!-- packery container -->
         
 	        <!--loading circle -->
-	        <div id="post-loading" style="display:none" class="preloader-wrapper big active">
+	        <div id="post-loading" class="preloader-wrapper big active">
 			    <div class="spinner-layer spinner-blue-only">
 			      <div class="circle-clipper left">
 			        <div class="circle"></div>
@@ -40,7 +40,9 @@
   var pageNum = 0;
   $(document).ready(
     function() {
-		loadPosts();
+		//loadPosts();
+		
+		initMagicScroll();
     });
 	
 	
@@ -50,12 +52,9 @@ function loadPosts() {
 			data: {phase: 0, page: pageNum},
 			type: 'GET',
 			dataType: 'json',
-			beforeSend: function(){
-				$('#post-loading').show();
-			},
 			success: function(post){
 				$('#post-loading').hide();
-			  console.log(post);
+			  	console.log(post);
 			  
 			  for (var i in post)
 			  {
@@ -102,6 +101,7 @@ function loadPosts() {
 				}
 	
 				getVoteCount(post[i].pid);
+				$('#post-loading').show();
 			
 			  }
 			},
@@ -113,15 +113,36 @@ function loadPosts() {
 			  	//when all cards are present bind event listener for votes
 				votingFunc();  
 				$("#container").packery('reloadItems');
+				//increment page number for next AJAX load
 				pageNum += 1;
-				$("#container").append('<div style="display:block;clear:both; position: absolute; bottom: 0px;"><a href="" id="loadMore">Load more posts...</a></div>');
-				//scroll event listener when bottom of page hits
-				 $("#loadMore").click(function(e) {
-					loadPosts();	
-					e.preventDefault(); 
-					return false;
-				 });
+				//$('#post-loading').removeClass("active");
 		  });
+}
+
+function initMagicScroll() {
+	 // init controller
+	var controller = new ScrollMagic.Controller();
+				
+	// build scene
+	var scene = new ScrollMagic.Scene({triggerElement: "#post-loading", triggerHook: "onEnter"})
+					.addTo(controller)
+						.on("enter", function (e) {
+							console.log('inside onEnter');
+							if ($("#post-loading").hasClass("active")) {
+								//$("#post-loading").addClass("active");
+								console.log('inside if');
+								if (console){
+									console.log("loading new page");
+									console.log("pageNum "+pageNum);
+								}
+								// load new page
+								setTimeout(function() {
+									loadPosts();
+									scene.update();
+			  							
+								}, 1000, 9);
+							}
+	});
 }
 
 function IsValidImageUrl(url, callback, error) {

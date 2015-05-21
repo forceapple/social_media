@@ -17,6 +17,7 @@
 	<script type="text/javascript" src="https://code.jquery.com/jquery-2.1.1.min.js"></script>
 	<script type="text/javascript" src="<?php echo ROOT_FOLDER; ?>js/materialize.min.js"></script>
     <script src="<?php echo ROOT_FOLDER; ?>js/parsley.min.js"></script>
+    <script src="http://cdnjs.cloudflare.com/ajax/libs/ScrollMagic/2.0.5/ScrollMagic.min.js"></script>
 </head>
 
 <body>
