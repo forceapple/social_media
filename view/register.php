@@ -40,14 +40,16 @@
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
-                <input id="location" type="text" required>
-                <label for="location">Location</label>
-              </div>
+             <div class="file-field input-field">
+                  <input class="file-path validate" type="text"/>
+                  <div class="btn">
+                    <span>Upload a profile picture</span>
+                    <input id="profilePic" type="file" />
+                  </div>
             </div>
              
             <div class="row">
-              <div class="center-align col s12">
+              <div class="center-align col s12" style="padding-top:1.5rem;">
                 <button type="submit" id="registerButton" class="waves-effect waves-light btn-large">Register</button>
               </div>
             </div>
