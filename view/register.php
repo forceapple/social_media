@@ -3,7 +3,7 @@
 	   
        <!-- content -->
        <div id="register" class="valign-wrapper">
-          <form id="registerForm" class="col s12">
+          <form id="registerForm" class="col s12" enctype="multipart/form-data">
              <h5 class="center-align function-heading">Sign Up for Fun</h5>
             <div class="row">
               <div class="input-field col s6">
@@ -40,14 +40,16 @@
               </div>
             </div>
             <div class="row">
-              <div class="input-field col s12">
-                <input id="location" type="text" required>
-                <label for="location">Location</label>
-              </div>
+             <div class="file-field input-field">
+                  <input class="file-path validate" type="text"/>
+                  <div class="btn">
+                    <span>Upload a profile picture</span>
+                    <input id="profilePic" type="file" />
+                  </div>
             </div>
              
             <div class="row">
-              <div class="center-align col s12">
+              <div class="center-align col s12" style="padding-top:1.5rem;">
                 <button type="submit" id="registerButton" class="waves-effect waves-light btn-large">Register</button>
               </div>
             </div>
@@ -77,8 +79,8 @@
 			
 			$.ajax(function() {
 				url: 'controller/listener.php',
-				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), location: $("#location").val()},
-				dataType:"html",
+				data: { phase: 8, f_name: $("#first_name").val(), l_name: $("#last_name").val(), username: $("#username").val(), password: $("#password1").val(), email: $("#email").val(), profilePic: $("#profilePic").val()},
+				dataType:"json",
 				type: "POST",
 				success: function(resp) {
 					console.log(resp);
