@@ -125,20 +125,20 @@
 						//check if post is userLoggedIn's own
 						var userOwnComp = resp.username.localeCompare("<?php echo $username; ?>"); //0 if match
 						if (userOwnComp == 0) {
-							card += "<div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div>";	
+							card += "<div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div>";	
 						}
 						card += "</div></div></div>";
 						$("#post-container").append(card);
 					}, function(resp){	
 						cardType = "<div class='card-content'><span class='card-title'><a href='"+resp.text+"' target='_blank'>"+resp.post_title+"</a></span></div>";
-						card = "<div class='card'>"+cardType+"<div class='card-action'><?php if ($isLoggedIn) { //can only vote when logged in ?><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><?php } ?><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div></div></div></div>";
+						card = "<div class='card'>"+cardType+"<div class='card-action'><?php if ($isLoggedIn) { //can only vote when logged in ?><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><?php } ?><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
 						$("#post-container").append(card);
 					});	
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = title and text
-					var card = "<div class='card'><div class='card-content'><span class='card-title'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><?php if ($isLoggedIn) { //can only vote when logged in ?><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><?php } ?><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div></div></div></div>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><?php if ($isLoggedIn) { //can only vote when logged in ?><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><?php } ?><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
 					$("#post-container").append(card);	
 				}
 		
@@ -337,6 +337,21 @@
 			
 			//upvote post
 			
+			//save post
+			$('.saveBtn').on('click', function(e){
+				e.preventDefault();
+				$.ajax({
+					type: 'POST',
+					url: '../controller/listener.php',
+					dataType: 'json',
+					data: { phase: 9, pid: <?php echo $_GET['pid']; ?>, uid: <?php echo $_SESSION['user_id']; ?> },
+				}).done(function(resp){
+					console.log(resp);
+					toast(resp.message, 1000);
+				}).fail(function(err){
+					console.log(err);
+				});
+			});
 			
 		}
 		

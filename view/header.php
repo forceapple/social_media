@@ -36,6 +36,7 @@
         	  <li>&nbsp;&nbsp;Welcome, <?php echo $_SESSION['username']; ?>&nbsp;&nbsp;</li>
               <li><a href="<?php echo ROOT_FOLDER; ?>">Home</a></li>
               <li><a href="<?php echo ROOT_FOLDER; ?>post/create">Create Post</a></li>
+              <li><a href="<?php echo ROOT_FOLDER; ?>saved">Saved Posts</a></li>
               <li><a href="<?php echo ROOT_FOLDER; ?>logout">Log Out</a></li>
             <?php } else { ?>
               <li><a href="<?php echo ROOT_FOLDER; ?>">Home</a></li>

@@ -93,7 +93,7 @@ class post_model extends _Model_Interface{
 		$result = $this->result($query);
 		if($result){
 			//get last insert id and insert into user_post
-			$id = mysqli_insert_id($this->con);
+			$id = mysqli_insert_id($this->_con);
 			$query = "INSERT INTO user_post(uid,pid) VALUES ('".$uid."','".$id."')";
 			$result2 = $this->result($query);
 			if($result2){

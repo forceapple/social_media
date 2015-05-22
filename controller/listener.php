@@ -8,6 +8,7 @@ require('main.php');
 // 1 - get post by post id
 // 2 - get comments by post id
 // 3 - get votes by post id
+// 4 - search by text
 
 // *******************
 // POST PHASES
@@ -21,6 +22,7 @@ require('main.php');
 // 6 - vote for post by post id (type: 0 is upvote, 1 is minus)
 // 7 - login 
 // 8 - register
+// 9 - save post by post id and user id
 
 // TO DO
 // class constructor
@@ -205,6 +207,17 @@ if(isset($_POST['phase'])){
 			if($lo->register_user($_POST['username'], $_POST['password'], $_POST['profilePic'], $_POST['email'], $_POST['f_name'], $_POST['l_name'], $_POST['location'])){
 				$data['success'] = true;
 				$data['message'] = 'Thanks for signing up!';
+			}else{
+				$data['success'] = false;
+				$data['errors'] = 'Error';	
+			}
+			echo json_encode($data);
+			break;
+		case 9: 
+			$lo = new noniController();
+			if($lo->fav_post($_POST['pid'], $_POST['uid'])){
+				$data['success'] = true;
+				$data['message'] = 'Saved!';
 			}else{
 				$data['success'] = false;
 				$data['errors'] = 'Error';	

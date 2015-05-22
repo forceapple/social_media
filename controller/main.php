@@ -130,9 +130,15 @@ class noniController{
 		$co = new search_model();
 		return $co->search_comment($input);
 	}
+
+	function fav_post($pid, $uid){
+		$co = new fav_model();
+		return $co->fav_post($pid, $uid);
+	}
 }
 
-
+// $test = new noniController();
+// print_r($test->fav_post(2, 1));
 
 //$test = new noniController();
 //print_r($test->register_user("test2", "1234", "google.ca", "g@g.g", "Gordo", "Broro", "Vancouver"));

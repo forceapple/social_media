@@ -76,6 +76,9 @@ if(isset($_GET['_url'])){
 		case "search.php":
 			require_once("view/search.php");
 		break;
+		case "saved":
+			require_once("view/saved.php");
+		break;
 		default:
 			require_once("view/404.php");
 		break;
