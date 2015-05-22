@@ -70,6 +70,10 @@ if(isset($_GET['phase'])){
 			//echo $arr;
 			echo json_encode($arr);
 		break;
+		case 5:
+			$lo = new noniController();
+			echo $lo->get_votes_by_comment_id($_GET['cid']);
+		break;
 			
 
 	}
@@ -213,6 +217,17 @@ if(isset($_POST['phase'])){
 			break;
 		default:
 			return false;
+			break;
+		case 9:
+			$lo = new noniController();
+			if($lo->vote_comment($_POST['uid'], $_POST['cid'], $_POST['votetype'])){
+				$data['success'] = true;
+				$data['message'] = 'Success';
+			}else{
+				$data['success'] = false;
+				$data['errors'] = 'Error';	
+			}
+			echo json_encode($data);
 			break;
 	}
 }
