@@ -150,6 +150,11 @@ class noniController{
 		$co = new comment_votes_model();
 		return $co->get_votes_by_commnet_id($cid);
 	}
+
+	function get_saved_by_user_id($uid){
+		$co = new fav_model();
+		return $co->get_all_fav_by_uid($uid);
+	}
 }
 
 // $test = new noniController();

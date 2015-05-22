@@ -10,6 +10,7 @@ require('main.php');
 // 3 - get # votes by post id
 // 4 - search by text
 // 5 - get # votes by comment id
+// 6 - get saved posts by user id
 
 // *******************
 // POST PHASES
@@ -77,6 +78,10 @@ if(isset($_GET['phase'])){
 		case 5:
 			$lo = new noniController();
 			echo $lo->get_votes_by_comment_id($_GET['cid']);
+		break;
+		case 6:
+			$lo = new noniController();
+			echo json_encode($lo->get_saved_by_user_id($_GET['uid']));
 		break;
 			
 

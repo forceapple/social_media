@@ -20,6 +20,7 @@ class fav_model extends _Model_Interface{
 		$result = $this->result($query);
 		if($result){
 			$arr = array();
+			$arr2 = array();
 			while($row = mysqli_fetch_array($result)){	
 				$arr['post_title']= $row['title'];
 				$arr['pid']= $row['pid'];
@@ -27,8 +28,8 @@ class fav_model extends _Model_Interface{
 				$arr['uid']=$row['uid'];
 				$arr2[]=$arr;
 			}
+			return $arr2;
 		}
-		print_r($arr2);
 	}
 }
 // $a=2;
