@@ -83,7 +83,10 @@ class comments_model extends _Model_Interface{
 	}
 
 	function del_comment($cid){
-		$this->del_row($cid);
+		if($this->del_row($cid)){
+			return ture;
+		}
+		return false;
 	}
 }
 // $a=2;
