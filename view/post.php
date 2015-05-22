@@ -121,7 +121,11 @@
 					IsValidImageUrl(post, function(resp){
 						//image
 						cardType= "<div class='card-image'><img src='"+resp.text+"' class='post-image'/><span class='card-title'>"+resp.post_title+"</span></div>";
-						card = "<div class='card'>"+cardType+"<div class='card-action'><?php if ($isLoggedIn) { //can only vote when logged in ?><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><?php } ?><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'>";
+						card = "<div class='card'>"+cardType+"<div class='card-action'>";
+						<?php if ($isLoggedIn) { //can only vote when logged in ?>
+						card += "<div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div>";
+						<?php } ?>
+						card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'>";
 						//check if post is userLoggedIn's own
 						var userOwnComp = resp.username.localeCompare("<?php echo $username; ?>"); //0 if match
 						if (userOwnComp == 0) {
@@ -131,14 +135,22 @@
 						$("#post-container").append(card);
 					}, function(resp){	
 						cardType = "<div class='card-content'><span class='card-title'><a href='"+resp.text+"' target='_blank'>"+resp.post_title+"</a></span></div>";
-						card = "<div class='card'>"+cardType+"<div class='card-action'><?php if ($isLoggedIn) { //can only vote when logged in ?><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><?php } ?><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
+						card = "<div class='card'>"+cardType+"<div class='card-action'>";
+						<?php if ($isLoggedIn) { //can only vote when logged in ?>
+						card += "<div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div>";
+						<?php } ?>
+						card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
 						$("#post-container").append(card);
 					});	
 				}
 				else if (postType == 1)
 				{
 					//post type 1 = title and text
-					var card = "<div class='card'><div class='card-content'><span class='card-title'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'><?php if ($isLoggedIn) { //can only vote when logged in ?><div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div><?php } ?><div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'>";
+					<?php if ($isLoggedIn) { //can only vote when logged in ?>
+					card += "<div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div>";
+					<?php } ?>
+					card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
 					$("#post-container").append(card);	
 				}
 		
@@ -221,7 +233,11 @@
 					if (i % 2 == 0)
 						comment = '<tr class="odd-row">';
 					else comment = '<tr class="even-row">';
-					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="modal-trigger deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr><tr><td colspan="2" class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
+					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="modal-trigger deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr>';
+					//commebt vote box
+					comment += '<tr><td class="commentVote"><div class="commentVoteBox"><a href="#" class="commentUserVote" data-votetype="0" data-cid="'+commentsObj[i].cid+'" data-uid="<?php echo $userId_session; ?>"><i class="mdi-hardware-keyboard-arrow-up"></i></a><div class="commentVoteCount" id="commentVoteBox'+commentsObj[i].cid+'">0</div><a href="#" data-votetype="1" class="commentUserVote" data-cid="'+commentsObj[i].cid+'" data-uid="<?php echo $userId_session; ?>"><i class="mdi-hardware-keyboard-arrow-down"></i></a></div></td>';
+					//comment
+					comment += '<td class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
 					
 					//delete comment 
 					$(document).on("click", ".deleteCommentBtn", function(e){

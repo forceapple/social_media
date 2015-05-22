@@ -209,6 +209,15 @@ textarea.parsley-error {
   text-align: center;
 }
 
+.commentVoteBox {
+ margin: auto auto;
+  width: 12px;
+}
+
+.commentVoteCount {
+  text-indent: 3px;
+}
+
 .postDetails {
 	line-height: 50px;
 }
