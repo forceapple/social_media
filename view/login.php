@@ -43,7 +43,7 @@
 	  $('#loginForm').parsley();
   $(document).ready(
     function() {
-		$("#loginForm").click(function(e) {
+		$("#loginButton").click(function(e) {
 			e.preventDefault();
 			$.ajax({
 				url: 'controller/listener.php',
