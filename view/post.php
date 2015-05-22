@@ -154,7 +154,13 @@
 						<?php if ($isLoggedIn) { //can only vote when logged in ?>
 						card += "<div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div>";
 						<?php } ?>
-						card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
+						card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'>";
+						//check if post is userLoggedIn's own
+						var userOwnComp = resp.username.localeCompare("<?php echo $username; ?>"); //0 if match
+						if (userOwnComp == 0) {
+							card += "<div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div>";
+						}
+						card += "</div></div></div>";
 						$("#post-container").append(card);
 						$('.saveBtn').on('click', function(e){
 							console.log('click');
@@ -176,11 +182,17 @@
 				else if (postType == 1)
 				{
 					//post type 1 = title and text
-					var card = "<div class='card'><div class='card-content'><span class='card-title'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'>";
+					var card = "<div class='card'><div class='card-content'><span class='card-title' style='color:#689f38;'>"+post.post_title+"</span><p>"+post.text+"</p></div><div class='card-action'>";
 					<?php if ($isLoggedIn) { //can only vote when logged in ?>
 					card += "<div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div>";
 					<?php } ?>
-					card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'><div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div></div></div></div>";
+					card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+post.username+" <img src='"+post.profile_img+"' class='userprofilepic'>";
+					//check if post is userLoggedIn's own
+						var userOwnComp = post.username.localeCompare("<?php echo $username; ?>"); //0 if match
+						if (userOwnComp == 0) {
+							card += "<div class='post-options'><a href='../edit/"+post.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div>";
+						}
+						card += "</div></div></div>";
 					$("#post-container").append(card);	
 				}
 				$('.saveBtn').on('click', function(e){
@@ -279,7 +291,14 @@
 					if (i % 2 == 0)
 						comment = '<tr class="odd-row">';
 					else comment = '<tr class="even-row">';
-					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="modal-trigger deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr>';
+					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username;
+					//can only edit or delete one's own comment
+					//check if post is userLoggedIn's own
+						var userOwnComp = commentsObj[i].username.localeCompare("<?php echo $username; ?>"); //0 if match
+						if (userOwnComp == 0) {
+							comment += '<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="modal-trigger deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a>';
+						}
+					comment += '</td></tr>';
 					//comment vote box
 					comment += '<tr><td class="commentVote">';
 					<?php if ($isLoggedIn) { //can only vote when logged in ?>
@@ -390,8 +409,10 @@
 						  type: 'POST',
 						  url: '../controller/listener.php',
 						  dataType: 'json',
-						  data: { phase: 5, cid: cid, uid: <?php echo $userId_session; ?> },
+						  data: { phase: 5, cid: cid },
 						  success: function(res) {
+							  console.log(res);
+							  console.log(cid);
 								toast(res.message, 1000);
 							}
 						}).done(function() {
@@ -400,7 +421,7 @@
 						})
 						.fail(function(err){
 						  console.log(err);
-						  toast(err.errors, 4000)
+						  toast(err.errors, 4000);
 				});	
 			});
 			
