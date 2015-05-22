@@ -252,6 +252,4 @@ if(isset($_POST['phase'])){
 	}
 }
 
-
-
 ?>

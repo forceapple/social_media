@@ -3,7 +3,7 @@
 -- http://www.phpmyadmin.net
 --
 -- Host: localhost:3306
--- Generation Time: May 22, 2015 at 03:36 AM
+-- Generation Time: May 22, 2015 at 06:03 AM
 -- Server version: 5.6.17-debug-log
 -- PHP Version: 5.5.12
 
@@ -19,6 +19,7 @@ SET time_zone = "+00:00";
 --
 -- Database: `noni`
 --
+DROP DATABASE `noni`;
 CREATE DATABASE IF NOT EXISTS `noni` DEFAULT CHARACTER SET latin1 COLLATE latin1_swedish_ci;
 USE `noni`;
 
@@ -39,7 +40,8 @@ CREATE TABLE IF NOT EXISTS `comment_vote` (
 --
 
 INSERT INTO `comment_vote` (`user_id`, `commnet_id`, `votetype`) VALUES
-(2, 6, 0);
+(2, 6, 0),
+(4, 6, 0);
 
 -- --------------------------------------------------------
 
@@ -61,7 +63,7 @@ CREATE TABLE IF NOT EXISTS `comments` (
 INSERT INTO `comments` (`cid`, `comment`, `comment_time_stamp`, `votes`) VALUES
 (2, 'sadasdasd', '2015-03-20 05:45:49', 0),
 (3, 'YEah same', '2015-03-20 05:45:49', 0),
-(6, 'dfgdfg', '2015-03-20 05:45:49', 3),
+(6, 'dfgdfg', '2015-03-20 05:45:49', 4),
 (7, 'dfgdfgdfg', '2015-03-20 05:46:27', 0),
 (9, 'pew epwewpewpe pwewe', '2015-03-20 05:50:53', 0);
 
