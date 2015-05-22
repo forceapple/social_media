@@ -125,11 +125,11 @@
 						<?php if ($isLoggedIn) { //can only vote when logged in ?>
 						card += "<div class='voteBox'><a href='#' class='userVote' data-votetype='0' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-up'></i></a><div class='voteCount' id='voteBox"+resp.pid+"'>0</div><a href='#' data-votetype='1' class='userVote' data-pid='"+resp.pid+"' data-uid='<?php echo $userId_session; ?>'><i class='mdi-hardware-keyboard-arrow-down'></i></a></div>";
 						<?php } ?>
-						card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'><a href='#' class='saveBtn'>SAVE</a>";
+						card += "<div class='postDetails'><a href='#'><i class='mdi-action-grade'></i>0</a>by "+resp.username+" <img src='"+resp.profile_img+"' class='userprofilepic'>";
 						//check if post is userLoggedIn's own
 						var userOwnComp = resp.username.localeCompare("<?php echo $username; ?>"); //0 if match
 						if (userOwnComp == 0) {
-							card += "<div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div>";	
+							card += "<div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div><a href='#' class='saveBtn'>SAVE</a>";	
 						}
 						card += "</div></div></div>";
 						$("#post-container").append(card);
