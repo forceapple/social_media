@@ -49,7 +49,7 @@
           <li><a href="<?php echo ROOT_FOLDER; ?>login">Log In</a></li>
       </ul>
   	<ul class="right hide-on-med-and-down">
-    	<li style="padding-left: 10px;"><form action="search.php" method="get">
+    	<li style="padding-left: 10px;"><form action="<?php echo ROOT_FOLDER; ?>search.php" method="get">
         <div class="input-field">
           <input id="for" name="for" type="text" required>
           <label for="for"><i class="mdi-action-search"></i></label>

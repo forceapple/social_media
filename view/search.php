@@ -53,11 +53,9 @@ $(document).ready(function(){
 			data: { phase: 4, input: "<?php echo $_GET['for']; ?>"},
 			dataType: 'json'
 		}).done(function(resp){
-			console.log(resp);
 			$.each(resp, function(key,arr){
 				if(arr != false){
 					for(var el in arr){
-						console.log(key);
 						if(key == 'posts'){
 							$('#'+key + '> ul').append('<li><a href="<?php echo ROOT_FOLDER; ?>post/' + arr[el].pid + '">' + arr[el].title + '</a></li>');
 						}else if(key == 'users' || key == 'names'){
@@ -66,31 +64,12 @@ $(document).ready(function(){
 							$('#'+key +'>p').html('Found comments in the following posts:');
 							$('#'+key + '> ul').append('<li><a href="<?php echo ROOT_FOLDER; ?>post/' + arr[el].pid + '">' + arr[el].title + '</a></li>');
 						}
-						
 					}
 				}else{
 					$('#'+key +'> p').html('Nothing found');
 					$('.tab-'+ key).addClass('disabled');
 				}
-				////console.log(key);
-				//console.log(value);
 			})
-			/*
-			if(elLength(resp.posts)){
-				console.log('yes');
-				for(var key in resp.posts){
-					console.log(resp.posts[key].pid);
-					$('#posts > ul').append('<li><a href="<?php echo ROOT_FOLDER; ?>post/' + resp.posts[key].pid + '">' + resp.posts[key].title + '</a></li>');
-				}
-			}
-			if(elLength(resp.posts)){
-				console.log('yes');
-				for(var key in resp.posts){
-					console.log(resp.posts[key].pid);
-					$('#posts > ul').append('<li><a href="<?php echo ROOT_FOLDER; ?>post/' + resp.posts[key].pid + '">' + resp.posts[key].title + '</a></li>');
-				}
-			}
-			*/
 
 		}).fail(function(err){
 			console.log(err);
