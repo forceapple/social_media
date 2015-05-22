@@ -7,10 +7,8 @@ require('main.php');
 // 0 - get all posts
 // 1 - get post by post id
 // 2 - get comments by post id
-// 3 - get # votes by post id
+// 3 - get votes by post id
 // 4 - search by text
-// 5 - get # votes by comment id
-// 6 - get saved posts by user id
 
 // *******************
 // POST PHASES
@@ -25,7 +23,6 @@ require('main.php');
 // 7 - login 
 // 8 - register
 // 9 - save post by post id and user id
-//10 - vote comment
 
 // TO DO
 // class constructor
@@ -78,10 +75,6 @@ if(isset($_GET['phase'])){
 		case 5:
 			$lo = new noniController();
 			echo $lo->get_votes_by_comment_id($_GET['cid']);
-		break;
-		case 6:
-			$lo = new noniController();
-			echo json_encode($lo->get_saved_by_user_id($_GET['uid']));
 		break;
 			
 
@@ -163,7 +156,7 @@ if(isset($_POST['phase'])){
 			break;
 		case 4:
 			$lo = new noniController();
-			if($lo->delete_post($_POST['pid'], $_POST['uid'])){
+			if($lo->delete_post($_POST['pid'])){
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}else{
@@ -174,7 +167,7 @@ if(isset($_POST['phase'])){
 			break;
 		case 5:
 			$lo = new noniController();
-			if($lo->delete_comment($_POST['cid'], $_POST['uid'])){
+			if($lo->delete_comment($_POST['cid'])){
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}else{
@@ -251,5 +244,7 @@ if(isset($_POST['phase'])){
 			break;
 	}
 }
+
+
 
 ?>

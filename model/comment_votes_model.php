@@ -92,10 +92,10 @@ class comment_votes_model extends _Model_Interface{
 	}
 }
 // $a=2;
-// $b=3;
-// $c=0;
-// //voting test
+//  $b=3;
+// // $c=0;
+// // //voting test
 // $db = new comment_votes_model();
-// $db->vote_comment($a,$b,$c);
+// $db->get_votes_by_commnet_id($b);
 
 ?>
