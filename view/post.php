@@ -241,6 +241,9 @@
 					//comment
 					comment += '<td class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
 					
+					//get # of votes for comment
+					getCommentVoteCount(commentsObj[i].cid);
+					
 					//delete comment 
 					$(document).on("click", ".deleteCommentBtn", function(e){
 						e.preventDefault();
@@ -457,5 +460,50 @@ function getCommentVoteCount(cid) {
 			console.log(err);
 		}
 	});  
+}
+
+function commentVotingFunc() {
+	//vote click event listener binds dynamically made cards
+	$(document).on("click", ".commentUserVote", function(e) {
+			e.preventDefault();
+			var votetype = $(this).data('votetype');
+			var cid = $(this).data('cid');
+			var currVoteCount = parseInt($("#commentVoteBox"+cid).text());
+			var uservotetype = $(this).data('uservote');
+			
+			if (!votetype)
+			{
+				$("#commentVoteBox"+cid).text(currVoteCount	+1);
+				$(this).attr("class", "disableVote");
+				$(this).siblings().closest("a").attr("class","commentUserVote");
+			}
+			else {
+				$("#voteBox"+pid).text(currVoteCount-1);
+				$(this).attr("class", "disableVote");
+				$(this).siblings().closest("a").attr("class","commentUserVote");
+			}
+			$(document).on("click", ".disableVote", function(e) { e.preventDefault(); });
+			
+			var formData = {
+				phase: 10, 
+				uid: <?php echo $userId_session; ?>, //user in session
+				cid: cid, 
+				votetype: votetype 
+			};
+			//0 is upvote, 1 is minus
+			$.ajax({
+				url:'controller/listener.php',
+				data: formData,
+				type: 'POST',
+				dataType: 'json',
+				success: function(resp) {
+					console.log(formData);
+					console.log(resp);
+				},
+				error: function(err) {
+					
+				}
+			});
+	});
 }
 </script>
