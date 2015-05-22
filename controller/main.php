@@ -113,6 +113,23 @@ class noniController{
 		$co = new user_register_model($username, $pass, $profile_img, $email, $f_name, $l_name, $location);
 		return $co->register_user();
 	}
+
+	function search_post($input){
+		$co = new search_model();
+		return $co->search_post($input);
+	}
+	function search_user($input){
+		$co = new search_model();
+		return $co->search_user($input);
+	}
+	function search_name($input){
+		$co = new search_model();
+		return $co->search_name($input);
+	}
+	function search_comment($input){
+		$co = new search_model();
+		return $co->search_comment($input);
+	}
 }
 
 

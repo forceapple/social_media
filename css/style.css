@@ -220,3 +220,6 @@ textarea.parsley-error {
 .text-center-xs{
 	text-align: center;
 }
+.disabled > a{
+		color: #666!important;
+}

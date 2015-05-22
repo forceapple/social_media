@@ -59,6 +59,19 @@ if(isset($_GET['phase'])){
 		case 3:
 			$lo = new noniController();
 			echo $lo->get_votes_by_post_id($_GET['pid']);
+		break;
+		case 4:
+			$lo = new noniController();
+			$arr = array();
+			$arr['posts'] = $lo->search_post($_GET['input']);
+			$arr['users'] = $lo->search_user($_GET['input']);
+			$arr['names'] = $lo->search_name($_GET['input']);
+			$arr['comments'] = $lo->search_comment($_GET['input']);
+			//echo $arr;
+			echo json_encode($arr);
+		break;
+			
+
 	}
 }
 

@@ -27,7 +27,6 @@ if(isset($_GET['_url'])){
 	}
 	
 	include('view/header.php');
-	
 	//check which page to show
 	switch($params[0]){
 		case "user":
@@ -73,6 +72,9 @@ if(isset($_GET['_url'])){
 			}else{
 				header('Location: '. ROOT_FOLDER);
 			}
+		break;
+		case "search.php":
+			require_once("view/search.php");
 		break;
 		default:
 			require_once("view/404.php");
