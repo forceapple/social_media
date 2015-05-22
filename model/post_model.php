@@ -132,7 +132,6 @@ class post_model extends _Model_Interface{
 			}
 			return false;
 		}
-		return false;
 	}
 
 }
