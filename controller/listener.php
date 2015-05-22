@@ -7,8 +7,9 @@ require('main.php');
 // 0 - get all posts
 // 1 - get post by post id
 // 2 - get comments by post id
-// 3 - get votes by post id
+// 3 - get # votes by post id
 // 4 - search by text
+// 5 - get # votes by comment id
 
 // *******************
 // POST PHASES

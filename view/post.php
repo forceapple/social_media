@@ -443,4 +443,19 @@ function votingFunc() {
 			});
 	});
 }
+
+function getCommentVoteCount(cid) {
+	$.ajax({
+		url:'../controller/listener.php',
+		data: {phase: 5, cid: cid},
+		type: 'GET',
+		dataType: 'json',
+		success: function (voteNum) {
+			$("#commentVoteBox"+cid).text(voteNum);
+		}, 
+		error: function(err) {
+			console.log(err);
+		}
+	});  
+}
 </script>
