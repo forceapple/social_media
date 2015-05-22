@@ -90,7 +90,7 @@ $(document).ready(function(){
 		
 		var formData = {
 			'phase' : 0,
-			'uid' : 1,
+			'uid' : <?php echo $userId_session; ?>,
 			'title' : $('#link_title').val(),
 			'text' : text,
 			'type' : $("#post-type-select").val(),
