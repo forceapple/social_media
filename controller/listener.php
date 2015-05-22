@@ -231,7 +231,7 @@ if(isset($_POST['phase'])){
 		default:
 			return false;
 			break;
-		case 9:
+		case 10:
 			$lo = new noniController();
 			if($lo->vote_comment($_POST['uid'], $_POST['cid'], $_POST['votetype'])){
 				$data['success'] = true;
