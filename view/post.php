@@ -159,7 +159,9 @@
 					e.preventDefault();
 					$('#deleteWindow').openModal();
 				});
-	
+				
+				getVoteCount(<?php echo $_GET['pid'] ?>);
+				votingFunc();  
 				getComments();
         })
         .fail(function(err){
@@ -379,5 +381,66 @@ function IsValidImageUrl(post, callback, error) {
         error: function() { error(post); },
         load: function() { callback(post); }
     });
+}
+
+function getVoteCount(pid) {
+	$.ajax({
+		url:'../controller/listener.php',
+		data: {phase: 3, pid: pid},
+		type: 'GET',
+		dataType: 'json',
+		success: function (voteNum) {
+			$("#voteBox"+pid).text(voteNum);
+		}, 
+		error: function(err) {
+			console.log(err);
+		}
+	});  
+}
+
+function votingFunc() {
+	//vote click event listener binds dynamically made cards
+	$(document).on("click", ".userVote", function(e) {
+			e.preventDefault();
+			var votetype = $(this).data('votetype');
+			var pid = $(this).data('pid');
+			var currVoteCount = parseInt($("#voteBox"+pid).text());
+			var uservotetype = $(this).data('uservote');
+			
+			if (!votetype)
+			{
+				$("#voteBox"+pid).text(currVoteCount	+1);
+				$(this).attr("class", "disableVote");
+				$(this).siblings().closest("a").attr("class","userVote");
+			}
+			else {
+				$("#voteBox"+pid).text(currVoteCount-1);
+				$(this).attr("class", "disableVote");
+				$(this).siblings().closest("a").attr("class","userVote");
+			}
+			$(document).on("click", ".disableVote", function(e) { e.preventDefault(); });
+			
+			var formData = {
+				phase: 6, 
+				uid: <?php echo $userId_session; ?>, //user in session
+				pid: pid, 
+				votetype: votetype 
+			};
+			
+			//0 is upvote, 1 is minus
+			$.ajax({
+				url:'../controller/listener.php',
+				data: formData,
+				type: 'POST',
+				dataType: 'json',
+				success: function(resp) {
+					console.log(formData);
+					console.log(resp);
+				},
+				error: function(err) {
+					
+				}
+			});
+	});
 }
 </script>

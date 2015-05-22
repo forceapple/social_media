@@ -45,7 +45,6 @@
 		initMagicScroll();
     });
 	
-	
 function loadPosts() {
 	$.ajax({
 			url:'controller/listener.php',
@@ -210,5 +209,4 @@ function votingFunc() {
 			});
 	});
 }
-
 </script>
