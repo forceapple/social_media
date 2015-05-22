@@ -156,7 +156,7 @@ if(isset($_POST['phase'])){
 			break;
 		case 4:
 			$lo = new noniController();
-			if($lo->delete_post($_POST['pid'])){
+			if($lo->delete_post($_POST['pid'],$_POST['uid'])){
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}else{
@@ -167,7 +167,7 @@ if(isset($_POST['phase'])){
 			break;
 		case 5:
 			$lo = new noniController();
-			if($lo->delete_comment($_POST['cid'])){
+			if($lo->delete_comment($_POST['cid'],$_POST['uid'])){
 				$data['success'] = true;
 				$data['message'] = 'Success';
 			}else{

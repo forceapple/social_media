@@ -82,9 +82,16 @@ class comments_model extends _Model_Interface{
 		return false;
 	}
 
-	function del_comment($cid){
-		if($this->del_row($cid)){
-			return ture;
+	function del_comment($cid,$uid){
+		$query = "SELECT * FROM comments_posts LEFT JOIN comments ON comments.cid = comments_posts.cid LEFT JOIN post ON comments_posts.pid=post.pid WHERE comments_posts.uid='".$uid."' AND comments_posts.cid='".$cid."'";
+		$result = mysqli_query($this->con,$query);
+		if($result){
+			$query2 ="DELETE FROM comments WHERE comments.cid=".$cid;
+			$result2 = mysqli_query($this->con,$query2);
+			if($result2){
+				return true;
+			}
+			return false;
 		}
 		return false;
 	}

@@ -70,7 +70,7 @@ class noniController{
 
 	//function to delete a comment
 	//returns true if success
-	function delete_comment($cid){
+	function delete_comment($cid, $uid){
 		$co = new comments_model();
 		if($co->del_comment($cid)){
 			return true;
@@ -81,7 +81,7 @@ class noniController{
 
 	//function to delete a post
 	//returns true if success
-	function delete_post($pid){
+	function delete_post($pid, $uid){
 		$co = new post_model();
 		if($co->del_post($pid)){
 			return true;

@@ -120,9 +120,17 @@ class post_model extends _Model_Interface{
 		return false;
 	}
 
-	function del_post($pid){
-		if($this->del_row($pid)){
-			return ture;
+	function del_post($pid,$uid){
+		$query = "SELECT * FROM user_post LEFT JOIN post ON post.pid = user_post.pid WHERE user_post.uid=".$uid;
+		$result = mysqli_query($this->con,$query);
+		//$query ="DELETE FROM user_post WHERE user_post.pid='".$pid."' AND user_post.uid= ".$uid;
+		if($result){
+			$query2 ="DELETE FROM post WHERE post.pid=".$pid;
+			$result2 = mysqli_query($this->con,$query2);
+			if($result2){
+				return true;
+			}
+			return false;
 		}
 		return false;
 	}
