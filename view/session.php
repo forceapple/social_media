@@ -16,5 +16,5 @@
 		$userId_session = -1; // -1 means no user logged on
 		$isUserFlag = false;		
 	}
-	print_r($_SESSION);
+	//print_r($_SESSION);
 ?>

@@ -122,7 +122,7 @@ class post_model extends _Model_Interface{
 
 	function del_post($pid){
 		if($this->del_row($pid)){
-			return ture;
+			return true;
 		}
 		return false;
 	}

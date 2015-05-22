@@ -129,7 +129,7 @@
 						//check if post is userLoggedIn's own
 						var userOwnComp = resp.username.localeCompare("<?php echo $username; ?>"); //0 if match
 						if (userOwnComp == 0) {
-							card += "<div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a></div><a href='#' class='saveBtn'>SAVE</a>";	
+							card += "<div class='post-options'><a href='../edit/"+resp.pid+"'>EDIT</a> <a href='#' class='deleteBtn'>DELETE</a><a href='#' class='saveBtn'>SAVE</a></div>";	
 						}
 						card += "</div></div></div>";
 						$("#post-container").append(card);
