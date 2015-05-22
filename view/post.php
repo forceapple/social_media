@@ -317,7 +317,6 @@
 								}
 							}).done(function() {
 								//reload comments
-								
 								getComments();
 							})
 							.fail(function(err){
@@ -350,6 +349,7 @@
 					$(".comments-table tbody").append(comment);
 				  }  
 			  }
+			  commentVotingFunc();
 			  
 			})
 			.fail(function(err){
@@ -487,7 +487,6 @@ function getCommentVoteCount(cid) {
 		type: 'GET',
 		dataType: 'json',
 		success: function (voteNum) {
-			console.log(voteNum);
 			$("#commentVoteBox"+cid).text(voteNum);
 		}, 
 		error: function(err) {
@@ -512,7 +511,7 @@ function commentVotingFunc() {
 				$(this).siblings().closest("a").attr("class","commentUserVote");
 			}
 			else {
-				$("#voteBox"+pid).text(currVoteCount-1);
+				$("#commentVoteBox"+cid).text(currVoteCount-1);
 				$(this).attr("class", "disableVote");
 				$(this).siblings().closest("a").attr("class","commentUserVote");
 			}
@@ -524,6 +523,7 @@ function commentVotingFunc() {
 				cid: cid, 
 				votetype: votetype 
 			};
+			console.log(formData);
 			//0 is upvote, 1 is minus
 			$.ajax({
 				url:'controller/listener.php',
