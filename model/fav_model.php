@@ -1,5 +1,5 @@
 <?php
-require ("_model_interface.php");
+// require ("_model_interface.php");
 class fav_model extends _Model_Interface{
 	function __construct(){
 		// parent::__construct("user"); //passing the table
@@ -31,9 +31,9 @@ class fav_model extends _Model_Interface{
 		print_r($arr2);
 	}
 }
-$a=2;
-// $b=6;
- $db = new fav_model();
- $db->get_all_fav_by_uid($a);
+// $a=2;
+// // $b=6;
+//  $db = new fav_model();
+//  $db->get_all_fav_by_uid($a);
 
 ?>
