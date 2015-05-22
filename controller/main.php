@@ -91,7 +91,7 @@ class noniController{
 	}
 
 	function vote_post($uid, $pid, $votetype){
-		$co = new Noni();
+		$co = new votes_model();
 		if($co->vote_post($uid, $pid, $votetype)){
 			return true;
 		}else{
@@ -100,7 +100,7 @@ class noniController{
 	}
 
 	function get_votes_by_post_id($pid){
-		$co = new Noni();
+		$co = new votes_model();
 		return $co->get_votes_by_post_id($pid);
 	}
 
@@ -130,11 +130,23 @@ class noniController{
 		$co = new search_model();
 		return $co->search_comment($input);
 	}
+	function vote_comment($uid, $cid, $votetype){
+		$co = new comment_votes_model();
+		if($co->vote_comment($uid, $cid, $votetype)){
+			return true;
+		}else{
+			return false;
+		}	
+	}
+
+	function get_votes_by_comment_id($cid){
+		$co = new comment_votes_model();
+		return $co->get_votes_by_commnet_id($cid);
+	}
 }
 
-
-
-//$test = new noniController();
+// $test = new noniController();
+// $test->get_votes_by_comment_id($b);
 //print_r($test->register_user("test2", "1234", "google.ca", "g@g.g", "Gordo", "Broro", "Vancouver"));
 
 ?>

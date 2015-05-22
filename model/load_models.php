@@ -7,5 +7,6 @@ require ("search_model.php");
 require ("votes_model.php");
 require ("comments_model.php");
 require ("fav_model.php");
+require ("comment_votes_model.php");
 //add other models here
 ?>
