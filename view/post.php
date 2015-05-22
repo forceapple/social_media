@@ -234,7 +234,7 @@
 						comment = '<tr class="odd-row">';
 					else comment = '<tr class="even-row">';
 					comment = comment + '<td class="user-avatar-td"> <img src="'+commentsObj[i].profile_img+'" alt="" class="circle user-avatar"></td><td>'+commentsObj[i].username+'<a href="#" class="editCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-image-edit commentActions"></i></a><a href="#" class="modal-trigger deleteCommentBtn" id="'+commentsObj[i].cid+'"><i class="mdi-action-delete commentActions"></i></a></td></tr>';
-					//commebt vote box
+					//comment vote box
 					comment += '<tr><td class="commentVote"><div class="commentVoteBox"><a href="#" class="commentUserVote" data-votetype="0" data-cid="'+commentsObj[i].cid+'" data-uid="<?php echo $userId_session; ?>"><i class="mdi-hardware-keyboard-arrow-up"></i></a><div class="commentVoteCount" id="commentVoteBox'+commentsObj[i].cid+'">0</div><a href="#" data-votetype="1" class="commentUserVote" data-cid="'+commentsObj[i].cid+'" data-uid="<?php echo $userId_session; ?>"><i class="mdi-hardware-keyboard-arrow-down"></i></a></div></td>';
 					//comment
 					comment += '<td class="commentsbox"><div id="commentBox'+commentsObj[i].cid+'">'+commentsObj[i].comment+'</div></td></tr>';
@@ -360,7 +360,7 @@
 					type: 'POST',
 					url: '../controller/listener.php',
 					dataType: 'json',
-					data: { phase: 9, pid: <?php echo $_GET['pid']; ?>, uid: <?php echo $_SESSION['user_id']; ?> },
+					data: { phase: 9, pid: <?php echo $_GET['pid']; ?>, uid: <?php echo $userId_session; ?> },
 				}).done(function(resp){
 					console.log(resp);
 					toast(resp.message, 1000);

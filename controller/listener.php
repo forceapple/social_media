@@ -23,6 +23,7 @@ require('main.php');
 // 7 - login 
 // 8 - register
 // 9 - save post by post id and user id
+//10 - vote comment
 
 // TO DO
 // class constructor
