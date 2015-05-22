@@ -454,6 +454,7 @@ function getCommentVoteCount(cid) {
 		type: 'GET',
 		dataType: 'json',
 		success: function (voteNum) {
+			console.log(voteNum);
 			$("#commentVoteBox"+cid).text(voteNum);
 		}, 
 		error: function(err) {
