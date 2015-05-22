@@ -315,7 +315,7 @@
 							  type: 'POST',
 							  url: '../controller/listener.php',
 							  dataType: 'json',
-							  data: { phase: 3, cid: cid, uid: 1, pid: <?php echo $_GET['pid'] ?>, comment: $("#editedComment").val() },
+							  data: { phase: 3, cid: cid, uid: <?php echo $userId_session; ?>, pid: <?php echo $_GET['pid'] ?>, comment: $("#editedComment").val() },
 							  success: function(res) {
 									toast(res.message, 4000);
 								}
@@ -367,7 +367,7 @@
 					  type: 'POST',
 					  url: '../controller/listener.php',
 					  dataType: 'json',
-					  data: { phase: 4, pid: <?php echo $_GET['pid']; ?>, uid: 1 },
+					  data: { phase: 4, pid: <?php echo $_GET['pid']; ?>, uid: <?php echo $userId_session; ?> },
 					  success: function(res) {
 							toast(res.message, 4000);
 						}
@@ -390,7 +390,7 @@
 						  type: 'POST',
 						  url: '../controller/listener.php',
 						  dataType: 'json',
-						  data: { phase: 5, cid: cid, uid: 1 },
+						  data: { phase: 5, cid: cid, uid: <?php echo $userId_session; ?> },
 						  success: function(res) {
 								toast(res.message, 1000);
 							}
