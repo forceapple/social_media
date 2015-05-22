@@ -1,4 +1,5 @@
 <?php
+require ("_model_interface.php");
 class comments_model extends _Model_Interface{
 	function __construct(){
 		// parent::__construct("user"); //passing the table
@@ -46,7 +47,6 @@ class comments_model extends _Model_Interface{
 				$arr['comment_time_stamp'] = $row['comment_time_stamp'];
 				$arr2[]=$arr;
 			}
-			
 			return $arr2;
 		}
 	}
