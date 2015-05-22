@@ -3,7 +3,7 @@
             <div class="row">
               <div class="col l6 s12">
                 <h5 class="white-text">Noni</h5>
-                <p class="grey-text text-lighten-4">Random interesting stuff going on. This is where you get to know them.</p>
+                <p class="grey-text text-lighten-4">Sharing Noni plant love with the community everyday. Show us your interesting photos, recipes and health news!</p>
               </div>
               <div class="col l4 offset-l2 s12">
                 <!--<h5 class="white-text">Links</h5>

@@ -223,3 +223,9 @@ textarea.parsley-error {
 .disabled > a{
 		color: #666!important;
 }
+#container {
+	z-index:20;
+}
+#post-loading {
+	z-index: 10;
+}
