@@ -228,7 +228,7 @@
       $('#submit_comment').submit(function(e){
 			var formData = {
 			  'phase' : 1,
-			  'userID' : 1,
+			  'userID' : <?php echo $userId_session; ?>,
 			  'postID' : <?php echo $_GET['pid']; ?>,
 			  'comment' : $('#user-comment').val()
 			}
@@ -409,7 +409,7 @@
 						  type: 'POST',
 						  url: '../controller/listener.php',
 						  dataType: 'json',
-						  data: { phase: 5, cid: cid },
+						  data: { phase: 5, cid: cid, uid: <?php echo $userId_session; ?> },
 						  success: function(res) {
 							  console.log(res);
 							  console.log(cid);
